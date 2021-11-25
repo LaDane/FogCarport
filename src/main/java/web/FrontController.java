@@ -4,8 +4,11 @@ import business.exceptions.UserException;
 import business.persistence.Database;
 import web.commands.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -17,9 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "FrontController", urlPatterns = {"/fc/*"})
 public class FrontController extends HttpServlet
 {
-    private final static String USER = "dev";
-    private final static String PASSWORD = "ax2";
-    private final static String URL = "jdbc:mysql://localhost:3306/startcode?serverTimezone=CET";
+    private final static String USER = "root";
+    private final static String PASSWORD = getSecret();
+    private final static String URL = "jdbc:mysql://localhost:3306/fog?serverTimezone=CET";
 
     public static Database database;
 
@@ -100,4 +103,16 @@ public class FrontController extends HttpServlet
         return "FrontController for application";
     }
 
+    // Must have a file names password.secret located in the C drive to be able to connect to a SQL database
+    private static String getSecret() {
+        String secretWord = "file not found";
+
+        try {
+            Scanner scanner = new Scanner(new File("C:\\password.secret"));
+            secretWord = scanner.nextLine();
+            scanner.close();
+        } catch (FileNotFoundException ignored) {}
+        System.out.println(secretWord);
+        return secretWord;
+    }
 }
