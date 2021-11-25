@@ -54,7 +54,7 @@ exposing credentials on GitHub.
 You need three main steps to get started:
 
 1. Git:
-    1. Clone the project (not fork): [https://github.com/jonbertelsen/sem2-startcode](https://github.com/jonbertelsen/sem2-startcode)
+    1. Clone the project (not fork): [https://github.com/jonbertelsen/FogCarport](https://github.com/jonbertelsen/FogCarport)
     2. Rename the project folder if needed (to cupcake, webshop etc)
     3. Make it your own Git project by first removing the `.git` folder (use `rm -rf .git/`). Then
        create a fresh repo with `git init`, `git branch -m main`,  `git add .`, `git commit -m "First commit"`
@@ -68,7 +68,7 @@ You need three main steps to get started:
     1. Open project in IntelliJ
     2. Rename the project to your own needs
         1. Right-click the project root in IntelliJ and rename
-        2. Change the name sem2-startcode in the pom.xml file where needed
+        2. Change the name FogCarport in the pom.xml file where needed
     3.  Rename the database names in two places:
         1. In the top of the FrontController.java file: Change `startcode` in the jdbc string `jdbc:mysql://localhost:3306/startcode?serverTimezone=CET`
         2. In the top of the UserMapperTest.java class, set the name of your database in the constant "DATABASE".

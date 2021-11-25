@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>dat</groupId>
-    <artifactId>sem2-startcode</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>FogCarport</artifactId>
+    <version>1.0</version>
     <packaging>war</packaging>
 
-    <name>sem2-startcode</name>
+    <name>FogCarport</name>
 
 
     <properties>
