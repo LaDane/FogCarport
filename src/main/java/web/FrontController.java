@@ -112,7 +112,6 @@ public class FrontController extends HttpServlet
             secretWord = scanner.nextLine();
             scanner.close();
         } catch (FileNotFoundException ignored) {}
-        System.out.println(secretWord);
         return secretWord;
     }
 }
