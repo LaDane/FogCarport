@@ -19,28 +19,40 @@ public class LoginCommand extends CommandUnprotectedPage
     }
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws UserException
-    {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws UserException {
+
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        try {
-        User user = userFacade.login(email, password);
-
-        HttpSession session = request.getSession();
-
-        session.setAttribute("user", user);
-        session.setAttribute("role", user.getRole());
-        session.setAttribute("email", email);
-
-        String pageToShow =  user.getRole() + "page";
-        return REDIRECT_INDICATOR + pageToShow;
+        String newInquiryStarted = String.valueOf(request.getSession().getAttribute("newInquiryStarted"));
+        if (newInquiryStarted.equals("1")) {
+            request.getSession().removeAttribute("newInquiryStarted");
+            return "designcarport";
         }
-        catch (UserException ex)
-        {
-            request.setAttribute("error", "Wrong username or password!");
-            return "loginpage";
-        }
+
+        return "loginsignup";
+
+        // TODO : FINISH LOGIC BELOW
+
+//        try {
+//            User user = userFacade.login(email, password);
+//
+//            HttpSession session = request.getSession();
+//
+//            session.setAttribute("user", user);
+//            session.setAttribute("role", user.getRole());
+//            session.setAttribute("email", email);
+//
+//    //        String pageToShow =  user.getRole() + "page";
+//    //        return REDIRECT_INDICATOR + pageToShow;
+//
+//            return "designcarport";
+//        }
+//        catch (UserException ex)
+//        {
+//            request.setAttribute("errorLogin", "Wrong username or password!");
+//            return "loginsignup";
+//        }
     }
 
 }

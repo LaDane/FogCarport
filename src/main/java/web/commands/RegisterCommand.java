@@ -38,8 +38,8 @@ public class RegisterCommand extends CommandUnprotectedPage
         }
         else
         {
-            request.setAttribute("error", "the two passwords did not match");
-            return "registerpage";
+            request.setAttribute("errorSignup", "the two passwords did not match");
+            return "loginsignup";
         }
     }
 
