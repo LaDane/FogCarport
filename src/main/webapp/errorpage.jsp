@@ -2,7 +2,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<t:genericpage>
+<t:generic>
     <jsp:attribute name="header">
          <h3 style="color:darkred">Oops!</h3>
     </jsp:attribute>
@@ -46,4 +46,4 @@
 
         </div>
     </jsp:body>
-</t:genericpage>
+</t:generic>

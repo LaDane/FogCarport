@@ -2,6 +2,9 @@ package web.commands;
 
 import business.exceptions.UserException;
 import business.persistence.Database;
+import sun.security.krb5.internal.crypto.Des;
+import web.commands.customCommands.DesignCarportCommand;
+import web.commands.customCommands.InquiryNewCommand;
 
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
@@ -21,13 +24,17 @@ public abstract class Command
     {
         commands = new HashMap<>();
         commands.put("index", new CommandUnprotectedPage("index"));
-        commands.put("loginpage", new CommandUnprotectedPage("loginpage"));
+//        commands.put("loginpage", new CommandUnprotectedPage("loginpage"));
         commands.put("logincommand", new LoginCommand(""));
-        commands.put("logoutcommand", new LogoutCommand(""));
-        commands.put("registerpage", new CommandUnprotectedPage("registerpage"));
+//        commands.put("logoutcommand", new LogoutCommand(""));
+//        commands.put("registerpage", new CommandUnprotectedPage("registerpage"));
         commands.put("registercommand", new RegisterCommand(""));
-        commands.put("customerpage", new CommandProtectedPage("customerpage", "customer"));
-        commands.put("employeepage", new CommandProtectedPage("employeepage", "employee"));
+//        commands.put("customerpage", new CommandProtectedPage("customerpage", "customer"));
+//        commands.put("employeepage", new CommandProtectedPage("employeepage", "employee"));
+
+        commands.put("loginSignupCommand", new CommandUnprotectedPage("loginsignup"));
+        commands.put("designCarportCheck", new DesignCarportCommand("designcarport"));
+        commands.put("inquiryNewCommand", new InquiryNewCommand("confirmation", "customer"));
     }
 
     public static Command fromPath(
