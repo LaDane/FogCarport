@@ -16,46 +16,61 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/styles.css">
+
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/styles.css">
+
     <meta name="theme-color" content="#7952b3">
 </head>
 <body>
-<!--
-    This header is inspired by this bootstrap
-    example: https://getbootstrap.com/docs/5.0/examples/pricing/
--->
+
 <div class="container my-3">
     <header>
         <nav class="navbar navbar-expand-lg navbar-light rounded" aria-label="Eleventh navbar example"
              style="background-color: #1B4386">
             <div class="container-fluid">
 
-                <a class="navbar-brand" href="https://www.johannesfog.dk/"><img src="${pageContext.request.contextPath}/img/Fog_logo.png" class="img-fluid"
-                                                                                alt="Fog Logo"></a>
+                <a class="navbar-brand" href="https://www.johannesfog.dk/"><img
+                        src="${pageContext.request.contextPath}/img/Fog_logo.png" class="img-fluid"
+                        alt="Fog Logo"></a>
 
-                <button class="navbar-toggler  bg-light" type="button" data-bs-toggle="collapse"
+                <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false"
                         aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarsExample09">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <div class="collapse navbar-collapse flex-column align-items-start" id="navbarsExample09">
 
+                    <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="${pageContext.request.contextPath}/fc/loginSignupCommand">Login / Signup</a>
+                            <a class="nav-link navbar-style" href="${pageContext.request.contextPath}/fc/loginSignupCommand">Login / Signup</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="${pageContext.request.contextPath}">QuickByg</a>
+                            <a class="nav-link navbar-style" href="${pageContext.request.contextPath}">Profil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link navbar-style" href="${pageContext.request.contextPath}">Mine Ordre</a>
                         </li>
                     </ul>
-                    <form>
-                        <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-                    </form>
+
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link navbar-style navbar-bottom-links" href="https://www.johannesfog.dk/">Johannes Fog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link navbar-style navbar-bottom-links" href="${pageContext.request.contextPath}">QuickByg</a>
+                        </li>
+                    </ul>
                 </div>
+
+<%--                <div class="mr-auto">--%>
+<%--                    <form>--%>
+<%--                        <input class="form-control hide-in-hamburger" type="text" placeholder="Search" aria-label="Search">--%>
+<%--                    </form>--%>
+<%--                </div>--%>
+
             </div>
         </nav>
-
     </header>
 
     <div id="body" style="min-height: 20vh;">

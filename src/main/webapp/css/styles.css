@@ -3,7 +3,33 @@
     The file is included in the genericpage.tag template
  */
 
-#topmenu_login_dialogue
-{
-    font-size: smaller;
+.navbar-style {
+    font-weight: bold !important;
+    font-size: large !important;
+    color: white !important;
+    -webkit-transition: color 0.5s !important;
+    transition: color 0.5s !important;
+    margin-left: 25px !important;
+}
+
+.navbar-style:hover {
+    color: cornflowerblue !important;
+    text-decoration: underline !important;
+}
+
+.navbar-bottom-links {
+    font-size: xx-large !important;
+}
+
+/* Hamburger active here */
+@media screen and (max-width: 991px){
+
+    /*.hide-in-hamburger {*/
+    /*    display: none !important;*/
+    /*    visibility: hidden !important;*/
+    /*}*/
+
+    .navbar-bottom-links {
+        font-size: large !important;
+    }
 }
