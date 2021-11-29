@@ -42,9 +42,21 @@
                 <div class="collapse navbar-collapse" id="navbarsExample09">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="${pageContext.request.contextPath}/fc/loginSignupCommand">Login / Signup</a>
-                        </li>
+
+                        <c:if test="${sessionScope.user == null }">
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="${pageContext.request.contextPath}/fc/loginSignupCommand">Login / Signup</a>
+                            </li>
+                        </c:if>
+
+                        <c:if test="${sessionScope.user != null }">
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="${pageContext.request.contextPath}/fc/logoutcommand">Logout</a>
+                            </li>
+                        </c:if>
+
+
+
                         <li class="nav-item">
                             <a class="nav-link text-white" href="${pageContext.request.contextPath}">QuickByg</a>
                         </li>

@@ -35,15 +35,11 @@ public class UserMapperTest {
         }
     }
 
-    @BeforeEach
-    public void setUp() {
-
-        try {
-            userMapper.deleteUser(2);
-        } catch (UserException e) {
-            e.printStackTrace();
-        }
-    }
+//    @BeforeEach
+//    public void setUp() {
+//
+//
+//    }
 
     @Test
     public void testSetUpOK() {
@@ -81,6 +77,15 @@ public class UserMapperTest {
         userMapper.createUser( original );
         User retrieved = userMapper.login( "king@kong.com", "uhahvorhemmeligt" );
         assertEquals( "konge", retrieved.getRole() );
+
+
+        // Makes sure to delete it again for further unittests, cause you can't have duplicate emails.
+        // Can't just drop table, because there is a foreign key restraints on the 'users' table.
+        try {
+            userMapper.deleteUser(original.getId());
+        } catch (UserException e) {
+            e.printStackTrace();
+        }
     }
 
 //    @Test
