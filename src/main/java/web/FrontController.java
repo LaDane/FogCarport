@@ -2,6 +2,7 @@ package web;
 
 import business.exceptions.UserException;
 import business.persistence.Database;
+import business.services.LogicFacade;
 import web.commands.*;
 
 import java.io.File;
@@ -26,6 +27,7 @@ public class FrontController extends HttpServlet
 
     public static Database database;
 
+
     public void init() throws ServletException
     {
         // Initialize database connection
@@ -42,6 +44,11 @@ public class FrontController extends HttpServlet
         }
 
         // Initialize whatever global datastructures needed here:
+        LogicFacade logicFacade = new LogicFacade(database);
+
+        getServletContext().setAttribute("standardLengths", logicFacade.getStandardLengths());
+        getServletContext().setAttribute("carportLengths", logicFacade.getCarportLengths());
+
 
     }
 
