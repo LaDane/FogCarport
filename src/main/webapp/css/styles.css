@@ -3,7 +3,7 @@
     The file is included in the genericpage.tag template
  */
 
-.navbar-style {
+.navbar-link {
     font-weight: bold !important;
     font-size: large !important;
     color: white !important;
@@ -12,24 +12,51 @@
     margin-left: 25px !important;
 }
 
-.navbar-style:hover {
+.navbar-link:hover {
     color: cornflowerblue !important;
     text-decoration: underline !important;
+}
+
+.navbar-text {
+    font-weight: bold !important;
+    font-size: large !important;
+    color: white !important;
+    margin-left: 25px !important;
 }
 
 .navbar-bottom-links {
     font-size: xx-large !important;
 }
 
+.navbar-signout {
+    margin-left: 200px !important;
+}
+
+@media screen and (min-width: 1400px){
+    .navbar-signout {
+        margin-left: 700px !important;
+    }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1399px){
+    .navbar-signout {
+        margin-left: 500px !important;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px){
+    .navbar-signout {
+        margin-left: 300px !important;
+    }
+}
+
 /* Hamburger active here */
 @media screen and (max-width: 991px){
-
-    /*.hide-in-hamburger {*/
-    /*    display: none !important;*/
-    /*    visibility: hidden !important;*/
-    /*}*/
-
     .navbar-bottom-links {
         font-size: large !important;
+    }
+
+    .navbar-signout {
+        margin-left: 25px !important;
     }
 }

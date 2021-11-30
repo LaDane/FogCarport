@@ -21,7 +21,7 @@
                     <table class="table">
                         <tr>
                             <td>
-                                Standard Carporte
+                                <a class="nav-link" href="https://www.johannesfog.dk/byggecenter/landingpages/carporte/"><strong>Standard Carporte</strong></a>
                             </td>
                         </tr>
                     </table>

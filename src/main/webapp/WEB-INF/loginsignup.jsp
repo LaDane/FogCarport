@@ -22,19 +22,18 @@
 
                 <div class="col">
                     <h3>Login med eksiterende konto</h3>
-                    <form name="login" action="${pageContext.request.contextPath}/fc/logincommand"  method="POST">
-                        <!--                    <div class="row mb-3">-->
+                    <form name="login" action="${pageContext.request.contextPath}/fc/logincommand" method="POST">
+
                         <label class="col-sm-1 col-form-label" for="email" id="loginemail">Email</label>
-                        <div class="col-sm-4">
+                        <div class="col-sm-7">
                             <input class="form-control" type="text" name="loginemail" placeholder="someone@nowhere.com">
                         </div>
-                        <!--                    </div>-->
-                        <!--                    <div class="row mb-3">-->
+
                         <label class="col-sm-1 col-form-label" for="password" id="password">Password</label><br>
-                        <div class="col-sm-4">
+                        <div class="col-sm-7">
                             <input class="form-control" type="password" name="password" placeholder="sesam">
                         </div>
-                        <!--                    </div>-->
+
                         <c:if test="${requestScope.errorLogin != null }">
                             <p style="color:red">
                                     ${requestScope.errorLogin}
@@ -44,58 +43,59 @@
                         <c:if test="${not empty param.msg}">
                             <p style="font-size: large">${param.msg}</p>
                         </c:if>
-                        <button class="btn btn-primary mb-3" type="submit" value="Login">Login</button>
+                        <button class="btn btn-primary mb-3" type="submit" value="Login" style="margin-top: 25px">Login</button>
                     </form>
                 </div>
 
                 <div class="col">
                     <h3>Opret ny konto</h3>
                     <form name="login" action="${pageContext.request.contextPath}/fc/registercommand" method="POST">
-                        <!--                    <div class="row mb-3">-->
+
                         <label class="col-sm-1 col-form-label" for="email">Email</label><br>
-                        <div class="col-sm-4">
-                            <input id="email" class="form-control" type="text" name="email" placeholder="Skriv din email">
+                        <div class="col-sm-7">
+                            <input id="email" class="form-control" type="text" name="email"
+                                   placeholder="Skriv din email">
                         </div>
-                        <!--                    </div>-->
-                        <!--                    <div class="row mb-3">-->
+
                         <label class="col-sm-1 col-form-label" for="password1">Password</label><br>
-                        <div class="col-sm-4">
-                            <input id="password1" class="form-control" type="password" name="password1" placeholder="Enter your password">
+                        <div class="col-sm-7">
+                            <input id="password1" class="form-control" type="password" name="password1"
+                                   placeholder="Enter your password">
                         </div>
-                        <!--                    </div>-->
-                        <!--                    <div class="row mb-3">-->
+
                         <label class="col-sm-1 col-form-label" for="password2">Password</label><br>
-                        <div class="col-sm-4">
-                            <input id="password2" class="form-control" type="password" name="password2" placeholder="Repeat the password">
+                        <div class="col-sm-7">
+                            <input id="password2" class="form-control" type="password" name="password2"
+                                   placeholder="Repeat the password">
                         </div>
-                        <!--                    </div>-->
 
                         <label class="col-sm-1 col-form-label" for="name">Navn</label><br>
-                        <div class="col-sm-4">
+                        <div class="col-sm-7">
                             <input id="name" class="form-control" type="text" name="name" placeholder="Navn">
                         </div>
 
                         <label class="col-sm-1 col-form-label" for="address">Adresse</label><br>
-                        <div class="col-sm-4">
+                        <div class="col-sm-7">
                             <input id="address" class="form-control" type="text" name="address" placeholder="Adresse">
                         </div>
 
                         <label class="col-sm-1 col-form-label" for="city">By</label><br>
-                        <div class="col-sm-4">
+                        <div class="col-sm-7">
                             <input id="city" class="form-control" type="text" name="city" placeholder="By">
                         </div>
 
                         <label class="col-sm-1 col-form-label" for="zip">Postnummer</label><br>
-                        <div class="col-sm-4">
+                        <div class="col-sm-7">
                             <input id="zip" class="form-control" type="number" name="zip" placeholder="Postnummer">
                         </div>
 
                         <label class="col-sm-1 col-form-label" for="phoneNumber">Telefon</label><br>
-                        <div class="col-sm-4">
-                            <input id="phoneNumber" class="form-control" type="number" name="phoneNumber" placeholder="Telefon nummer">
+                        <div class="col-sm-7">
+                            <input id="phoneNumber" class="form-control" type="number" name="phoneNumber"
+                                   placeholder="Telefon nummer">
                         </div>
 
-                        <button class="btn btn-primary mb-3" type="submit" value="Signup">Signup</button>
+                        <button class="btn btn-primary mb-3" type="submit" value="Signup" style="margin-top: 25px">Signup</button>
                     </form>
 
 

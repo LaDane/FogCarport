@@ -17,9 +17,6 @@
 
     <jsp:body>
 
-
-
-
         <h3 class="mt-5" style="color: #1B4386">QUICKBYG</h3>
         <br>
         <div class="container container-fluid" style="background-color: #F8F8F8">
@@ -28,7 +25,7 @@
                     <table class="table">
                         <tr>
                             <td>
-                                Standard Carporte
+                                <a class="nav-link" href="https://www.johannesfog.dk/byggecenter/landingpages/carporte/"><strong>Standard Carporte</strong></a>
                             </td>
                         </tr>
                     </table>

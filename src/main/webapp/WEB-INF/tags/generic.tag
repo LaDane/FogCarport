@@ -27,6 +27,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light rounded" aria-label="Eleventh navbar example"
              style="background-color: #1B4386">
+
             <div class="container-fluid">
 
                 <a class="navbar-brand" href="https://www.johannesfog.dk/"><img
@@ -45,40 +46,37 @@
 
                         <c:if test="${sessionScope.user == null}">
                             <li class="nav-item">
-                                <a class="nav-link navbar-style"
+                                <a class="nav-link navbar-link"
                                    href="${pageContext.request.contextPath}/fc/loginSignupCommand">Login / Signup</a>
                             </li>
                         </c:if>
                         <c:if test="${sessionScope.user != null}">
                             <li class="nav-item">
-                                <a class="nav-link navbar-style">Hej ${sessionScope.user.getName()}</a>
+                                <a class="nav-link navbar-text">Hej ${sessionScope.user.getName()}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link navbar-style" href="${pageContext.request.contextPath}">Profil</a>
+                                <a class="nav-link navbar-link" href="${pageContext.request.contextPath}">Profil</a>
                             </li>
                         </c:if>
                         <c:if test="${sessionScope.user.getRole().equals('customer')}">
                             <li class="nav-item">
-                                <a class="nav-link navbar-style" href="${pageContext.request.contextPath}">Mine
-                                    Ordre</a>
+                                <a class="nav-link navbar-link" href="${pageContext.request.contextPath}">Mine Tilbud</a>
                             </li>
                         </c:if>
                         <c:if test="${sessionScope.user != null}">
                             <li class="nav-item">
-                                <a class="nav-link navbar-style"
-                                   href="${pageContext.request.contextPath}/fc/logoutcommand">Log ud</a>
+                                <a class="nav-link navbar-link navbar-signout" href="${pageContext.request.contextPath}/fc/logoutcommand">Log ud</a>
                             </li>
                         </c:if>
-
                     </ul>
+
 
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link navbar-style navbar-bottom-links" href="https://www.johannesfog.dk/">Johannes
-                                Fog</a>
+                            <a class="nav-link navbar-link navbar-bottom-links" href="https://www.johannesfog.dk/">Johannes Fog</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link navbar-style navbar-bottom-links"
+                            <a class="nav-link navbar-link navbar-bottom-links"
                                href="${pageContext.request.contextPath}">QuickByg</a>
                         </li>
                     </ul>
