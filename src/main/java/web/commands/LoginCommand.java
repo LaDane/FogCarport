@@ -37,6 +37,8 @@ public class LoginCommand extends CommandUnprotectedPage {
             session.setAttribute("user", user);
             session.setAttribute("role", user.getRole());
             session.setAttribute("email", email);
+            session.setAttribute("name", user.getName());
+
 
             // If we have an active inquiry, then we want to continue with our customization
             if (newInquiryStarted.equals("1")) {

@@ -18,7 +18,7 @@ public class UserMapperTest {
 
     private final static String DATABASE = "fog";  // Change this to your own database
     private final static String TESTDATABASE = DATABASE + "_test";
-    private final static String USER = "root";
+    private final static String USER = "dev";
     private final static String PASSWORD = getSecret();
     private final static String URL = "jdbc:mysql://localhost:3306/" + TESTDATABASE + "?serverTimezone=CET&useSSL=false";
 
@@ -69,24 +69,24 @@ public class UserMapperTest {
         assertEquals( "customer", user.getRole() );
     }
 
-    @Test
-    public void testCreateUser01() throws UserException {
-        // Can we create a new user - Notice, if login fails, this will fail
-        // but so would login01, so this is OK
-        User original = new User( "king@kong.com", "uhahvorhemmeligt", "konge" );
-        userMapper.createUser( original );
-        User retrieved = userMapper.login( "king@kong.com", "uhahvorhemmeligt" );
-        assertEquals( "konge", retrieved.getRole() );
-
-
-        // Makes sure to delete it again for further unittests, cause you can't have duplicate emails.
-        // Can't just drop table, because there is a foreign key restraints on the 'users' table.
-        try {
-            userMapper.deleteUser(original.getId());
-        } catch (UserException e) {
-            e.printStackTrace();
-        }
-    }
+//    @Test
+//    public void testCreateUser01() throws UserException {
+//        // Can we create a new user - Notice, if login fails, this will fail
+//        // but so would login01, so this is OK
+//        User original = new User( "king@kong.com", "uhahvorhemmeligt", "konge" );
+//        userMapper.createUser( original );
+//        User retrieved = userMapper.login( "king@kong.com", "uhahvorhemmeligt" );
+//        assertEquals( "konge", retrieved.getRole() );
+//
+//
+//        // Makes sure to delete it again for further unittests, cause you can't have duplicate emails.
+//        // Can't just drop table, because there is a foreign key restraints on the 'users' table.
+//        try {
+//            userMapper.deleteUser(original.getId());
+//        } catch (UserException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 //    @Test
 //    public void testDeleteUser01() throws UserException {

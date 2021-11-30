@@ -42,32 +42,53 @@
                 <div class="collapse navbar-collapse flex-column align-items-start" id="navbarsExample09">
 
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link navbar-style" href="${pageContext.request.contextPath}/fc/loginSignupCommand">Login / Signup</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link navbar-style" href="${pageContext.request.contextPath}">Profil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link navbar-style" href="${pageContext.request.contextPath}">Mine Ordre</a>
-                        </li>
+
+                        <c:if test="${sessionScope.user == null}">
+                            <li class="nav-item">
+                                <a class="nav-link navbar-style"
+                                   href="${pageContext.request.contextPath}/fc/loginSignupCommand">Login / Signup</a>
+                            </li>
+                        </c:if>
+                        <c:if test="${sessionScope.user != null}">
+                            <li class="nav-item">
+                                <a class="nav-link navbar-style">Hej ${sessionScope.user.getName()}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link navbar-style" href="${pageContext.request.contextPath}">Profil</a>
+                            </li>
+                        </c:if>
+                        <c:if test="${sessionScope.user.getRole().equals('customer')}">
+                            <li class="nav-item">
+                                <a class="nav-link navbar-style" href="${pageContext.request.contextPath}">Mine
+                                    Ordre</a>
+                            </li>
+                        </c:if>
+                        <c:if test="${sessionScope.user != null}">
+                            <li class="nav-item">
+                                <a class="nav-link navbar-style"
+                                   href="${pageContext.request.contextPath}/fc/logoutcommand">Log ud</a>
+                            </li>
+                        </c:if>
+
                     </ul>
 
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link navbar-style navbar-bottom-links" href="https://www.johannesfog.dk/">Johannes Fog</a>
+                            <a class="nav-link navbar-style navbar-bottom-links" href="https://www.johannesfog.dk/">Johannes
+                                Fog</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link navbar-style navbar-bottom-links" href="${pageContext.request.contextPath}">QuickByg</a>
+                            <a class="nav-link navbar-style navbar-bottom-links"
+                               href="${pageContext.request.contextPath}">QuickByg</a>
                         </li>
                     </ul>
                 </div>
 
-<%--                <div class="mr-auto">--%>
-<%--                    <form>--%>
-<%--                        <input class="form-control hide-in-hamburger" type="text" placeholder="Search" aria-label="Search">--%>
-<%--                    </form>--%>
-<%--                </div>--%>
+                <%--                <div class="mr-auto">--%>
+                <%--                    <form>--%>
+                <%--                        <input class="form-control hide-in-hamburger" type="text" placeholder="Search" aria-label="Search">--%>
+                <%--                    </form>--%>
+                <%--                </div>--%>
 
             </div>
         </nav>
