@@ -2,9 +2,8 @@ package web.commands;
 
 import business.exceptions.UserException;
 import business.persistence.Database;
-import sun.security.krb5.internal.crypto.Des;
 import web.commands.customCommands.DesignCarportCommand;
-import web.commands.customCommands.InquiryNewCommand;
+import web.commands.customCommands.OrderNewCommand;
 
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +33,7 @@ public abstract class Command
 
         commands.put("loginSignupCommand", new CommandUnprotectedPage("loginsignup"));
         commands.put("designCarportCheck", new DesignCarportCommand("designcarport"));
-        commands.put("inquiryNewCommand", new InquiryNewCommand("confirmation", "customer"));
+        commands.put("orderNewCommand", new OrderNewCommand("confirmation", "customer"));
     }
 
     public static Command fromPath(

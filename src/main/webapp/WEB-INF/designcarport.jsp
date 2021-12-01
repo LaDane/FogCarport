@@ -45,7 +45,7 @@
                     </div>
 
 
-                    <form action="${pageContext.request.contextPath}/fc/inquiryNewCommand"  method="post">
+                    <form action="${pageContext.request.contextPath}/fc/orderNewCommand" method="post">
                         <div class="row align-items-start">
                             <div class="col-sm mt-4">
                                 <h4 class="mb-4"><strong>Carport</strong></h4>
@@ -66,25 +66,42 @@
                                     </c:forEach>
                                 </select>
 
-                                <label for="carportPoleDistance">Stolpeafstand</label>
-                                <select class="form-control" name="carportPoleDistance" id="carportPoleDistance">
-                                    <option value="test">Test</option>
-                                </select>
+<%--                                <label for="carportPoleDistance">Stolpeafstand</label>--%>
+<%--                                <select class="form-control" name="carportPoleDistance" id="carportPoleDistance">--%>
+<%--                                    <option value="test">Test</option>--%>
+<%--                                </select>--%>
 
                             </div>
 
                             <div class="col-sm mt-4">
                                 <h4 class="mb-4"><strong>Tag</strong></h4>
 
-                                <label for="roofType">Tag type</label>
-                                <select class="form-control" name="roofType" id="roofType">
-                                    <option value="test">Test</option>
+                                <label for="roofMaterial">Tag type</label>
+                                <select class="form-control" name="roofMaterial" id="roofMaterial">
+                                    <c:if test="${sessionScope.hasFlatRoof == 1}">
+                                        <c:forEach var="roofFlat" items="${applicationScope.roofFlats}">
+                                            <option value="${roofFlat.materialId}">${roofFlat.name}</option>
+                                        </c:forEach>
+                                    </c:if>
+
+                                    <c:if test="${sessionScope.hasFlatRoof == 0}">
+                                        <c:forEach var="roofRaised" items="${applicationScope.roofRaiseds}">
+                                            <option value="${roofRaised.materialId}">${roofRaised.name}</option>
+                                        </c:forEach>
+                                    </c:if>
+
                                 </select>
 
                                 <c:if test="${sessionScope.hasFlatRoof == 0}">
                                     <label for="roofSlope">Tag hældning</label>
                                     <select class="form-control" name="roofSlope" id="roofSlope">
-                                        <option value="test">Test</option>
+                                        <option value="15">15°</option>
+                                        <option value="20">20°</option>
+                                        <option value="25">25°</option>
+                                        <option value="30">30°</option>
+                                        <option value="35">35°</option>
+                                        <option value="40">40°</option>
+                                        <option value="45">45°</option>
                                     </select>
                                 </c:if>
 
@@ -108,10 +125,24 @@
                                         </c:forEach>
                                     </select>
 
+                                    <label for="shedCladding">Skur beklædning</label>
+                                    <select class="form-control" name="shedCladding" id="shedCladding">
+                                        <c:forEach var="cladding" items="${applicationScope.claddings}">
+                                            <option value="${cladding.materialId}">${cladding.name}</option>
+                                        </c:forEach>
+                                    </select>
+
                                     <label for="shedPlacement">Skur placering</label>
                                     <select class="form-control" name="shedPlacement" id="shedPlacement">
-                                        <option value="test">Test</option>
+                                        <option value="SW">Syd Vest</option>
+                                        <option value="W">Vest</option>
+                                        <option value="NW">Nord Vest</option>
+                                        <option value="N">Nord</option>
+                                        <option value="NE">Nord Øst</option>
+                                        <option value="E">Øst</option>
+                                        <option value="SE">Syd Øst</option>
                                     </select>
+                                    <label>Indgang til carport er sydlige side</label>
                                 </c:if>
 
                             </div>

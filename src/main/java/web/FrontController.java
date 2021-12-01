@@ -1,8 +1,10 @@
 package web;
 
+import business.entities.Material;
 import business.exceptions.UserException;
 import business.persistence.Database;
 import business.services.LogicFacade;
+import business.services.MaterialFacade;
 import web.commands.*;
 
 import java.io.File;
@@ -45,10 +47,17 @@ public class FrontController extends HttpServlet
 
         // Initialize whatever global datastructures needed here:
         LogicFacade logicFacade = new LogicFacade(database);
-
         getServletContext().setAttribute("standardLengths", logicFacade.getStandardLengths());
         getServletContext().setAttribute("carportLengths", logicFacade.getCarportLengths());
 
+        MaterialFacade materialFacade = new MaterialFacade(database);
+        getServletContext().setAttribute("materials", materialFacade.getAllMaterials());
+        getServletContext().setAttribute("woods", materialFacade.getAllWoods());
+        getServletContext().setAttribute("fittings", materialFacade.getAllFittings());
+        getServletContext().setAttribute("screws", materialFacade.getAllScrews());
+        getServletContext().setAttribute("roofFlats", materialFacade.getAllRoofFlats());
+        getServletContext().setAttribute("roofRaiseds", materialFacade.getAllRoofRaiseds());
+        getServletContext().setAttribute("claddings", materialFacade.getAllCladdings());
 
     }
 
