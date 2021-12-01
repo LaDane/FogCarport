@@ -1,8 +1,11 @@
 package web.commands.customCommands;
 
 import business.entities.*;
+import business.entities.materials.Cladding;
+import business.entities.materials.Material;
+import business.exceptions.OrderException;
 import business.services.MaterialFacade;
-import com.sun.org.apache.xpath.internal.operations.Or;
+import business.services.OrderFacade;
 import web.commands.CommandProtectedPage;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +24,7 @@ public class OrderNewCommand extends CommandProtectedPage {
         int carportWidth = Integer.parseInt(request.getParameter("carportWidth"));
         int carportLength = Integer.parseInt(request.getParameter("carportLength"));
         int roofMaterial = Integer.parseInt(request.getParameter("roofMaterial"));
-        int roofSlope = -1;
+        int roofSlope = 0;
         int shedWidth = -1;
         int shedLength = -1;
         int shedCladding = -1;
@@ -38,6 +41,7 @@ public class OrderNewCommand extends CommandProtectedPage {
         if (hasFlatRoof == 0) {
             roofSlope = Integer.parseInt(request.getParameter("roofSlope"));
         }
+        Material roof = materialFacade.getSpecificMaterial(roofMaterial);
 
         int hasShed = (int) request.getSession().getAttribute("hasShed");
         if (hasShed == 1) {
@@ -51,11 +55,15 @@ public class OrderNewCommand extends CommandProtectedPage {
             shed = new Shed(cladding, shedPlacement, shedWidth, shedLength);
         }
 
-        Carport carport = new Carport(carportWidth, carportLength, shed);
+        Carport carport = new Carport(carportWidth, carportLength, shed, roof, roofSlope);
         Order order = new Order("Forespørgsel", user, carport);
 
-        System.out.println(order.getStatus());
-        System.out.println(order.getCarport().getLength());
+        OrderFacade orderFacade = new OrderFacade(database);
+        try {
+            orderFacade.createOrderEntry(order);
+        } catch (OrderException e) {
+            e.printStackTrace();
+        }
 
         return pageToShow;
     }

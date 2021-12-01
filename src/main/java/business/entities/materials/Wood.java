@@ -1,4 +1,4 @@
-package business.entities;
+package business.entities.materials;
 
 public class Wood extends Material{
     public Wood(int materialId, String name, String dimension, String description, double price, int unitSize) {

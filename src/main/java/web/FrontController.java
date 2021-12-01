@@ -1,6 +1,5 @@
 package web;
 
-import business.entities.Material;
 import business.exceptions.UserException;
 import business.persistence.Database;
 import business.services.LogicFacade;

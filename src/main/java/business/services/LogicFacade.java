@@ -1,7 +1,7 @@
 package business.services;
 
 import business.persistence.Database;
-import business.persistence.StandardLengthMapper;
+import business.mappers.StandardLengthMapper;
 
 import java.util.List;
 

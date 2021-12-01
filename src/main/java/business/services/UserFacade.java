@@ -2,7 +2,7 @@ package business.services;
 
 import business.entities.User;
 import business.persistence.Database;
-import business.persistence.UserMapper;
+import business.mappers.UserMapper;
 import business.exceptions.UserException;
 
 public class UserFacade {

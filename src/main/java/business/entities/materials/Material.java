@@ -1,4 +1,4 @@
-package business.entities;
+package business.entities.materials;
 
 public abstract class Material {
     private int materialId;

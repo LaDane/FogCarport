@@ -2,14 +2,12 @@ package business.persistence;
 
 import business.entities.User;
 import business.exceptions.UserException;
+import business.mappers.UserMapper;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;

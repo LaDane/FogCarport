@@ -1,5 +1,7 @@
 package business.entities;
 
+import business.entities.materials.Material;
+
 public class OrderLine {
     private int orderLineId;
     private Material material;

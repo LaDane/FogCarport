@@ -1,9 +1,7 @@
 package business.persistence;
 
-import business.entities.User;
-import business.exceptions.UserException;
+import business.mappers.CarportMapper;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;

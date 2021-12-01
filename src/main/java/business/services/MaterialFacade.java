@@ -1,8 +1,8 @@
 package business.services;
 
-import business.entities.*;
+import business.entities.materials.*;
 import business.persistence.Database;
-import business.persistence.MaterialMapper;
+import business.mappers.MaterialMapper;
 
 import java.util.List;
 

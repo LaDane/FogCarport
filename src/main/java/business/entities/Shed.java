@@ -1,5 +1,7 @@
 package business.entities;
 
+import business.entities.materials.Material;
+
 public class Shed {
     private int shedId;
     private Material cladding;

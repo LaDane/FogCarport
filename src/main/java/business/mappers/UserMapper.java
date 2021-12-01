@@ -1,7 +1,8 @@
-package business.persistence;
+package business.mappers;
 
 import business.exceptions.UserException;
 import business.entities.User;
+import business.persistence.Database;
 
 import java.sql.*;
 

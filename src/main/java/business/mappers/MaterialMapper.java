@@ -1,6 +1,7 @@
-package business.persistence;
+package business.mappers;
 
-import business.entities.*;
+import business.entities.materials.*;
+import business.persistence.Database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
