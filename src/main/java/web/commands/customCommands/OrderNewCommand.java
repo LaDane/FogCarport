@@ -41,7 +41,8 @@ public class OrderNewCommand extends CommandProtectedPage {
         if (hasFlatRoof == 0) {
             roofSlope = Integer.parseInt(request.getParameter("roofSlope"));
         }
-        Material roof = materialFacade.getSpecificMaterial(roofMaterial);
+        Material rMaterial = materialFacade.getSpecificMaterial(roofMaterial);
+        Roof roof = new Roof(rMaterial, roofSlope);
 
         int hasShed = (int) request.getSession().getAttribute("hasShed");
         if (hasShed == 1) {
@@ -55,7 +56,7 @@ public class OrderNewCommand extends CommandProtectedPage {
             shed = new Shed(cladding, shedPlacement, shedWidth, shedLength);
         }
 
-        Carport carport = new Carport(carportWidth, carportLength, shed, roof, roofSlope);
+        Carport carport = new Carport(carportWidth, carportLength, shed, roof);
         Order order = new Order("Forespørgsel", user, carport);
 
         OrderFacade orderFacade = new OrderFacade(database);

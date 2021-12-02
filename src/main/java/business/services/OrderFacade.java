@@ -3,12 +3,13 @@ package business.services;
 import business.entities.Carport;
 import business.entities.Order;
 import business.entities.Shed;
+import business.entities.User;
+import business.entities.views.OrderView;
 import business.exceptions.OrderException;
-import business.mappers.CarportMapper;
-import business.mappers.OrderMapper;
-import business.mappers.RoofMapper;
-import business.mappers.ShedMapper;
+import business.mappers.*;
 import business.persistence.Database;
+
+import java.util.List;
 
 public class OrderFacade {
 
@@ -16,6 +17,7 @@ public class OrderFacade {
     CarportMapper carportMapper;
     ShedMapper shedMapper;
     RoofMapper roofMapper;
+    OrderViewMapper orderViewMapper;
 
 
     public OrderFacade(Database database) {
@@ -23,6 +25,7 @@ public class OrderFacade {
         this.carportMapper = new CarportMapper(database);
         this.shedMapper = new ShedMapper(database);
         this.roofMapper = new RoofMapper(database);
+        this.orderViewMapper = new OrderViewMapper(database);
     }
 
     public Order createOrder(Order order) throws OrderException {
@@ -51,4 +54,11 @@ public class OrderFacade {
         }
     }
 
+    public List<OrderView> getAllOrderViews(User user) {
+        return orderViewMapper.getAllOrderViews(user);
+    }
+
+    public OrderView getOrderViewByOrderId(int orderId, User user) {
+        return orderViewMapper.getOrderViewByOrderId(orderId, user);
+    }
 }

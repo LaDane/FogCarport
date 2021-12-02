@@ -20,8 +20,8 @@ public class RoofMapper {
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 ps.setInt(1, carport.getCarportId());
-                ps.setInt(2, carport.getRoof().getMaterialId());
-                ps.setInt(3, carport.getRoofSlope());
+                ps.setInt(2, carport.getRoof().getRoofMaterial().getMaterialId());
+                ps.setInt(3, carport.getRoof().getSlope());
                 ps.executeUpdate();
 
             } catch (SQLException ex) {

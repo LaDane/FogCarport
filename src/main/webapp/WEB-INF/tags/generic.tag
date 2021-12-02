@@ -60,7 +60,12 @@
                         </c:if>
                         <c:if test="${sessionScope.user.getRole().equals('customer')}">
                             <li class="nav-item">
-                                <a class="nav-link navbar-link" href="${pageContext.request.contextPath}">Mine Tilbud</a>
+                                <a class="nav-link navbar-link" href="${pageContext.request.contextPath}/fc/orderOverviewCustomer">Mine Tilbud</a>
+                            </li>
+                        </c:if>
+                        <c:if test="${sessionScope.user.getRole().equals('employee')}">
+                            <li class="nav-item">
+                                <a class="nav-link navbar-link" href="${pageContext.request.contextPath}/fc/orderOverviewEmployee">Ordre Oversigt</a>
                             </li>
                         </c:if>
                         <c:if test="${sessionScope.user != null}">

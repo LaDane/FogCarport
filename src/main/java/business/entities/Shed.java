@@ -16,6 +16,14 @@ public class Shed {
         this.length = length;
     }
 
+    public Shed(int shedId, Material cladding, String placement, int width, int length) {
+        this.shedId = shedId;
+        this.cladding = cladding;
+        this.placement = placement;
+        this.width = width;
+        this.length = length;
+    }
+
     public int getShedId() {
         return shedId;
     }

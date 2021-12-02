@@ -8,15 +8,22 @@ public class Carport {
     private int length;
     private int height;
     private Shed shed;
-    private Material roof;
-    private int roofSlope;
+    private Roof roof;
 
-    public Carport(int width, int length, Shed shed, Material roof, int roofSlope) {
+    public Carport(int width, int length, Shed shed, Roof roof) {
         this.width = width;
         this.length = length;
         this.shed = shed;
         this.roof = roof;
-        this.roofSlope = roofSlope;
+    }
+
+    public Carport(int carportId, int width, int length, int height, Shed shed, Roof roof) {
+        this.carportId = carportId;
+        this.width = width;
+        this.length = length;
+        this.height = height;
+        this.shed = shed;
+        this.roof = roof;
     }
 
     public int getCarportId() {
@@ -59,19 +66,11 @@ public class Carport {
         this.shed = shed;
     }
 
-    public Material getRoof() {
+    public Roof getRoof() {
         return roof;
     }
 
-    public void setRoof(Material roof) {
+    public void setRoof(Roof roof) {
         this.roof = roof;
-    }
-
-    public int getRoofSlope() {
-        return roofSlope;
-    }
-
-    public void setRoofSlope(int roofSlope) {
-        this.roofSlope = roofSlope;
     }
 }

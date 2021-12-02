@@ -1,9 +1,12 @@
 package web;
 
+import business.entities.views.OrderView;
 import business.exceptions.UserException;
 import business.persistence.Database;
 import business.services.LogicFacade;
 import business.services.MaterialFacade;
+import business.services.OrderFacade;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import web.commands.*;
 
 import java.io.File;
@@ -57,6 +60,8 @@ public class FrontController extends HttpServlet
         getServletContext().setAttribute("roofFlats", materialFacade.getAllRoofFlats());
         getServletContext().setAttribute("roofRaiseds", materialFacade.getAllRoofRaiseds());
         getServletContext().setAttribute("claddings", materialFacade.getAllCladdings());
+
+//        OrderFacade orderFacade = new OrderFacade(database);
 
     }
 

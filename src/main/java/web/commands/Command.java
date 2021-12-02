@@ -4,6 +4,8 @@ import business.exceptions.UserException;
 import business.persistence.Database;
 import web.commands.customCommands.DesignCarportCommand;
 import web.commands.customCommands.OrderNewCommand;
+import web.commands.customCommands.OrderOverviewCommand;
+import web.commands.customCommands.OrderSingleCommand;
 
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
@@ -34,6 +36,10 @@ public abstract class Command
         commands.put("loginSignupCommand", new CommandUnprotectedPage("loginsignup"));
         commands.put("designCarportCheck", new DesignCarportCommand("designcarport"));
         commands.put("orderNewCommand", new OrderNewCommand("confirmation", "customer"));
+        commands.put("orderOverviewEmployee", new OrderOverviewCommand("orderoverview", "employee"));
+        commands.put("orderOverviewCustomer", new OrderOverviewCommand("orderoverview", "customer"));
+        commands.put("orderSingleEmployee", new OrderSingleCommand("ordersingle", "employee"));
+        commands.put("orderSingleCustomer", new OrderSingleCommand("ordersingle", "customer"));
     }
 
     public static Command fromPath(

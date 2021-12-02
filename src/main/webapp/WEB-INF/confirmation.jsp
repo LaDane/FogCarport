@@ -30,7 +30,7 @@
                 <div class="col my-3">
                     <div>
                         <h3>Din ordre er bekræftet!</h3>
-                        <p>Vi sender en bekræftelse på **MAIL**<br>
+                        <p>Vi sender en bekræftelse på ${sessionScope.user.email}<br>
                             Du kan forvente at høre tilbage fra os indenfor 24 timer.</p>
                         <p>Ordre ID: <strong>{order_ID}</strong></p>
                     </div>
