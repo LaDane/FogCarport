@@ -1,5 +1,7 @@
 package business.carportCalc;
 
+import business.entities.Carport;
+
 public class Calculator {
 
     // Carport Spær
@@ -133,6 +135,85 @@ public class Calculator {
         int trapezAcross = getAmountOfTrapezAcross(width);
 
         return trapezRow * trapezAcross;
+    }
+
+    // Remme
+    public int getAmountOfRems(Carport carport) {
+        int amountOfRems = 2;
+
+        if (carport.getLength() > 720) {
+            amountOfRems = 4;
+        }
+        return amountOfRems;
+    }
+
+    public int getLengthOfRems(Carport carport) {
+        int amountOfRems = getAmountOfRems(carport);
+        int remLength = carport.getLength();
+
+        if (amountOfRems > 2) {
+            double idealRemLength = carport.getLength() / amountOfRems;
+
+            if (idealRemLength > 370 && idealRemLength < 420)
+                remLength = 420;
+        }
+        return remLength;
+    }
+
+
+    // Stolper
+    public int getAmountOfPosts(Carport carport) {
+        double squareMeters = (carport.getLength() / 100) * (carport.getWidth() / 100);
+        double postsPreRounded = squareMeters / 5.5;
+        int totalPosts = 4;
+
+        if (postsPreRounded > 4 && postsPreRounded <= 6)
+            totalPosts = 6;
+        else if (postsPreRounded > 6 && postsPreRounded <= 8)
+            totalPosts = 8;
+        else if (postsPreRounded > 8 && postsPreRounded <= 10)
+            totalPosts = 10;
+        else if (postsPreRounded > 10 && postsPreRounded <= 12)
+            totalPosts = 12;
+        else if (postsPreRounded > 12 && postsPreRounded <= 14)
+            totalPosts = 14;
+
+        // TODO: Figure out a better way to do the calculations below
+        if (carport.getShed() != null) {
+            if (carport.getShed().getLength() == carport.getLength()) {
+                // skur fylder hele langside        + 3
+                totalPosts += 3;
+            }
+
+            else if (carport.getShed().getLength() == carport.getLength() / 2) {
+                // skur fylder halvdelen af langsiden       + 2
+                totalPosts += 2;
+            }
+
+            else if (carport.getShed().getWidth() == carport.getWidth()) {
+                // skur fylder hele badside     + 4
+                totalPosts += 4;
+            }
+        }
+
+        return totalPosts;
+    }
+
+    // Stern brædder
+    public int getAmountOfUnderStern(Carport carport) {
+        int amountOfUnderStern = 4;
+
+        if (carport.getLength() > 600)
+            amountOfUnderStern += 2;
+        if (carport.getWidth() > 600)
+            amountOfUnderStern += 2;
+
+        return amountOfUnderStern;
+    }
+
+    public int getLengthOfUnderStern(Carport carport) {
+        // TODO: Finish this
+        return 0;
     }
 
 }

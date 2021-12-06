@@ -1,5 +1,8 @@
 package business.carportCalc;
 
+import business.entities.Carport;
+import business.entities.Roof;
+import business.entities.Shed;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -7,6 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class CalculatorTest {
 
     Calculator calculator = new Calculator();
+    Shed shed = new Shed(null, "NW", 300, 210);
+    Carport carport = new Carport(600, 420, shed, new Roof(null, 0));
 
     @Test
     public void testRoofFlatRafters() {
@@ -63,5 +68,9 @@ class CalculatorTest {
         calculator.getTotalAmountOfTrapez(580, 550);
     }
 
-
+    @Test
+    public void testAmountOfPosts() {
+        int postAmount = calculator.getAmountOfPosts(carport);
+        assertEquals(8, postAmount);
+    }
 }
