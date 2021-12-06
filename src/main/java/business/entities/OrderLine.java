@@ -17,6 +17,13 @@ public class OrderLine {
         this.price = price;
     }
 
+    public OrderLine(Material material, int length, int amount, double price) {
+        this.material = material;
+        this.length = length;
+        this.amount = amount;
+        this.price = price;
+    }
+
     public int getOrderLineId() {
         return orderLineId;
     }
