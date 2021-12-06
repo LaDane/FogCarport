@@ -13,30 +13,29 @@ import java.util.List;
 public class CarportCalculator extends Calculator {
 
     private MaterialFacade materialFacade;
+    private List<OrderLine> completeOrder;
 
     public CarportCalculator(MaterialFacade materialFacade) {
         this.materialFacade = materialFacade;
     }
 
     public List<OrderLine> calculateCarport(Carport carport) {
-        List<OrderLine> completeOrder = new ArrayList<>();
-
-        // Variables
-        int width = carport.getWidth();
-        int height = carport.getHeight();
+        completeOrder = new ArrayList<>();
 
         // Beregn tag
-        assemblyTrapezRoof(carport, completeOrder);
+        assemblyTrapezRoof(carport);
 
 
         // Beregn stolper
+
+        // Beregn skur
 
 
         return completeOrder;
     }
 
 
-    public void assemblyTrapezRoof(Carport carport, List<OrderLine> completeOrder) {
+    public void assemblyTrapezRoof(Carport carport) {
         double lysvidde = getRafterLysViddeTrapez(carport.getWidth());
 
         // tag plader
@@ -49,15 +48,17 @@ public class CarportCalculator extends Calculator {
         completeOrder.add(trapez);
 
         // Remme
-        double remHeight = getRafterHeightFromLysVidde(lysvidde);
+//        double remHeight = getRafterHeightFromLysVidde(lysvidde);
 
-        Material remMaterial = null;
-        if (remHeight == 19.5)
-            remMaterial = materialFacade.getSpecificMaterial(5); // 45x195
-        else if (remHeight == 22)
-            remMaterial = materialFacade.getSpecificMaterial(28); // 45x220
-        else if (remHeight == 24.5)
-            remMaterial = materialFacade.getSpecificMaterial(29); // 45x245
+        Material remMaterial = materialFacade.getSpecificMaterial(5); // 45x195
+
+//        Material remMaterial = null;
+//        if (remHeight == 19.5)
+//            remMaterial = materialFacade.getSpecificMaterial(5); // 45x195
+//        else if (remHeight == 22)
+//            remMaterial = materialFacade.getSpecificMaterial(28); // 45x220
+//        else if (remHeight == 24.5)
+//            remMaterial = materialFacade.getSpecificMaterial(29); // 45x245
 
         int remLength = carport.getLength();
         double priceRem = remMaterial.getPrice() * remLength / 100 * 2;

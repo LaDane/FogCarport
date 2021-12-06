@@ -1,9 +1,9 @@
 package business.carportCalc;
 
 import business.entities.Carport;
+import business.entities.OrderLine;
 import business.entities.Roof;
-import business.mappers.CarportMapper;
-import business.mappers.MaterialMapper;
+import business.entities.Shed;
 import business.persistence.Database;
 import business.services.MaterialFacade;
 import org.junit.jupiter.api.BeforeAll;
@@ -11,8 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
+import java.util.List;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,7 +25,8 @@ class CarportCalculatorTest {
 
    private static Database database;
    private static MaterialFacade materialFacade;
-   private static Carport carport;
+   private static Carport carportNoShed;
+   private static Carport carportWithShed;
 
    private static CarportCalculator carportCalculator;
 
@@ -42,9 +42,29 @@ class CarportCalculatorTest {
 
       // Setup test Carport
 
+      Shed shed = new Shed(materialFacade.getSpecificMaterial(26), "", 480, 200 );
       Roof roof = new Roof(materialFacade.getSpecificMaterial(21), 0);
-      carport = new Carport(480, 600, null, roof);
+      carportNoShed = new Carport(480, 600, null, roof);
+      carportWithShed = new Carport(480, 600, shed, roof);
+
    }
+
+
+
+   @Test
+   public void testCalculateCarport(){
+      List<OrderLine> orderLines = carportCalculator.calculateCarport(carportNoShed);
+
+      for (OrderLine ol : orderLines) {
+         //System.out.println(ol.getMaterial().getName() + " " + ol.getLength() + " " + ol.getAmount() + " " + ol.getPrice());
+         System.out.println(ol);
+      }
+
+      assertEquals(2, orderLines.size());
+   }
+
+
+
 
 
 

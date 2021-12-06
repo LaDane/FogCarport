@@ -63,4 +63,16 @@ public class OrderLine {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return "OrderLine{" +
+//                "Id=" + orderLineId +
+                ", material=" + material.getName() +
+                ", dimensions=" + material.getDimension() +
+                ", length=" + length +
+                ", amount=" + amount +
+                ", price=" + price +
+                '}';
+    }
 }
