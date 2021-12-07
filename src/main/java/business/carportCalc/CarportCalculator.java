@@ -19,7 +19,7 @@ public class CarportCalculator extends Calculator {
         this.materialFacade = materialFacade;
     }
 
-    public List<OrderLine> calculateCarport(Carport carport) {
+    public List<OrderLine> calculateCarportMaterials(Carport carport) {
         List<OrderLine> completeOrder = new ArrayList<>();
 
         completeOrder.add(getRafterOrder(carport));                 // Spær
@@ -33,6 +33,15 @@ public class CarportCalculator extends Calculator {
         }
 
         return completeOrder;
+    }
+
+    public double calculateCarportPrice(Carport carport) {
+        List<OrderLine> orderLines = calculateCarportMaterials(carport);
+        double totalPrice = 0;
+        for (OrderLine orderLine : orderLines) {
+            totalPrice += orderLine.getPrice();
+        }
+        return totalPrice;
     }
 
     private OrderLine getRafterOrder(Carport carport) {

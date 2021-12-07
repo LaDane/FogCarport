@@ -55,7 +55,7 @@ class CarportCalculatorTest {
 
    @Test
    public void testCalculateCarport(){
-      List<OrderLine> orderLines = carportCalculator.calculateCarport(carportWithShed);
+      List<OrderLine> orderLines = carportCalculator.calculateCarportMaterials(carportWithShed);
 
       double totalPrice = 0;
 

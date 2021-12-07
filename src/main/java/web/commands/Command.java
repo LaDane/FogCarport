@@ -2,10 +2,7 @@ package web.commands;
 
 import business.exceptions.UserException;
 import business.persistence.Database;
-import web.commands.customCommands.DesignCarportCommand;
-import web.commands.customCommands.OrderNewCommand;
-import web.commands.customCommands.OrderOverviewCommand;
-import web.commands.customCommands.OrderSingleCommand;
+import web.commands.customCommands.*;
 
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
@@ -40,6 +37,7 @@ public abstract class Command
         commands.put("orderOverviewCustomer", new OrderOverviewCommand("orderoverview", "customer"));
         commands.put("orderSingleEmployee", new OrderSingleCommand("ordersingle", "employee"));
         commands.put("orderSingleCustomer", new OrderSingleCommand("ordersingle", "customer"));
+        commands.put("updatePriceTable", new UpdatePriceTableCommand("ordersingle", "employee"));
     }
 
     public static Command fromPath(
