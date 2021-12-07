@@ -45,7 +45,9 @@ class CarportCalculatorTest {
       Shed shed = new Shed(materialFacade.getSpecificMaterial(26), "", 480, 200 );
       Roof roof = new Roof(materialFacade.getSpecificMaterial(21), 0);
       carportNoShed = new Carport(480, 600, null, roof);
+      carportNoShed.setHeight(250);
       carportWithShed = new Carport(480, 600, shed, roof);
+      carportWithShed.setHeight(250);
 
    }
 
@@ -53,14 +55,18 @@ class CarportCalculatorTest {
 
    @Test
    public void testCalculateCarport(){
-      List<OrderLine> orderLines = carportCalculator.calculateCarport(carportNoShed);
+      List<OrderLine> orderLines = carportCalculator.calculateCarport(carportWithShed);
+
+      double totalPrice = 0;
 
       for (OrderLine ol : orderLines) {
          //System.out.println(ol.getMaterial().getName() + " " + ol.getLength() + " " + ol.getAmount() + " " + ol.getPrice());
          System.out.println(ol);
+         totalPrice += ol.getPrice();
       }
+      System.out.println("TOTAL PRICE: "+ totalPrice);
 
-      assertEquals(2, orderLines.size());
+      assertEquals(6, orderLines.size());
    }
 
 

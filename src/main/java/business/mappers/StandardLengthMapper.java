@@ -51,6 +51,18 @@ public class StandardLengthMapper {
         return carportLengths;
     }
 
+    public List<Integer> getCarportWidths(){
+        List<Integer> standardLengths = getStandardLengths();
+        List<Integer> carportLengths = new ArrayList<>();
+
+        for (Integer standardLength : standardLengths) {
+            if(standardLength > 240 && standardLength <= 720){
+                carportLengths.add(standardLength);
+            }
+        }
+        return carportLengths;
+    }
+
 //    public List<Integer> getShedLengths(){
 //        List<Integer> standardLengths = getStandardLengths();
 //        List<Integer> shedLengths = new ArrayList<>();

@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CalculatorTest {
 
     Calculator calculator = new Calculator();
-    Shed shed = new Shed(null, "NW", 300, 210);
+    Shed shed = new Shed(null, "NW", 600, 210);
     Carport carport = new Carport(600, 420, shed, new Roof(null, 0));
 
     @Test
@@ -19,15 +19,15 @@ class CalculatorTest {
         double length = 600;
         double width = 420;
 
-        double lysVidde = calculator.getRafterLysViddeTrapez(width);
+        double lysVidde = calculator.getRafterLysViddeTrapez(carport);
 
         // Wood dimensions
         double raftWidth = 4.5;
-        double raftHeight = calculator.getRafterHeightFromLysVidde(lysVidde);
+        double raftHeight = calculator.getRafterHeightFromLysVidde(carport);
 
         assertEquals(341, lysVidde);
 
-        int amountOfRafters = calculator.getAmountOfRaftersTrapez(length, lysVidde);
+        int amountOfRafters = calculator.getAmountOfRaftersTrapez(carport);
 //        double distanceBetweenRafters = CarportCalculator.getDistanceBetweenRaftersTrapez(length, amountOfRafters);
 
         assertEquals(3, amountOfRafters);
@@ -39,13 +39,13 @@ class CalculatorTest {
         double length = 500;
         double width = 480;
 
-        double lysVidde = calculator.getRafterLysViddeTrapez(width);
-        double rafterHeight = calculator.getRafterHeightFromLysVidde(lysVidde);
+        double lysVidde = calculator.getRafterLysViddeTrapez(carport);
+        double rafterHeight = calculator.getRafterHeightFromLysVidde(carport);
         if (rafterHeight == -1)
             System.out.println("The carport is too wide, FOG can not supply rafters that can support this construction");
 
-        double rafterDistance = calculator.getDistanceRafters(lysVidde, rafterHeight, length);
-        int raftersAmount = calculator.getAmountOfRaftersTrapez(length, rafterDistance);
+        double rafterDistance = calculator.getDistanceRafters(carport);
+        int raftersAmount = calculator.getAmountOfRaftersTrapez(carport);
 
         System.out.println("lys vidde "+ lysVidde);
         System.out.println("rafter height: "+ rafterHeight);
@@ -57,20 +57,49 @@ class CalculatorTest {
     @Test
     public void testTrapezLength() {
         double length = 580;
-        int amountOfTrapez = calculator.getAmountTrapezRow(length);
-        int lengthOfTrapez = calculator.getLengthOfTrapez(length);
+        int amountOfTrapez = calculator.getAmountTrapezRow(carport);
+        int lengthOfTrapez = calculator.getLengthOfTrapez(carport);
         assertEquals(2, amountOfTrapez);
         assertEquals(360, lengthOfTrapez);
     }
 
     @Test
     public void testTrapezTotal() {
-        calculator.getTotalAmountOfTrapez(580, 550);
+        calculator.getTotalAmountOfTrapez(carport);
     }
 
     @Test
     public void testAmountOfPosts() {
         int postAmount = calculator.getAmountOfPosts(carport);
         assertEquals(8, postAmount);
+    }
+
+    @Test
+    public void testAmountAndLengthOfUnderStern() {
+        int amountOfUnderStern = calculator.getAmountOfStern(carport);
+        int lengthOfUnderStern = calculator.getLengthOfStern(carport);
+
+        assertEquals(4, amountOfUnderStern);
+        assertEquals(600, lengthOfUnderStern);
+    }
+
+    @Test
+    public void testMetersShedCladdingKlink() {
+        carport.setHeight(250);
+        double totalSquareMeters = calculator.getSquareMeterShedCladdingKlink(carport);
+        double totalMeters = calculator.getTotalMetersShedCladdingKlink(carport);
+//        System.out.println("Square meters: "+ totalSquareMeters);
+//        System.out.println("Meters: "+ totalMeters);
+    }
+
+    @Test
+    public void testGetCladding() {
+        carport.setHeight(250);
+        int[] claddingArray = calculator.getCladdingKlink(carport);
+        int claddingLength = claddingArray[0];
+        int claddingAmount = claddingArray[1];
+        System.out.println("Cladding length: "+ claddingLength);
+        System.out.println("Cladding Amount: "+ claddingAmount);
+        System.out.println("Cladding Cost: "+ claddingAmount * 202);
     }
 }

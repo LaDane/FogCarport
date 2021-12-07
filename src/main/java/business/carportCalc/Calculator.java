@@ -2,16 +2,23 @@ package business.carportCalc;
 
 import business.entities.Carport;
 
+import java.lang.reflect.Array;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Calculator {
 
     // Carport Spær
 
-    public double getRafterLysViddeTrapez(double width) {
+    public double getRafterLysViddeTrapez(Carport carport) {
+        double width = (double) carport.getWidth();
         double distanceFromRemToEdge = 39.5;
         return width - (distanceFromRemToEdge * 2);
     }
 
-    public double getRafterHeightFromLysVidde(double lysVidde) {
+    public double getRafterHeightFromLysVidde(Carport carport) {
+        double lysVidde = getRafterLysViddeTrapez(carport);
+
         double raftHeight = 19.5;
 
         double maxLysVidde195 = 409.5;
@@ -28,12 +35,16 @@ public class Calculator {
         return raftHeight;
     }
 
-    public int getAmountOfRaftersTrapez(double length, double rafterDistance) {
+    public int getAmountOfRaftersTrapez(Carport carport) {
+        double length = carport.getLength();
+        double rafterDistance = getDistanceRafters(carport);
         return (int) Math.ceil(length / rafterDistance) + 1;
     }
 
-    public double getDistanceRafters(double lysvidde, double raftHeight, double length) {
-        lysvidde = lysvidde / 100;
+    public double getDistanceRafters(Carport carport) {
+        double length = carport.getLength();
+        double raftHeight = getRafterHeightFromLysVidde(carport);
+        double lysvidde = getRafterLysViddeTrapez(carport) / 100;
         double a;
         double b;
         double bjælkeAfstand = 0;
@@ -91,22 +102,45 @@ public class Calculator {
         return bjælkeAfstand * 100;
     }
 
+    public int getRafterLength(Carport carport) {
+        int rafterLength = 720;
+
+        if (carport.getWidth() < 660)
+            rafterLength = 660;
+        if (carport.getWidth() < 600)
+            rafterLength = 600;
+        if (carport.getWidth() < 540)
+            rafterLength = 540;
+        if (carport.getWidth() < 480)
+            rafterLength = 480;
+        if (carport.getWidth() < 420)
+            rafterLength = 420;
+        if (carport.getWidth() < 360)
+            rafterLength = 360;
+        if (carport.getWidth() < 300)
+            rafterLength = 300;
+
+        return rafterLength;
+    }
+
 
     // Trapez
 
-    public int getAmountTrapezRow(double length) {
+    public int getAmountTrapezRow(Carport carport) {
+        double length = carport.getLength();
         int amount = 1;
         if (length > 570)
             amount = 2;
         return amount;
     }
 
-    public int getLengthOfTrapez(double length) {
+    public int getLengthOfTrapez(Carport carport) {
+        double length = carport.getLength();
         int buffer = 20;
         int trapezLength = 240;
 
         double minDistTrapez = length + buffer;
-        int amountTrapezRow = getAmountTrapezRow(length);
+        int amountTrapezRow = getAmountTrapezRow(carport);
 
         if (amountTrapezRow == 2) {
             minDistTrapez = (length + buffer) / 2;
@@ -126,13 +160,14 @@ public class Calculator {
         return trapezLength;
     }
 
-    public int getAmountOfTrapezAcross(double width) {
+    public int getAmountOfTrapezAcross(Carport carport) {
+        double width = carport.getWidth();
         return (int) Math.ceil(width / 100);
     }
 
-    public int getTotalAmountOfTrapez(double length, double width) {
-        int trapezRow = getAmountTrapezRow(length);
-        int trapezAcross = getAmountOfTrapezAcross(width);
+    public int getTotalAmountOfTrapez(Carport carport) {
+        int trapezRow = getAmountTrapezRow(carport);
+        int trapezAcross = getAmountOfTrapezAcross(carport);
 
         return trapezRow * trapezAcross;
     }
@@ -200,7 +235,7 @@ public class Calculator {
     }
 
     // Stern brædder
-    public int getAmountOfUnderStern(Carport carport) {
+    public int getAmountOfStern(Carport carport) {
         int amountOfUnderStern = 4;
 
         if (carport.getLength() > 600)
@@ -211,9 +246,81 @@ public class Calculator {
         return amountOfUnderStern;
     }
 
-    public int getLengthOfUnderStern(Carport carport) {
-        // TODO: Finish this
-        return 0;
+    public int getLengthOfStern(Carport carport) {
+        int amountOfUnderStern = getAmountOfStern(carport);
+        int lengthOfUnderStern = 300;
+        int chosenSide = 0;
+
+        if (amountOfUnderStern == 4) {
+            if (carport.getWidth() >= carport.getLength())
+                chosenSide = carport.getWidth();
+            else
+                chosenSide = carport.getLength();
+        } else if (amountOfUnderStern == 6 || amountOfUnderStern == 8) {
+            if (carport.getWidth() <= carport.getLength())
+                chosenSide = carport.getWidth();
+            else
+                chosenSide = carport.getLength();
+        }
+
+        if (chosenSide <= 600)
+            lengthOfUnderStern = 600;
+        if (chosenSide < 540)
+            lengthOfUnderStern = 540;
+        if (chosenSide < 480)
+            lengthOfUnderStern = 480;
+        if (chosenSide < 420)
+            lengthOfUnderStern = 420;
+        if (chosenSide < 360)
+            lengthOfUnderStern = 360;
+        if (chosenSide < 300)
+            lengthOfUnderStern = 300;
+
+        return lengthOfUnderStern;
+    }
+
+    public double getSquareMeterShedCladdingKlink(Carport carport) {
+        double shedLength = (double) carport.getShed().getLength() / 100;
+        double shedWidth = (double) carport.getShed().getWidth() / 100;
+        double shedHeight = (double) carport.getHeight() / 100;
+
+        double side1 = ((shedLength * shedHeight) * 2) * 1.3;
+        double side2 = ((shedWidth * shedHeight) * 2) * 1.3;
+        return side1 + side2;
+    }
+
+    public double getTotalMetersShedCladdingKlink(Carport carport) {
+        double totalSquareMeters = getSquareMeterShedCladdingKlink(carport);
+        return (totalSquareMeters * 9.09);
+    }
+
+    public int[] getCladdingKlink(Carport carport) {
+        double totalMeters = getTotalMetersShedCladdingKlink(carport);
+
+        HashMap<Integer, Double> remainHash = new HashMap<>();
+        remainHash.put(300, totalMeters % 3);
+        remainHash.put(360, totalMeters % 3.6);
+        remainHash.put(390, totalMeters % 3.9);
+        remainHash.put(420, totalMeters % 4.2);
+        remainHash.put(450, totalMeters % 4.5);
+        remainHash.put(480, totalMeters % 4.8);
+        remainHash.put(540, totalMeters % 5.4);
+
+
+        double leastRemains = 9999999;
+        int leastKey = 0;
+
+        for (Map.Entry<Integer, Double> remains : remainHash.entrySet()) {
+            Integer key = remains.getKey();
+            Double value = remains.getValue();
+            if (value < leastRemains) {
+                leastRemains = value;
+                leastKey = key;
+            }
+        }
+        double totalBoards = totalMeters / ((double) leastKey / 100);
+
+        return new int[]{leastKey, (int)totalBoards + 1};
     }
 
 }

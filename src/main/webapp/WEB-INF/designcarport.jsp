@@ -52,8 +52,8 @@
 
                                 <label for="carportWidth">Carport bredde</label>
                                 <select class="form-control" name="carportWidth" id="carportWidth">
-                                    <c:forEach var="length" items="${applicationScope.carportLengths}">
-                                        <option value="${length}">${length} cm</option>
+                                    <c:forEach var="width" items="${applicationScope.carportWidths}">
+                                        <option value="${width}">${width} cm</option>
                                     </c:forEach>
 
                                 </select>

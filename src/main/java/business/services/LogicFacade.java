@@ -19,4 +19,9 @@ public class LogicFacade {
     public List<Integer> getCarportLengths(){
         return standardLengthMapper.getCarportLengths();
     }
+
+    public List<Integer> getCarportWidths(){
+        return standardLengthMapper.getCarportWidths();
+    }
+
 }

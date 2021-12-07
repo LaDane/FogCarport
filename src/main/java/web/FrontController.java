@@ -51,6 +51,7 @@ public class FrontController extends HttpServlet
         LogicFacade logicFacade = new LogicFacade(database);
         getServletContext().setAttribute("standardLengths", logicFacade.getStandardLengths());
         getServletContext().setAttribute("carportLengths", logicFacade.getCarportLengths());
+        getServletContext().setAttribute("carportWidths", logicFacade.getCarportWidths());
 
         MaterialFacade materialFacade = new MaterialFacade(database);
         getServletContext().setAttribute("materials", materialFacade.getAllMaterials());
