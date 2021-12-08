@@ -15,12 +15,18 @@
     <jsp:body>
         <div class="row">
             <h3 class="mt-5" style="color: #1B4386">Ordre</h3>
-            <c:if test="${sessionScope.user.role == 'employee'}">
+            <c:if test="${sessionScope.user.role == 'employee' && sessionScope.orderSingle.status == 'Forespørgsel'}">
                 <form action="${pageContext.request.contextPath}/fc/orderSendPrice">
                     <button type="submit" class="btn btn-primary float-end">Send tilbud</button>
                 </form>
             </c:if>
         </div>
+
+        <c:if test="${requestScope.confirmMsg != null}">
+            <h4>
+                ${requestScope.confirmMsg}
+            </h4>
+        </c:if>
 
         <div class="container-fluid">
             <div class="row">

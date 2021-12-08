@@ -38,6 +38,7 @@ public abstract class Command
         commands.put("orderSingleEmployee", new OrderSingleCommand("ordersingle", "employee"));
         commands.put("orderSingleCustomer", new OrderSingleCommand("ordersingle", "customer"));
         commands.put("updatePriceTable", new UpdatePriceTableCommand("ordersingle", "employee"));
+        commands.put("orderSendPrice", new OrderSendPriceCommand("ordersingle","employee"));
     }
 
     public static Command fromPath(

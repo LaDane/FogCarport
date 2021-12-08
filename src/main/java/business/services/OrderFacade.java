@@ -65,4 +65,8 @@ public class OrderFacade {
     public void updatePricePercent(int priceReduction, int priceIncrease, int orderID) {
         orderViewMapper.updatePricePercent(priceReduction,priceIncrease,orderID);
     }
+
+    public void updateOrderStatus(int orderID, String status) {
+        orderMapper.updateOrderStatus(orderID,status);
+    }
 }

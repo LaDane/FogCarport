@@ -39,5 +39,20 @@ public class OrderMapper {
         }
     }
 
+    public void updateOrderStatus(int orderID, String status) {
 
+        try (Connection connection = database.connect()) {
+
+            String sql = "UPDATE orders SET status=? WHERE order_id=?";
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            ps.setString(1, status);
+            ps.setInt(2, orderID);
+            ps.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }

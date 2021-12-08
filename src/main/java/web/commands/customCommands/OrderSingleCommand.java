@@ -42,6 +42,7 @@ public class OrderSingleCommand extends CommandProtectedPage {
         OrderView orderView = orderFacade.getOrderViewByOrderId(viewOrderId, orderUser);
         request.getSession().setAttribute("orderSingle", orderView);
 
+
         Carport carport = orderView.getCarport();
         List<OrderLine> orderLines = carportCalculator.calculateCarportMaterials(carport);
 

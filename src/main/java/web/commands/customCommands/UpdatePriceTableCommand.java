@@ -18,6 +18,8 @@ public class UpdatePriceTableCommand extends CommandProtectedPage {
 
         OrderFacade orderFacade = new OrderFacade(database);
         OrderView orderView = (OrderView) request.getSession().getAttribute("orderSingle");
+        OrderView newOrderView = orderFacade.getOrderViewByOrderId(orderView.getOrderId(), orderView.getUser());
+        request.getSession().setAttribute("orderSingle", newOrderView);
 
         double orderPrice = (double) request.getSession().getAttribute("orderPrice");
         int priceReductionPercent = Integer.parseInt(request.getParameter("priceReductionPercent"));
