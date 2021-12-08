@@ -16,6 +16,17 @@
 
         <h3 class="mt-5" style="color: #1B4386">Ordre Oversigt</h3>
 
+        <c:if test="${requestScope.inquiryMsg != null}">
+            <h4>
+                    ${requestScope.inquiryMsg}
+            </h4>
+        </c:if>
+        <c:if test="${sessionScope.user.role == 'customer'}">
+            <h5>
+                Nedenfor kan du se alle dine registrede forespørgsler / tilbud
+            </h5>
+        </c:if>
+
         <table class="table table-striped">
             <thead>
             <tr>

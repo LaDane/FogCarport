@@ -56,7 +56,7 @@ public class StandardLengthMapper {
         List<Integer> carportLengths = new ArrayList<>();
 
         for (Integer standardLength : standardLengths) {
-            if(standardLength > 240 && standardLength <= 720){
+            if(standardLength > 240 && standardLength <= 600){
                 carportLengths.add(standardLength);
             }
         }

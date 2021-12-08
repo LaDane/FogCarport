@@ -32,13 +32,14 @@ public abstract class Command
 
         commands.put("loginSignupCommand", new CommandUnprotectedPage("loginsignup"));
         commands.put("designCarportCheck", new DesignCarportCommand("designcarport"));
-        commands.put("orderNewCommand", new OrderNewCommand("confirmation", "customer"));
+        commands.put("orderNewCommand", new OrderNewCommand("orderoverview", "customer"));
         commands.put("orderOverviewEmployee", new OrderOverviewCommand("orderoverview", "employee"));
         commands.put("orderOverviewCustomer", new OrderOverviewCommand("orderoverview", "customer"));
         commands.put("orderSingleEmployee", new OrderSingleCommand("ordersingle", "employee"));
         commands.put("orderSingleCustomer", new OrderSingleCommand("ordersingle", "customer"));
         commands.put("updatePriceTable", new UpdatePriceTableCommand("ordersingle", "employee"));
         commands.put("orderSendPrice", new OrderSendPriceCommand("ordersingle","employee"));
+        commands.put("orderPayCommand", new OrderPayCommand("ordersingle", "customer"));
     }
 
     public static Command fromPath(

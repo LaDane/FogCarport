@@ -16,6 +16,7 @@ import web.commands.CommandProtectedPage;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class OrderSingleCommand extends CommandProtectedPage {
@@ -64,6 +65,7 @@ public class OrderSingleCommand extends CommandProtectedPage {
         double suggestedPrice = helper.round(purchasePrice * ((orderView.getPriceIncrease()/100.0) + 1), 2);
         request.getSession().setAttribute("priceIncreasePercent", orderView.getPriceIncrease());
         request.getSession().setAttribute("suggestedPrice", suggestedPrice);
+        request.getSession().setAttribute("suggestedPriceString", helper.getTwoDecimals(suggestedPrice));
 
         double profit = suggestedPrice - purchasePrice;
         profit = helper.round(profit, 2);

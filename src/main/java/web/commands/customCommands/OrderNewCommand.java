@@ -3,6 +3,7 @@ package web.commands.customCommands;
 import business.entities.*;
 import business.entities.materials.Cladding;
 import business.entities.materials.Material;
+import business.entities.views.OrderView;
 import business.exceptions.OrderException;
 import business.services.MaterialFacade;
 import business.services.OrderFacade;
@@ -10,6 +11,7 @@ import web.commands.CommandProtectedPage;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 public class OrderNewCommand extends CommandProtectedPage {
 
@@ -19,7 +21,6 @@ public class OrderNewCommand extends CommandProtectedPage {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-
 
         int carportWidth = Integer.parseInt(request.getParameter("carportWidth"));
         int carportLength = Integer.parseInt(request.getParameter("carportLength"));
@@ -62,11 +63,17 @@ public class OrderNewCommand extends CommandProtectedPage {
         Order order = new Order("Forespørgsel", user, carport);
 
         OrderFacade orderFacade = new OrderFacade(database);
+        int orderId = -1;
         try {
-            orderFacade.createOrderEntry(order);
+            orderId = orderFacade.createOrderEntry(order);
         } catch (OrderException e) {
             e.printStackTrace();
         }
+
+        List<OrderView> allOrderViews = orderFacade.getAllOrderViews(user);
+        request.getSession().setAttribute("allOrderViews", allOrderViews);
+        request.setAttribute("inquiryMsg", "Din forespørgsel er modtaget. " +
+                "Du kan forvente at høre tilbage fra os indenfor 24 timer.");
 
         return pageToShow;
     }

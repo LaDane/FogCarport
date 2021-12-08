@@ -44,7 +44,7 @@ public class OrderFacade {
         roofMapper.createRoof(carport);
     }
 
-    public void createOrderEntry(Order sentOrder) throws OrderException {
+    public int createOrderEntry(Order sentOrder) throws OrderException {
         Order orderEntry = createOrder(sentOrder);
         Carport carportEntry = createCarport(sentOrder.getCarport(), orderEntry);
         createRoof(carportEntry);
@@ -52,6 +52,7 @@ public class OrderFacade {
         if (sentOrder.getCarport().getShed() != null) {
             Shed shedEntry = createShed(carportEntry.getShed(), carportEntry);
         }
+        return orderEntry.getOrderId();
     }
 
     public List<OrderView> getAllOrderViews(User user) {

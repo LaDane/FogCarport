@@ -11,7 +11,7 @@ class CalculatorTest {
 
     Calculator calculator = new Calculator();
     Shed shed = new Shed(null, "NW", 600, 210);
-    Carport carport = new Carport(600, 420, shed, new Roof(null, 0));
+    Carport carport = new Carport(600, 780, shed, new Roof(null, 0));
 
     @Test
     public void testRoofFlatRafters() {
@@ -101,5 +101,11 @@ class CalculatorTest {
         System.out.println("Cladding length: "+ claddingLength);
         System.out.println("Cladding Amount: "+ claddingAmount);
         System.out.println("Cladding Cost: "+ claddingAmount * 202);
+    }
+
+    @Test
+    public void testRafterAmount() {
+        int rafterAmount = calculator.getAmountOfRaftersTrapez(carport);
+        System.out.println(rafterAmount);
     }
 }

@@ -7,9 +7,8 @@ import web.commands.CommandProtectedPage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class OrderSendPriceCommand extends CommandProtectedPage {
-
-    public OrderSendPriceCommand(String pageToShow, String role) {
+public class OrderPayCommand extends CommandProtectedPage {
+    public OrderPayCommand(String pageToShow, String role) {
         super(pageToShow, role);
     }
 
@@ -18,12 +17,12 @@ public class OrderSendPriceCommand extends CommandProtectedPage {
         OrderFacade orderFacade = new OrderFacade(database);
 
         OrderView orderView = (OrderView) request.getSession().getAttribute("orderSingle");
-        orderView.setStatus("Tilbud sendt");
+        orderView.setStatus("Betalt");
         request.getSession().setAttribute("orderSingle", orderView);
 
-        orderFacade.updateOrderStatus(orderView.getOrderId(), "Tilbud sendt");
+        orderFacade.updateOrderStatus(orderView.getOrderId(), "Betalt");
 
-        request.setAttribute("confirmMsg","Tilbud er sendt til: " + orderView.getUser().getName());
+        request.setAttribute("confirmMsg","Betaling modtaget. Tak for handlen :)");
 
         return pageToShow;
     }

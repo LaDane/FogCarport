@@ -30,7 +30,7 @@ public class Calculator {
         if (lysVidde > maxLysVidde220)
             raftHeight = 24.5;
         if (lysVidde > maxLysVidde245)
-            raftHeight = -1;
+            raftHeight = 24.5;
 
         return raftHeight;
     }
@@ -47,19 +47,19 @@ public class Calculator {
         double lysvidde = getRafterLysViddeTrapez(carport) / 100;
         double a;
         double b;
-        double bjælkeAfstand = 0;
+        double maxDistBetweenRaftersTrapez = 0.7;
 
         if (raftHeight == 24.5) {
             if (lysvidde <= 5.41 && lysvidde > 4.82) {
                 a = (0.6 - 0.4) / (4.82 - 5.41);
                 b = -a * 5.41 + 0.4;
-                bjælkeAfstand = a * lysvidde + b;
+                maxDistBetweenRaftersTrapez = a * lysvidde + b;
             }
 
             if (lysvidde <= 4.82 && lysvidde > 4.61) {
                 a = (0.7 - 0.6) / (4.62 - 4.82);
                 b = -a * 4.82 + 0.6;
-                bjælkeAfstand = a * lysvidde + b;
+                maxDistBetweenRaftersTrapez = a * lysvidde + b;
             }
         }
 
@@ -67,13 +67,13 @@ public class Calculator {
             if (lysvidde <= 4.61 && lysvidde > 4.34) {
                 a = (0.6 - 0.5) / (4.34 - 4.61);
                 b = -a * 4.61 + 0.5;
-                bjælkeAfstand = a * lysvidde + b;
+                maxDistBetweenRaftersTrapez = a * lysvidde + b;
             }
 
             if (lysvidde <= 4.34 && lysvidde > 4.095) {
                 a = (0.7 - 0.6) / (4.155 - 4.34);
                 b = -a * 4.34 + 0.6;
-                bjælkeAfstand = a * lysvidde + b;
+                maxDistBetweenRaftersTrapez = a * lysvidde + b;
             }
         }
 
@@ -81,25 +81,24 @@ public class Calculator {
             if (lysvidde <= 4.095 && lysvidde > 3.85) {
                 a = (0.6 - 0.5) / (3.85 - 4.095);
                 b = -a * 4.095 + 0.5;
-                bjælkeAfstand = a * lysvidde + b;
+                maxDistBetweenRaftersTrapez = a * lysvidde + b;
             }
 
             if (lysvidde <= 3.85 && lysvidde > 3.685) {
                 a = (0.7 - 0.6) / (3.685 - 3.85);
                 b = -a * 3.85 + 0.6;
-                bjælkeAfstand = a * lysvidde + b;
+                maxDistBetweenRaftersTrapez = a * lysvidde + b;
             }
         }
 
+        maxDistBetweenRaftersTrapez = maxDistBetweenRaftersTrapez * 100;
+
         if (lysvidde <= 3.685) {
-            double maxDistBetweenRaftersTrapez = 70.00;
-            double lengthDivMaxDist = Math.ceil(length / maxDistBetweenRaftersTrapez);
-
-            double rafterDist = length / lengthDivMaxDist;
-            return rafterDist;
-
+            maxDistBetweenRaftersTrapez = 70.00;
         }
-        return bjælkeAfstand * 100;
+        double lengthDivMaxDist = Math.ceil(length / maxDistBetweenRaftersTrapez);
+
+        return length / lengthDivMaxDist;
     }
 
     public int getRafterLength(Carport carport) {
