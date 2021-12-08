@@ -60,6 +60,15 @@ public class FittingsCalculator {
         return fittingsList;
     }
 
+    public double calculateFittingsPrice(List<OrderLine> orderList, Carport carport) {
+        List<OrderLine> orderLines = calculateCarportMaterials(orderList, carport);
+        double totalPrice = 0;
+        for (OrderLine orderLine : orderLines) {
+            totalPrice += orderLine.getPrice();
+        }
+        return totalPrice;
+    }
+
     private OrderLine getRafterFittings(OrderLine orderLine) {
 
         int rafterAmmount = orderLine.getAmount();
@@ -87,10 +96,10 @@ public class FittingsCalculator {
 
     private OrderLine getTrapezScres(Carport carport) {
 
-        int getArea = carport.getLength() * carport.getWidth();
-        int getScrewAmmount = 12 * getArea;
+        int getArea = (carport.getLength() / 100) * (carport.getWidth() / 100);
+        int getScrewAmmount = getArea * 12;
 
-        int numberOfBoxes = (getScrewAmmount / 50) + 1;
+        int numberOfBoxes = (int) Math.ceil(getScrewAmmount / 50.0);
 
         Material fittingsMat = materialFacade.getSpecificMaterial(31);
         double screwPrice = fittingsMat.getPrice() * numberOfBoxes;
@@ -108,9 +117,9 @@ public class FittingsCalculator {
 
     private OrderLine getScrews60(Carport carport) {
 
-        int carportCircumference = (carport.getLength() + carport.getWidth()) * 2;
+        int carportCircumference = carport.getLength() + carport.getWidth() * 2;
         int numberOfScrews = (carportCircumference / 60) + 1;
-        int numberOfBoxes = (int) Math.ceil(numberOfScrews / 200);
+        int numberOfBoxes = (int) Math.ceil(numberOfScrews / 200.0);
 
         Material screwMat60 = materialFacade.getSpecificMaterial(11);
         double screwPrice60 = screwMat60.getPrice() * numberOfBoxes;

@@ -48,6 +48,8 @@ public class OrderSingleCommand extends CommandProtectedPage {
         List<OrderLine> orderLinesFittings = fittingsCalculator.calculateCarportMaterials(orderLines, carport);
 
         double orderPrice = carportCalculator.calculateCarportPrice(carport);
+        double orderFittingsPrice = fittingsCalculator.calculateFittingsPrice(orderLines, carport);
+        orderPrice += orderFittingsPrice;
         orderPrice = helper.round(orderPrice, 2);
 
         request.getSession().setAttribute("orderLines", orderLines);
