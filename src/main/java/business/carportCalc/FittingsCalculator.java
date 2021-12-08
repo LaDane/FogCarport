@@ -158,7 +158,7 @@ public class FittingsCalculator {
         Material screwCladdingMat = materialFacade.getSpecificMaterial(10);
         double screwCladdingPrice = screwCladdingMat.getPrice() * numberOfBoxes;
 
-        return new OrderLine(screwCladdingMat, -1, screwCladdingAmount, screwCladdingPrice);
+        return new OrderLine(screwCladdingMat, -1, numberOfBoxes, screwCladdingPrice);
     }
 
     // Kun hvis der er skur

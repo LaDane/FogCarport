@@ -17,6 +17,14 @@ public class Carport {
         this.roof = roof;
     }
 
+    public Carport(int width, int length, int height, Shed shed, Roof roof) {
+        this.width = width;
+        this.length = length;
+        this.height = height;
+        this.shed = shed;
+        this.roof = roof;
+    }
+
     public Carport(int carportId, int width, int length, int height, Shed shed, Roof roof) {
         this.carportId = carportId;
         this.width = width;

@@ -56,7 +56,9 @@ public class OrderNewCommand extends CommandProtectedPage {
             shed = new Shed(cladding, shedPlacement, shedWidth, shedLength);
         }
 
-        Carport carport = new Carport(carportWidth, carportLength, shed, roof);
+        // TODO: If we manage to implement raised roofs - change 250 height to variable
+
+        Carport carport = new Carport(carportWidth, carportLength, 250, shed, roof);
         Order order = new Order("Forespørgsel", user, carport);
 
         OrderFacade orderFacade = new OrderFacade(database);
