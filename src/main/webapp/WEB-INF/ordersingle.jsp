@@ -198,6 +198,9 @@
 
         <br><br>
 
+        <h3>Materiale liste</h3>
+        <h4>Træ og tagplader</h4>
+
         <table class="table table-striped table-sm">
             <thead>
             <tr>
@@ -215,6 +218,32 @@
                     <td>${ol.material.name}</td>
                     <td>${ol.material.dimension}</td>
                     <td>${ol.length}</td>
+                    <td>${ol.amount}</td>
+                    <td>${ol.material.description}</td>
+                        <%--                    <td>${ol.price}</td>--%>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+
+        <br>
+        <h4>Beslag og skruer</h4>
+
+        <table class="table table-striped table-sm">
+            <thead>
+            <tr>
+                <th>Vare</th>
+                <th>Dimension</th>
+                <th>Antal</th>
+                <th>Beskrivelse</th>
+                    <%--<th>Pris</th>--%>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${sessionScope.orderLinesFittings}" var="ol">
+                <tr>
+                    <td>${ol.material.name}</td>
+                    <td>${ol.material.dimension}</td>
                     <td>${ol.amount}</td>
                     <td>${ol.material.description}</td>
                         <%--                    <td>${ol.price}</td>--%>
