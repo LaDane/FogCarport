@@ -17,14 +17,47 @@ public class FittingsCalculator {
         this.materialFacade = materialFacade;
     }
 
-    public List<OrderLine> calculateCarportMaterials(List<OrderLine> orderList) {
+    public List<OrderLine> calculateCarportMaterials(List<OrderLine> orderList, Carport carport) {
+
+        OrderLine rafterOL = null;
+        OrderLine postOL = null;
+        OrderLine claddingOL = null;
+
+        for (OrderLine ol : orderList) {
+            if (ol.getMaterial().getName().equals("Spærtræ")) {
+                rafterOL = ol;
+                break;
+            }
+        }
+
+        for (OrderLine ol : orderList) {
+            if (ol.getMaterial().getMaterialId() == 6) {
+                postOL = ol;
+            }
+            if (ol.getMaterial().getMaterialId() == 26) {
+                claddingOL = ol;
+            }
+        }
 
         List<OrderLine> fittingsList = new ArrayList<>();
 
+        if (rafterOL != null && postOL != null && claddingOL != null) {
 
+            fittingsList.add(getRafterFittings(rafterOL));
+            fittingsList.add(getRafterFittingScrews(rafterOL));
+            fittingsList.add(getTrapezScres(carport));
+            fittingsList.add(getBuckleBand());
+            fittingsList.add(getScrews60(carport));
+            fittingsList.add(getPostBolts(postOL));
+            fittingsList.add(getPostSquareBrackets(postOL));
 
-        return null;
-        // Beregn samtlige beslag og skruer
+            if (carport.getShed() != null) {
+                fittingsList.add(getScrewsCladding(claddingOL));
+                fittingsList.add(getDoorGrip());
+                fittingsList.add(getDoorHinges());
+            }
+        }
+        return fittingsList;
     }
 
     private OrderLine getRafterFittings(OrderLine orderLine) {
@@ -33,9 +66,9 @@ public class FittingsCalculator {
         int fittingsAmmount = rafterAmmount * 2;
 
         Material fittingsMat = materialFacade.getSpecificMaterial(30); // Universalbeslag
-        double fittingPrice = fittingsMat.getPrice()*fittingsAmmount;
+        double fittingPrice = fittingsMat.getPrice() * fittingsAmmount;
 
-        return new OrderLine(fittingsMat, -1, fittingsAmmount,fittingPrice);
+        return new OrderLine(fittingsMat, -1, fittingsAmmount, fittingPrice);
 
     }
 
@@ -54,13 +87,13 @@ public class FittingsCalculator {
 
     private OrderLine getTrapezScres(Carport carport) {
 
-        int getArea = carport.getLength()*carport.getWidth();
-        int getScrewAmmount = 12*getArea;
+        int getArea = carport.getLength() * carport.getWidth();
+        int getScrewAmmount = 12 * getArea;
 
         int numberOfBoxes = (getScrewAmmount / 50) + 1;
 
         Material fittingsMat = materialFacade.getSpecificMaterial(31);
-        double screwPrice = fittingsMat.getPrice()*numberOfBoxes;
+        double screwPrice = fittingsMat.getPrice() * numberOfBoxes;
 
         return new OrderLine(fittingsMat, -1, numberOfBoxes, screwPrice);
     }
@@ -68,19 +101,19 @@ public class FittingsCalculator {
     private OrderLine getBuckleBand() {
 
         Material buckleBandMat = materialFacade.getSpecificMaterial(7);
-        double buckleBandPrice = buckleBandMat.getPrice()*2;
+        double buckleBandPrice = buckleBandMat.getPrice() * 2;
 
         return new OrderLine(buckleBandMat, -1, 2, buckleBandPrice);
     }
 
     private OrderLine getScrews60(Carport carport) {
 
-        int carportCircumference =  (carport.getLength() + carport.getWidth()) * 2;
+        int carportCircumference = (carport.getLength() + carport.getWidth()) * 2;
         int numberOfScrews = (carportCircumference / 60) + 1;
-        int numberOfBoxes =(int) Math.ceil(numberOfScrews / 200);
+        int numberOfBoxes = (int) Math.ceil(numberOfScrews / 200);
 
         Material screwMat60 = materialFacade.getSpecificMaterial(11);
-        double screwPrice60 = screwMat60.getPrice()*numberOfBoxes;
+        double screwPrice60 = screwMat60.getPrice() * numberOfBoxes;
 
         return new OrderLine(screwMat60, -1, numberOfBoxes, screwPrice60);
     }
@@ -102,7 +135,7 @@ public class FittingsCalculator {
         int squareBracketAmount = postBolts.getAmount();
 
         Material squareBracketMat = materialFacade.getSpecificMaterial(14);
-        double squareBracketPrice = squareBracketMat.getPrice()*squareBracketAmount;
+        double squareBracketPrice = squareBracketMat.getPrice() * squareBracketAmount;
 
         return new OrderLine(squareBracketMat, -1, squareBracketAmount, squareBracketPrice);
     }
@@ -128,7 +161,7 @@ public class FittingsCalculator {
 
     private OrderLine getDoorHinges() {
         Material doorHingesMat = materialFacade.getSpecificMaterial(16);
-        return new OrderLine(doorHingesMat, -1, 2, doorHingesMat.getPrice()*2);
+        return new OrderLine(doorHingesMat, -1, 2, doorHingesMat.getPrice() * 2);
     }
 
     // TODO løsholter og vinkelbeslag til 1 på 2 beklædning

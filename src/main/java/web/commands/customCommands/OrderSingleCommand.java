@@ -1,6 +1,7 @@
 package web.commands.customCommands;
 
 import business.carportCalc.CarportCalculator;
+import business.carportCalc.FittingsCalculator;
 import business.entities.Carport;
 import business.entities.Order;
 import business.entities.OrderLine;
@@ -32,6 +33,7 @@ public class OrderSingleCommand extends CommandProtectedPage {
         OrderFacade orderFacade = new OrderFacade(database);
         MaterialFacade materialFacade = new MaterialFacade(database);
         CarportCalculator carportCalculator = new CarportCalculator(materialFacade);
+        FittingsCalculator fittingsCalculator = new FittingsCalculator(materialFacade);
 
         User orderUser = null;
         try {orderUser = userFacade.getUserById(orderUserId);}
@@ -42,10 +44,14 @@ public class OrderSingleCommand extends CommandProtectedPage {
 
         Carport carport = orderView.getCarport();
         List<OrderLine> orderLines = carportCalculator.calculateCarportMaterials(carport);
+
+        List<OrderLine> orderLinesFittings = fittingsCalculator.calculateCarportMaterials(orderLines, carport);
+
         double orderPrice = carportCalculator.calculateCarportPrice(carport);
         orderPrice = helper.round(orderPrice, 2);
 
         request.getSession().setAttribute("orderLines", orderLines);
+        request.getSession().setAttribute("orderLinesFittings", orderLinesFittings);
         request.getSession().setAttribute("orderPrice", orderPrice);
 
         double purchasePrice = helper.round(orderPrice * 0.5, 2);
