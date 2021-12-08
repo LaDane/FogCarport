@@ -56,15 +56,19 @@ public class OrderSingleCommand extends CommandProtectedPage {
         request.getSession().setAttribute("orderLinesFittings", orderLinesFittings);
         request.getSession().setAttribute("orderPrice", orderPrice);
 
-        double purchasePrice = helper.round(orderPrice * 0.5, 2);
-        request.getSession().setAttribute("priceReductionPercent", 50);
+        double purchasePrice = helper.round(orderPrice * (orderView.getPriceReduction()/100.0), 2);
+        request.getSession().setAttribute("priceReductionPercent", orderView.getPriceReduction());
         request.getSession().setAttribute("purchasePrice", purchasePrice);
 
-        double suggestedPrice = helper.round(purchasePrice * 1.7, 2);
-        request.getSession().setAttribute("priceIncreasePercent", 70);
+        double suggestedPrice = helper.round(purchasePrice * ((orderView.getPriceIncrease()/100.0) + 1), 2);
+        request.getSession().setAttribute("priceIncreasePercent", orderView.getPriceIncrease());
         request.getSession().setAttribute("suggestedPrice", suggestedPrice);
 
-        // TODO: price reduction = 50%
+        double profit = suggestedPrice - purchasePrice;
+        profit = helper.round(profit, 2);
+        request.getSession().setAttribute("profit", profit);
+
+
 
         return pageToShow;
     }

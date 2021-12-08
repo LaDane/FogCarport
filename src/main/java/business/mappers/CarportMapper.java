@@ -24,7 +24,7 @@ public class CarportMapper {
                 ps.setInt(1, order.getOrderId());
                 ps.setInt(2, carport.getWidth());
                 ps.setInt(3, carport.getLength());
-                ps.setInt(4, -1);
+                ps.setInt(4, carport.getHeight());
                 ps.executeUpdate();
                 ResultSet ids = ps.getGeneratedKeys();
                 ids.next();

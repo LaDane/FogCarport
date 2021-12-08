@@ -41,7 +41,7 @@ public class FittingsCalculator {
 
         List<OrderLine> fittingsList = new ArrayList<>();
 
-        if (rafterOL != null && postOL != null && claddingOL != null) {
+        if (rafterOL != null && postOL != null) {
 
             fittingsList.add(getRafterFittings(rafterOL));
             fittingsList.add(getRafterFittingScrews(rafterOL));
@@ -51,7 +51,7 @@ public class FittingsCalculator {
             fittingsList.add(getPostBolts(postOL));
             fittingsList.add(getPostSquareBrackets(postOL));
 
-            if (carport.getShed() != null) {
+            if (carport.getShed() != null && claddingOL != null) {
                 fittingsList.add(getScrewsCladding(claddingOL));
                 fittingsList.add(getDoorGrip());
                 fittingsList.add(getDoorHinges());

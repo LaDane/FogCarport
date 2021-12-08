@@ -61,4 +61,8 @@ public class OrderFacade {
     public OrderView getOrderViewByOrderId(int orderId, User user) {
         return orderViewMapper.getOrderViewByOrderId(orderId, user);
     }
+
+    public void updatePricePercent(int priceReduction, int priceIncrease, int orderID) {
+        orderViewMapper.updatePricePercent(priceReduction,priceIncrease,orderID);
+    }
 }

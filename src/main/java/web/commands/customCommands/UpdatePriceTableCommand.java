@@ -1,6 +1,8 @@
 package web.commands.customCommands;
 
+import business.entities.views.OrderView;
 import business.helpers.helper;
+import business.services.OrderFacade;
 import web.commands.CommandProtectedPage;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +15,9 @@ public class UpdatePriceTableCommand extends CommandProtectedPage {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+
+        OrderFacade orderFacade = new OrderFacade(database);
+        OrderView orderView = (OrderView) request.getSession().getAttribute("orderSingle");
 
         double orderPrice = (double) request.getSession().getAttribute("orderPrice");
         int priceReductionPercent = Integer.parseInt(request.getParameter("priceReductionPercent"));
@@ -27,6 +32,11 @@ public class UpdatePriceTableCommand extends CommandProtectedPage {
         double suggestedPrice = helper.round(purchasePrice * (((double) priceIncreasePercent / 100) + 1), 2);
         request.getSession().setAttribute("suggestedPrice", suggestedPrice);
 
+        double profit = suggestedPrice - purchasePrice;
+        profit = helper.round(profit, 2);
+        request.getSession().setAttribute("profit", profit);
+
+        orderFacade.updatePricePercent(priceReductionPercent,priceIncreasePercent,orderView.getOrderId());
 
         return pageToShow;
     }

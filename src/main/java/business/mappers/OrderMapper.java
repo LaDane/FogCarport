@@ -16,12 +16,14 @@ public class OrderMapper {
 
     public Order createOrder(Order order) throws OrderException {
         try (Connection connection = database.connect()) {
-            String sql = "INSERT INTO orders (status, user_id, delivery_date) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO orders (status, user_id, delivery_date, price_reduction, price_increase) VALUES (?, ?, ?, ?, ?)";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 ps.setString(1, order.getStatus());
                 ps.setInt(2, order.getUser().getId());
                 ps.setString(3, "ukendt");
+                ps.setInt(4,50);
+                ps.setInt(5,70);
                 ps.executeUpdate();
                 ResultSet ids = ps.getGeneratedKeys();
                 ids.next();

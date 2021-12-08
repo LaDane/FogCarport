@@ -40,7 +40,7 @@ public class OrderViewMapper {
             else
                 sql = "SELECT * FROM orders_carport_view WHERE user_id=?";
 
-            PreparedStatement ps = connection.prepareStatement( sql );
+            PreparedStatement ps = connection.prepareStatement(sql);
             if (user != null)
                 ps.setInt(1, user.getId());
 
@@ -57,6 +57,8 @@ public class OrderViewMapper {
                 int userId = rs.getInt("user_id");
                 String created = rs.getString("created");
                 String deliveryDate = rs.getString("delivery_date");
+                int priceReduction = rs.getInt("price_reduction");
+                int priceIncrease = rs.getInt("price_increase");
 
                 // Carport
                 int carportId = rs.getInt("carport_id");
@@ -93,11 +95,14 @@ public class OrderViewMapper {
 
                 // User
                 User orderUser = null;
-                try {orderUser = userFacade.getUserById(userId);}
-                catch (UserException e) {e.printStackTrace();}
+                try {
+                    orderUser = userFacade.getUserById(userId);
+                } catch (UserException e) {
+                    e.printStackTrace();
+                }
 
                 // Overview
-                OrderView orderView = new OrderView(orderId, status, orderUser, created, deliveryDate, carport, roof, shed);
+                OrderView orderView = new OrderView(orderId, status, orderUser, created, deliveryDate, priceReduction, priceIncrease, carport, roof, shed);
 
                 // Add to list
                 allOrderViews.add(orderView);
@@ -118,5 +123,23 @@ public class OrderViewMapper {
             }
         }
         return null;
+    }
+
+    public void updatePricePercent(int priceReduction, int priceIncrease, int orderID) {
+
+        try (Connection connection = database.connect()) {
+
+            String sql = "UPDATE orders SET price_reduction=?, price_increase=? WHERE order_id=?";
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            ps.setInt(1, priceReduction);
+            ps.setInt(2, priceIncrease);
+            ps.setInt(3, orderID);
+            ps.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

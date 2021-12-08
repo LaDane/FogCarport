@@ -13,20 +13,25 @@ public class OrderView {
     User user;          // sql statement
     String created;
     String deliveryDate;
+    int priceReduction;
+    int priceIncrease;
     Carport carport;
     Roof roof;
     Shed shed;
 
-    public OrderView(int orderId, String status, User user, String created, String deliveryDate, Carport carport, Roof roof, Shed shed) {
+    public OrderView(int orderId, String status, User user, String created, String deliveryDate, int priceReduction, int priceIncrease, Carport carport, Roof roof, Shed shed) {
         this.orderId = orderId;
         this.status = status;
         this.user = user;
         this.created = created;
         this.deliveryDate = deliveryDate;
+        this.priceReduction = priceReduction;
+        this.priceIncrease = priceIncrease;
         this.carport = carport;
         this.roof = roof;
         this.shed = shed;
     }
+
 
     public int getOrderId() {
         return orderId;
@@ -90,5 +95,21 @@ public class OrderView {
 
     public void setShed(Shed shed) {
         this.shed = shed;
+    }
+
+    public int getPriceReduction() {
+        return priceReduction;
+    }
+
+    public void setPriceReduction(int priceReduction) {
+        this.priceReduction = priceReduction;
+    }
+
+    public int getPriceIncrease() {
+        return priceIncrease;
+    }
+
+    public void setPriceIncrease(int priceIncrease) {
+        this.priceIncrease = priceIncrease;
     }
 }

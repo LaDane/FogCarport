@@ -13,14 +13,21 @@
     </jsp:attribute>
 
     <jsp:body>
-
-        <h3 class="mt-5" style="color: #1B4386">Ordre</h3>
+        <div class="row">
+            <h3 class="mt-5" style="color: #1B4386">Ordre</h3>
+            <c:if test="${sessionScope.user.role == 'employee'}">
+                <form action="${pageContext.request.contextPath}/fc/orderSendPrice">
+                    <button type="submit" class="btn btn-primary float-end">Send tilbud</button>
+                </form>
+            </c:if>
+        </div>
 
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm">
 
                     <c:if test="${sessionScope.user.role == 'employee'}">
+
                         <table class="table table-striped table-sm">
                             <thead>
                             <tr>
@@ -94,7 +101,8 @@
                                     <td>Fremskaf indkøbspris %</td>
                                     <td>
                                         <input style="width: 20%" type="number" class="form-control form-control-sm"
-                                               name="priceReductionPercent" id="priceReductionPercent" placeholder="${sessionScope.priceReductionPercent}"
+                                               name="priceReductionPercent" id="priceReductionPercent"
+                                               placeholder="${sessionScope.priceReductionPercent}"
                                                value="${sessionScope.priceReductionPercent}">
                                     </td>
                                 </tr>
@@ -106,7 +114,8 @@
                                     <td>Fortjeneste %</td>
                                     <td>
                                         <input style="width: 20%" type="number" class="form-control form-control-sm"
-                                               name="priceIncreasePercent" id="priceIncreasePercent" placeholder="${sessionScope.priceIncreasePercent}"
+                                               name="priceIncreasePercent" id="priceIncreasePercent"
+                                               placeholder="${sessionScope.priceIncreasePercent}"
                                                value="${sessionScope.priceIncreasePercent}">
                                     </td>
                                 </tr>
@@ -116,11 +125,13 @@
                                 </tr>
                                 <tr>
                                     <td>Avance</td>
-                                    <td><strong>TILFØJ DETTE!</strong> DKK</td>
+                                    <td><strong>${sessionScope.profit}</strong> DKK</td>
                                 </tr>
                                 </tbody>
                             </table>
+
                             <button type="submit" class="btn btn-outline-success btn-sm">Opdater pris tabel</button>
+
                         </form>
                     </c:if>
                 </div>
@@ -198,59 +209,62 @@
 
         <br><br>
 
-        <h3>Materiale liste</h3>
-        <h4>Træ og tagplader</h4>
+        <c:if test="${sessionScope.user.role == 'employee' || sessionScope.orderSingle.status != 'Forespørgsel'}">
+            <h3>Materiale liste</h3>
+            <h4>Træ og tagplader</h4>
 
-        <table class="table table-striped table-sm">
-            <thead>
-            <tr>
-                <th>Vare</th>
-                <th>Dimension</th>
-                <th>Længde</th>
-                <th>Antal</th>
-                <th>Beskrivelse</th>
-                    <%--                <th>Pris</th>--%>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${sessionScope.orderLines}" var="ol">
+            <table class="table table-striped table-sm">
+                <thead>
                 <tr>
-                    <td>${ol.material.name}</td>
-                    <td>${ol.material.dimension}</td>
-                    <td>${ol.length}</td>
-                    <td>${ol.amount}</td>
-                    <td>${ol.material.description}</td>
-                        <%--                    <td>${ol.price}</td>--%>
+                    <th>Vare</th>
+                    <th>Dimension</th>
+                    <th>Længde</th>
+                    <th>Antal</th>
+                    <th>Beskrivelse</th>
+                        <%--                <th>Pris</th>--%>
                 </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                <c:forEach items="${sessionScope.orderLines}" var="ol">
+                    <tr>
+                        <td>${ol.material.name}</td>
+                        <td>${ol.material.dimension}</td>
+                        <td>${ol.length}</td>
+                        <td>${ol.amount}</td>
+                        <td>${ol.material.description}</td>
+                            <%--                    <td>${ol.price}</td>--%>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
 
-        <br>
-        <h4>Beslag og skruer</h4>
+            <br>
+            <h4>Beslag og skruer</h4>
 
-        <table class="table table-striped table-sm">
-            <thead>
-            <tr>
-                <th>Vare</th>
-                <th>Dimension</th>
-                <th>Antal</th>
-                <th>Beskrivelse</th>
-                    <%--<th>Pris</th>--%>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${sessionScope.orderLinesFittings}" var="ol">
+            <table class="table table-striped table-sm">
+                <thead>
                 <tr>
-                    <td>${ol.material.name}</td>
-                    <td>${ol.material.dimension}</td>
-                    <td>${ol.amount}</td>
-                    <td>${ol.material.description}</td>
-                        <%--                    <td>${ol.price}</td>--%>
+                    <th>Vare</th>
+                    <th>Dimension</th>
+                    <th>Antal</th>
+                    <th>Beskrivelse</th>
+                        <%--<th>Pris</th>--%>
                 </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                <c:forEach items="${sessionScope.orderLinesFittings}" var="ol">
+                    <tr>
+                        <td>${ol.material.name}</td>
+                        <td>${ol.material.dimension}</td>
+                        <td>${ol.amount}</td>
+                        <td>${ol.material.description}</td>
+                            <%--                    <td>${ol.price}</td>--%>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </c:if>
+
 
     </jsp:body>
 </t:generic>
