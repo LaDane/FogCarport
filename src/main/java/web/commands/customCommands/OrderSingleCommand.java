@@ -8,6 +8,7 @@ import business.entities.OrderLine;
 import business.entities.User;
 import business.entities.views.OrderView;
 import business.exceptions.UserException;
+import business.helpers.SVGDrawing;
 import business.helpers.helper;
 import business.services.MaterialFacade;
 import business.services.OrderFacade;
@@ -71,6 +72,9 @@ public class OrderSingleCommand extends CommandProtectedPage {
         profit = helper.round(profit, 2);
         request.getSession().setAttribute("profit", profit);
 
+
+
+        request.getSession().setAttribute("svgdrawing", SVGDrawing.getSVGDrawing(carport));
 
 
         return pageToShow;

@@ -253,6 +253,10 @@
 
         <br><br>
 
+
+        ${sessionScope.svgdrawing}
+
+
         <c:if test="${sessionScope.user.role == 'employee' || sessionScope.orderSingle.status == 'Betalt'}">
             <h3>Materiale liste</h3>
             <h4>Træ og tagplader</h4>
