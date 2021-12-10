@@ -57,16 +57,23 @@ public class SVG {
 
     public void addHorizontalArrowWithText(double width, double height, int margin) {
         svg.append(arrowHead());
-        svg.append(String.format(Locale.US,lineForArrow, 0.0 + margin, height + margin / 2, width + margin, height + margin / 2));
-        svg.append(String.format(Locale.US,arrowTextHorizontal, width / 2 + margin, height + margin / 2 - 2, (int) width));
+        svg.append(String.format(Locale.US,lineForArrow, 0.0 + margin, height + margin / 2 + margin, width + margin, height + margin / 2 + margin));
+        svg.append(String.format(Locale.US,arrowTextHorizontal, width / 2 + margin, height + margin / 2 - 2 + margin, (int) width));
 
     }
 
     public void addVerticalArrowWithText(double height, int margin) {
         svg.append(arrowHead());
-        svg.append(String.format(Locale.US,lineForArrow, (double) margin / 2, 0.0, (double) margin / 2, height));
-        svg.append(String.format(Locale.US,arrowTextVertical, (double) margin / 2 - 2, height / 2, (int) height));
+        svg.append(String.format(Locale.US,lineForArrow, (double) margin / 2, (double)margin, (double) margin / 2, height + margin));
+        svg.append(String.format(Locale.US,arrowTextVertical, (double) margin / 2 - 2, height / 2 + margin, (int) height));
 
+    }
+
+
+    public void addHorizontalMeasurement(double x1, double y1, double x2, double y2, int input ){
+        svg.append(arrowHead());
+        svg.append(String.format(Locale.US, lineForArrow, x1, y1, x2, y2));
+        svg.append(String.format(Locale.US, arrowTextHorizontal, (x1 + x2)/2, y1 - 10, input ));
 
     }
 

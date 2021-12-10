@@ -24,12 +24,12 @@ public class SVGDrawing {
         int margin = 50; // Margin Left and Under the drawing with the measurements
 
         int drawingWidth = carport.getLength() + margin;
-        int drawingHeight = carport.getWidth() + margin;
+        int drawingHeight = carport.getWidth() + margin * 2;
 
 
         // inner svg
 
-        SVG innerSVG = new SVG(margin, 0, "0 0 " + drawingWidth + " " + drawingHeight, 100, 100 );
+        SVG innerSVG = new SVG(margin, margin, "0 0 " + drawingWidth + " " + drawingHeight, 100, 100 );
 
         // Frame
 
@@ -120,6 +120,10 @@ public class SVGDrawing {
 
         svg.addHorizontalArrowWithText(carport.getLength(), carport.getWidth(), margin);
         svg.addVerticalArrowWithText(carport.getWidth(), margin);
+
+
+       svg.addHorizontalMeasurement(margin, (double) margin / 2, margin + spaceBetween, (double) margin / 2, (int)spaceBetween);
+
 
         svg.addSvg(innerSVG);
 
