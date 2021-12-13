@@ -3,7 +3,6 @@ package web.commands.customCommands;
 import business.carportCalc.CarportCalculator;
 import business.carportCalc.FittingsCalculator;
 import business.entities.Carport;
-import business.entities.Order;
 import business.entities.OrderLine;
 import business.entities.User;
 import business.entities.views.OrderView;
@@ -17,7 +16,6 @@ import web.commands.CommandProtectedPage;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.text.DecimalFormat;
 import java.util.List;
 
 public class OrderSingleCommand extends CommandProtectedPage {
@@ -72,10 +70,8 @@ public class OrderSingleCommand extends CommandProtectedPage {
         profit = helper.round(profit, 2);
         request.getSession().setAttribute("profit", profit);
 
-
-
-        request.getSession().setAttribute("svgdrawing", SVGDrawing.getSVGDrawing(carport));
-
+        request.getSession().setAttribute("svgDrawingPlan", SVGDrawing.getSVGDrawingTop(carport));
+        request.getSession().setAttribute("svgDrawingSide", SVGDrawing.getSVGDrawingSide(carport));
 
         return pageToShow;
     }

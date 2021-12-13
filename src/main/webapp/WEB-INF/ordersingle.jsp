@@ -253,9 +253,18 @@
 
         <br><br>
 
+        <h3>Carport Tegninger</h3>
 
-        ${sessionScope.svgdrawing}
+        <div class="row">
+            <div class="col-sm">
+                    ${sessionScope.svgDrawingPlan}
+            </div>
+            <div class="col-sm">
+                    ${sessionScope.svgDrawingSide}
+            </div>
+        </div>
 
+        <br><br>
 
         <c:if test="${sessionScope.user.role == 'employee' || sessionScope.orderSingle.status == 'Betalt'}">
             <h3>Materiale liste</h3>
