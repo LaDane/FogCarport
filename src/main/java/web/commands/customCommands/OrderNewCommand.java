@@ -47,6 +47,8 @@ public class OrderNewCommand extends CommandProtectedPage {
 
         int hasShed = (int) request.getSession().getAttribute("hasShed");
         if (hasShed == 1) {
+
+            // TODO: Fix this below so the shed can be created!
             shedWidth = Integer.parseInt(request.getParameter("shedWidth"));
             shedLength = Integer.parseInt(request.getParameter("shedLength"));
             shedPlacement = request.getParameter("shedPlacement");

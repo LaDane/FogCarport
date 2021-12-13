@@ -24,6 +24,7 @@ public class SVG {
             " preserveAspectRatio=\"xMinYMin\">";
 
     private final String rectTemplate = "<rect x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
+    private final String rectTemplateDashed = "<rect x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #ffffff\" stroke-dasharray=\"5, 5\"/>";
     private final String rectTemplateRotate = "<rect x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #ffffff\" transform=\"rotate(1)\" />";
 
     private final String lineTemplate = "<line x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:black\" />";
@@ -49,6 +50,10 @@ public class SVG {
 
     public void addRect(double x, double y, double height, double width) {
         svg.append(String.format(Locale.US, rectTemplate, x, y, height, width));
+    }
+
+    public void addRectDash(double x, double y, double height, double width) {
+        svg.append(String.format(Locale.US, rectTemplateDashed, x, y, height, width));
     }
 
     public void addRectRotate(double x, double y, double height, double width) {

@@ -4,7 +4,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-
 <t:generic>
 
     <jsp:attribute name="header">
@@ -25,7 +24,9 @@
                     <table class="table">
                         <tr>
                             <td>
-                                <a class="nav-link" href="https://www.johannesfog.dk/byggecenter/landingpages/carporte/"><strong>Standard Carporte</strong></a>
+                                <a class="nav-link"
+                                   href="https://www.johannesfog.dk/byggecenter/landingpages/carporte/"><strong>Standard
+                                    Carporte</strong></a>
                             </td>
                         </tr>
                     </table>
@@ -34,13 +35,21 @@
                 <div class="col">
                     <div>
                         <c:if test="${sessionScope.hasFlatRoof == 1}">
-                            <h3><img style="float: right; margin-left: 10px;" alt="" src="${pageContext.request.contextPath}/img/roof_flat.png" height="87" width="165" class="img-responsive mx-3 my-3">Quick-Byg tilbud - carport med fladt tag</h3>
+                            <h3><img style="float: right; margin-left: 10px;" alt=""
+                                     src="${pageContext.request.contextPath}/img/roof_flat.png" height="87" width="165"
+                                     class="img-responsive mx-3 my-3">Quick-Byg tilbud - carport med fladt tag</h3>
                         </c:if>
                         <c:if test="${sessionScope.hasFlatRoof == 0}">
-                            <h3><img style="float: right; margin-left: 10px;" alt="" src="${pageContext.request.contextPath}/img/roof_raised.png" height="87" width="165" class="img-responsive mx-3 my-3">Quick-Byg tilbud - carport med rejsning</h3>
+                            <h3><img style="float: right; margin-left: 10px;" alt=""
+                                     src="${pageContext.request.contextPath}/img/roof_raised.png" height="87"
+                                     width="165" class="img-responsive mx-3 my-3">Quick-Byg tilbud - carport med
+                                rejsning</h3>
                         </c:if>
-                        <p>Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning på en carport indenfor vores standardprogram, der tilpasses dine specifikke ønsker.</p>
-                        <p>Tilbud og skitsetegning fremsendes med post hurtigst muligt.<br>Ved bestilling medfølger standardbyggevejledning.</p>
+                        <p>Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en
+                            skitsetegning på en carport indenfor vores standardprogram, der tilpasses dine specifikke
+                            ønsker.</p>
+                        <p>Tilbud og skitsetegning fremsendes med post hurtigst muligt.<br>Ved bestilling medfølger
+                            standardbyggevejledning.</p>
                         <p><strong>Udfyld nedenstående omhyggeligt og klik på "Bestil tilbud"</strong></p>
                     </div>
 
@@ -62,14 +71,14 @@
                                 <label for="carportLength">Carport længde</label>
                                 <select class="form-control" name="carportLength" id="carportLength">
                                     <c:forEach var="length" items="${applicationScope.carportLengths}">
-                                    <option value="${length}">${length} cm</option>
+                                        <option value="${length}">${length} cm</option>
                                     </c:forEach>
                                 </select>
 
-<%--                                <label for="carportPoleDistance">Stolpeafstand</label>--%>
-<%--                                <select class="form-control" name="carportPoleDistance" id="carportPoleDistance">--%>
-<%--                                    <option value="test">Test</option>--%>
-<%--                                </select>--%>
+                                    <%--                                <label for="carportPoleDistance">Stolpeafstand</label>--%>
+                                    <%--                                <select class="form-control" name="carportPoleDistance" id="carportPoleDistance">--%>
+                                    <%--                                    <option value="test">Test</option>--%>
+                                    <%--                                </select>--%>
 
                             </div>
 
@@ -107,46 +116,89 @@
 
                             </div>
 
-                            <div class="col-sm mt-4">
-                                <c:if test="${sessionScope.hasShed == 1}">
-                                    <h4 class="mb-4"><strong>Skur</strong></h4>
+                                <%--                            <div class="col-sm mt-4">--%>
+                                <%--                                <c:if test="${sessionScope.hasShed == 1}">--%>
+                                <%--                                    <h4 class="mb-4"><strong>Skur</strong></h4>--%>
 
-                                    <label for="shedWidth">Skur bredde</label>
-                                    <select class="form-control" name="shedWidth" id="shedWidth">
-                                        <c:forEach var="length" items="${applicationScope.standardLengths}">
-                                            <option value="${length}">${length} cm</option>
-                                        </c:forEach>
-                                    </select>
+                                <%--                                    <label for="shedWidth">Skur bredde</label>--%>
+                                <%--                                    <select class="form-control" name="shedWidth" id="shedWidth">--%>
+                                <%--                                        <c:forEach var="length" items="${applicationScope.standardLengths}">--%>
+                                <%--                                            <option value="${length}">${length} cm</option>--%>
+                                <%--                                        </c:forEach>--%>
+                                <%--                                    </select>--%>
 
-                                    <label for="shedLength">Skur længde</label>
-                                    <select class="form-control" name="shedLength" id="shedLength">
-                                        <c:forEach var="length" items="${applicationScope.standardLengths}">
-                                            <option value="${length}">${length} cm</option>
-                                        </c:forEach>
-                                    </select>
+                                <%--                                    <label for="shedLength">Skur længde</label>--%>
+                                <%--                                    <select class="form-control" name="shedLength" id="shedLength">--%>
+                                <%--                                        <c:forEach var="length" items="${applicationScope.standardLengths}">--%>
+                                <%--                                            <option value="${length}">${length} cm</option>--%>
+                                <%--                                        </c:forEach>--%>
+                                <%--                                    </select>--%>
 
-                                    <label for="shedCladding">Skur beklædning</label>
-                                    <select class="form-control" name="shedCladding" id="shedCladding">
-                                        <c:forEach var="cladding" items="${applicationScope.claddings}">
-                                            <option value="${cladding.materialId}">${cladding.name}</option>
-                                        </c:forEach>
-                                    </select>
+                                <%--                                    <label for="shedCladding">Skur beklædning</label>--%>
+                                <%--                                    <select class="form-control" name="shedCladding" id="shedCladding">--%>
+                                <%--                                        <c:forEach var="cladding" items="${applicationScope.claddings}">--%>
+                                <%--                                            <option value="${cladding.materialId}">${cladding.name}</option>--%>
+                                <%--                                        </c:forEach>--%>
+                                <%--                                    </select>--%>
 
-                                    <label for="shedPlacement">Skur placering</label>
-                                    <select class="form-control" name="shedPlacement" id="shedPlacement">
-                                        <option value="SW">Syd Vest</option>
-                                        <option value="W">Vest</option>
-                                        <option value="NW">Nord Vest</option>
-                                        <option value="N">Nord</option>
-                                        <option value="NE">Nord Øst</option>
-                                        <option value="E">Øst</option>
-                                        <option value="SE">Syd Øst</option>
-                                    </select>
-                                    <label>Indgang til carport er sydlige side</label>
-                                </c:if>
+                                <%--                                    <label for="shedPlacement">Skur placering</label>--%>
+                                <%--                                    <select class="form-control" name="shedPlacement" id="shedPlacement">--%>
+                                <%--                                        <option value="SW">Syd Vest</option>--%>
+                                <%--                                        <option value="W">Vest</option>--%>
+                                <%--                                        <option value="NW">Nord Vest</option>--%>
+                                <%--                                        <option value="N">Nord</option>--%>
+                                <%--                                        <option value="NE">Nord Øst</option>--%>
+                                <%--                                        <option value="E">Øst</option>--%>
+                                <%--                                        <option value="SE">Syd Øst</option>--%>
+                                <%--                                    </select>--%>
+                                <%--                                    <label>Indgang til carport er sydlige side</label>--%>
+                                <%--                                </c:if>--%>
 
-                            </div>
+                                <%--                            </div>--%>
                         </div>
+
+                        <c:if test="${sessionScope.hasShed == 1}">
+                            <br><br>
+                            <div class="text-center">
+                                <h4><strong>Skur Placering</strong></h4>
+                            </div>
+
+                            <div class="row my-3">
+                                <div class="col-sm mx-5">
+                                    <input class="form-check-input" type="radio" name="shedPlacement" value="NW"
+                                           id="shedNW">
+                                    <label class="form-check-label text-center" for="shedNW">
+                                        Nord-Vest
+                                    </label>
+                                        ${sessionScope.shedPlacement1}
+                                    <div class="text-center">
+                                        <strong>Indgang</strong>
+                                    </div>
+                                </div>
+                                <div class="col-sm mx-5">
+                                    <input class="form-check-input" type="radio" name="shedPlacement" value="N"
+                                           id="shedN" checked>
+                                    <label class="form-check-label text-center" for="shedN">
+                                        Nord
+                                    </label>
+                                        ${sessionScope.shedPlacement2}
+                                    <div class="text-center">
+                                        <strong>Indgang</strong>
+                                    </div>
+                                </div>
+                                <div class="col-sm mx-5">
+                                    <input class="form-check-input" type="radio" name="shedPlacement" value="NE"
+                                           id="shedNE">
+                                    <label class="form-check-label text-center" for="shedNE">
+                                        Nord-Øst
+                                    </label>
+                                        ${sessionScope.shedPlacement3}
+                                    <div class="text-center">
+                                        <strong>Indgang</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
 
                         <div class="form-group mt-1 text-center mt-5">
                             <button type="submit" class="btn btn-lg btn-primary">Bestil tilbud</button>

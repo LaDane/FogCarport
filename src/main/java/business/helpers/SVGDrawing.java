@@ -134,9 +134,6 @@ public class SVGDrawing {
         // inner svg
         SVG innerSVG = new SVG(marginLeft, marginTop, "0 0 " + drawingWidth + " " + drawingHeight, 100, 100);
 
-        // Frame (background inner)
-//        innerSVG.addRect(0, 0, carport.getHeight(), carport.getLength());
-
         // Posts
         int postAmount = calculator.getAmountOfPosts(carport);
         double postStartY = 30;
@@ -216,6 +213,19 @@ public class SVGDrawing {
         svg.addVerticalMeasurement(marginLeft + carport.getLength() + 30, marginTop + 10, marginLeft + carport.getLength() + 30, marginTop + carport.getHeight(), (int) rightSideHeight);
 
         svg.addSvg(innerSVG);
+        return svg.toString();
+    }
+
+    public static String getShedPlacementSVG(int type) {
+        SVG svg = new SVG(0, 0, "0 0 " + 100 + " " + 150, 25, 25);
+
+        svg.addRect(0, 0, 150, 100);
+        switch (type) {
+            case 1: svg.addRectDash(2, 2, 50, 50); break;
+            case 2: svg.addRectDash(2, 2, 50, 96); break;
+            case 3: svg.addRectDash(50, 2, 50, 48); break;
+        }
+
         return svg.toString();
     }
 }
