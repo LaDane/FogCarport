@@ -54,12 +54,13 @@ public class OrderNewCommand extends CommandProtectedPage {
 
             Cladding cladding = (Cladding) materialFacade.getSpecificMaterial(shedCladding);
 
-            shedLength = carportLength / 3;
+
+            shedLength = (carportLength / 3 - 30 + 14);  // minus poleoffset og plusset med poledimension
 
             if(shedPlacement.equals("N")){
-                shedWidth = carportWidth;
+                shedWidth = (carportWidth - 60 + 10);  // minus poleoffset og plusset med poledimension
             }else {
-                shedWidth = carportWidth / 2;
+                shedWidth = (carportWidth / 2 - 30 + 10);  // minus poleoffset og plusset med poledimension
             }
 
             shed = new Shed(cladding, shedPlacement, shedWidth, shedLength);

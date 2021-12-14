@@ -4,6 +4,8 @@ import business.carportCalc.Calculator;
 import business.entities.Carport;
 import business.entities.SVG;
 
+import java.util.Objects;
+
 public class SVGDrawing {
 
 
@@ -42,6 +44,7 @@ public class SVGDrawing {
         double lastPole = carport.getLength() - 30;
         double midPole1 = -1;
         double midPole2 = -1;
+        String shedPlacement = carport.getShed().getPlacement();
 
 
         if (carport.getShed() == null) {
@@ -88,6 +91,8 @@ public class SVGDrawing {
 
                 innerSVG.addRect(carport.getLength() * 0.15, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
                 innerSVG.addRect(carport.getLength() - 30, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
+
+
             } else if (amountOfPoles == 8) {
 
 
@@ -104,6 +109,21 @@ public class SVGDrawing {
 
                 innerSVG.addRect(midPole1, carport.getWidth() / 2.0, poleDim, poleDim);
                 innerSVG.addRect(lastPole, carport.getWidth() / 2.0, poleDim, poleDim);
+
+
+                // add cladding
+
+                if(shedPlacement.equals("N")) {
+                    innerSVG.addRectShed(midPole1, 30 - poleOffset, carport.getShed().getWidth(), carport.getShed().getLength());
+                }
+
+                else if(shedPlacement.equals("NW")) {
+                    innerSVG.addRectShed(midPole1, 30 - poleOffset, carport.getShed().getWidth(), carport.getShed().getLength());
+                }
+
+                else if(shedPlacement.equals("NE")) {
+                    innerSVG.addRectShed(midPole1, ((carport.getWidth() - poleDim)/2.0) + 2, carport.getShed().getWidth(), carport.getShed().getLength());
+                }
 
             } else if (amountOfPoles == 10) {
 
@@ -122,14 +142,19 @@ public class SVGDrawing {
 
                 innerSVG.addRect(midPole2, carport.getWidth() / 2.0, poleDim, poleDim);
                 innerSVG.addRect(lastPole, carport.getWidth() / 2.0, poleDim, poleDim);
+
+                if(shedPlacement.equals("N")) {
+                    innerSVG.addRectShed(midPole2, 30 - poleOffset, carport.getShed().getWidth(), carport.getShed().getLength());
+                }
+
+                else if(shedPlacement.equals("NW")) {
+                    innerSVG.addRectShed(midPole2, 30 - poleOffset, carport.getShed().getWidth(), carport.getShed().getLength());
+                }
+
+                else if(shedPlacement.equals("NE")) {
+                    innerSVG.addRectShed(midPole2, ((carport.getWidth() - poleDim)/2.0) + 2, carport.getShed().getWidth(), carport.getShed().getLength());
+                }
             }
-
-
-            // Add cladding
-
-            
-
-
 
         }
 

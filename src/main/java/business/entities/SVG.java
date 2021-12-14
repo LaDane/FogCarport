@@ -36,6 +36,8 @@ public class SVG {
     private final String arrowTextHorizontal = "<text style=\"text-anchor: middle\" x=\"%f\" y=\"%f\">%d cm</text>";
     private final String arrowTextVertical = "<text style=\"text-anchor: middle\" transform=\"translate(%f,%f) rotate(-90)\">%d cm</text>";
 
+    private final String rectShedTemplate = "<rect x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; stroke-width: 3px; fill: none\" stroke-dasharray=\"5, 5\"/>";
+
 
     public SVG(int x, int y, String viewBox, int width, int height) {
         this.x = x;
@@ -55,6 +57,11 @@ public class SVG {
     public void addRectDash(double x, double y, double height, double width) {
         svg.append(String.format(Locale.US, rectTemplateDashed, x, y, height, width));
     }
+
+    public void addRectShed(double x, double y, double height, double width) {
+        svg.append(String.format(Locale.US, rectShedTemplate, x, y, height, width));
+    }
+
 
     public void addRectRotate(double x, double y, double height, double width) {
         svg.append(String.format(Locale.US, rectTemplateRotate, x, y, height, width));
