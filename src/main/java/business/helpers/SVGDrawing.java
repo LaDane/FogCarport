@@ -44,8 +44,11 @@ public class SVGDrawing {
         double lastPole = carport.getLength() - 30;
         double midPole1 = -1;
         double midPole2 = -1;
-        String shedPlacement = carport.getShed().getPlacement();
+        String shedPlacement = "";
 
+        if(carport.getShed() != null) {
+            shedPlacement = carport.getShed().getPlacement();
+        }
 
         if (carport.getShed() == null) {
             if (amountOfPoles == 4) {

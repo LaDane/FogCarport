@@ -214,19 +214,10 @@ public class Calculator {
 
         // TODO: Figure out a better way to do the calculations below
         if (carport.getShed() != null) {
-            if (carport.getShed().getLength() == carport.getLength()) {
-                // skur fylder hele langside        + 3
-                totalPosts += 3;
-            }
+            totalPosts += 2;
 
-            else if (carport.getShed().getLength() == carport.getLength() / 2) {
-                // skur fylder halvdelen af langsiden       + 2
+            if(carport.getWidth() < 510) {
                 totalPosts += 2;
-            }
-
-            else if (carport.getShed().getWidth() == carport.getWidth()) {
-                // skur fylder hele badside     + 4
-                totalPosts += 4;
             }
         }
 
@@ -319,7 +310,7 @@ public class Calculator {
         }
         double totalBoards = totalMeters / ((double) leastKey / 100);
 
-        return new int[]{leastKey, (int)totalBoards + 1};
+        return new int[]{leastKey, (int) totalBoards + 1};
     }
 
 }

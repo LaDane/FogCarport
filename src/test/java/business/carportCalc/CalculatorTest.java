@@ -108,4 +108,20 @@ class CalculatorTest {
         int rafterAmount = calculator.getAmountOfRaftersTrapez(carport);
         System.out.println(rafterAmount);
     }
+
+    @Test
+    public void testAmountOfPostsWithShed() {
+
+        Shed shed0 = new Shed(null, "N", 600, 210);
+        Carport carport0 = new Carport(480, 780, shed0, new Roof(null, 0));
+
+        Shed shed1 = new Shed(null, "N", 600, 210);
+        Carport carport1 = new Carport(600, 780, shed1, new Roof(null, 0));
+
+        Shed shed2 = new Shed(null, "N", 600, 210);
+        Carport carport2 = new Carport(600, 780, shed2, new Roof(null, 0));
+
+        int postAmount = calculator.getAmountOfPosts(carport);
+        assertEquals(8, postAmount);
+    }
 }
