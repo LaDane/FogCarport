@@ -38,47 +38,91 @@ public class SVGDrawing {
         double poleOffset = rafterDim / 2;
         int amountOfPoles = calculator.getAmountOfPosts(carport);
 
-        if (amountOfPoles == 4) {
-            innerSVG.addRect(carport.getLength() * 0.15, 30 - poleOffset, poleDim, poleDim);
-            innerSVG.addRect(carport.getLength() - 30, 30 - poleOffset, poleDim, poleDim);
 
-            innerSVG.addRect(carport.getLength() * 0.15, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
-            innerSVG.addRect(carport.getLength() - 30, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
+        if (carport.getShed() == null) {
+            if (amountOfPoles == 4) {
+                innerSVG.addRect(carport.getLength() * 0.15, 30 - poleOffset, poleDim, poleDim);
+                innerSVG.addRect(carport.getLength() - 30, 30 - poleOffset, poleDim, poleDim);
+
+                innerSVG.addRect(carport.getLength() * 0.15, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
+                innerSVG.addRect(carport.getLength() - 30, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
+            } else if (amountOfPoles == 6) {
+
+                double firstPole = carport.getLength() * 0.15;
+                double lastPole = carport.getLength() - 30;
+                double midPole = (firstPole + lastPole) / 2;
+
+
+                innerSVG.addRect(firstPole, 30 - poleOffset, poleDim, poleDim);
+                innerSVG.addRect(midPole, 30 - poleOffset, poleDim, poleDim);
+                innerSVG.addRect(lastPole, 30 - poleOffset, poleDim, poleDim);
+
+                innerSVG.addRect(firstPole, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
+                innerSVG.addRect(midPole, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
+                innerSVG.addRect(lastPole, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
+
+            } else if (amountOfPoles == 8) {
+
+                double firstPole = carport.getLength() * 0.15;
+                double lastPole = carport.getLength() - 30;
+                double midPole1 = (lastPole - firstPole) * 0.33 + firstPole;
+                double midPole2 = (lastPole - firstPole) * 0.66 + firstPole;
+
+                innerSVG.addRect(firstPole, 30 - poleOffset, poleDim, poleDim);
+                innerSVG.addRect(midPole1, 30 - poleOffset, poleDim, poleDim);
+                innerSVG.addRect(midPole2, 30 - poleOffset, poleDim, poleDim);
+                innerSVG.addRect(lastPole, 30 - poleOffset, poleDim, poleDim);
+
+                innerSVG.addRect(firstPole, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
+                innerSVG.addRect(midPole1, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
+                innerSVG.addRect(midPole2, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
+                innerSVG.addRect(lastPole, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
+            }
+
+            // WITH shed
+        } else {
+            if (amountOfPoles == 6) {
+                innerSVG.addRect(carport.getLength() * 0.15, 30 - poleOffset, poleDim, poleDim);
+                innerSVG.addRect(carport.getLength() - 30, 30 - poleOffset, poleDim, poleDim);
+
+                innerSVG.addRect(carport.getLength() * 0.15, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
+                innerSVG.addRect(carport.getLength() - 30, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
+            } else if (amountOfPoles == 8) {
+
+                double firstPole = carport.getLength() * 0.15;
+                double lastPole = carport.getLength() - 30;
+                double midPole = carport.getLength() * 0.66;
+
+
+                innerSVG.addRect(firstPole, 30 - poleOffset, poleDim, poleDim);
+                innerSVG.addRect(midPole, 30 - poleOffset, poleDim, poleDim);
+                innerSVG.addRect(lastPole, 30 - poleOffset, poleDim, poleDim);
+
+                innerSVG.addRect(firstPole, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
+                innerSVG.addRect(midPole, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
+                innerSVG.addRect(lastPole, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
+
+                innerSVG.addRect(midPole);
+
+            } else if (amountOfPoles == 10) {
+
+                double firstPole = carport.getLength() * 0.15;
+                double lastPole = carport.getLength() - 30;
+                double midPole1 = (lastPole - firstPole) * 0.33 + firstPole;
+                double midPole2 = carport.getLength() * 0.66;
+
+                innerSVG.addRect(firstPole, 30 - poleOffset, poleDim, poleDim);
+                innerSVG.addRect(midPole1, 30 - poleOffset, poleDim, poleDim);
+                innerSVG.addRect(midPole2, 30 - poleOffset, poleDim, poleDim);
+                innerSVG.addRect(lastPole, 30 - poleOffset, poleDim, poleDim);
+
+                innerSVG.addRect(firstPole, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
+                innerSVG.addRect(midPole1, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
+                innerSVG.addRect(midPole2, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
+                innerSVG.addRect(lastPole, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
+            }
         }
 
-        if (amountOfPoles == 6 && carport.getShed() == null) {
-
-            double firstPole = carport.getLength() * 0.15;
-            double lastPole = carport.getLength() - 30;
-            double midPole = (firstPole + lastPole) / 2;
-
-
-            innerSVG.addRect(firstPole, 30 - poleOffset, poleDim, poleDim);
-            innerSVG.addRect(midPole, 30 - poleOffset, poleDim, poleDim);
-            innerSVG.addRect(lastPole, 30 - poleOffset, poleDim, poleDim);
-
-            innerSVG.addRect(firstPole, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
-            innerSVG.addRect(midPole, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
-            innerSVG.addRect(lastPole, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
-        }
-
-        if (amountOfPoles == 8 && carport.getShed() == null) {
-            double firstPole = carport.getLength() * 0.15;
-            double lastPole = carport.getLength() - 30;
-            double midPole1 = (lastPole - firstPole) * 0.33 + firstPole;
-            double midPole2 = (lastPole - firstPole) * 0.66 + firstPole;
-
-
-            innerSVG.addRect(firstPole, 30 - poleOffset, poleDim, poleDim);
-            innerSVG.addRect(midPole1, 30 - poleOffset, poleDim, poleDim);
-            innerSVG.addRect(midPole2, 30 - poleOffset, poleDim, poleDim);
-            innerSVG.addRect(lastPole, 30 - poleOffset, poleDim, poleDim);
-
-            innerSVG.addRect(firstPole, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
-            innerSVG.addRect(midPole1, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
-            innerSVG.addRect(midPole2, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
-            innerSVG.addRect(lastPole, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
-        }
 
         // TODO: Add shed functionality
 
@@ -144,25 +188,49 @@ public class SVGDrawing {
         double midPost1 = -1;
         double midPost2 = -1;
 
-        if (postAmount == 4) {
-            innerSVG.addRect(firstPostX, postStartY, postEndY, postDim);
-            innerSVG.addRect(lastPostX, postStartY, postEndY, postDim);
-        }
-        else if (postAmount == 6 && carport.getShed() == null) {
-            midPost1 = (firstPostX + lastPostX) / 2;
 
-            innerSVG.addRect(firstPostX, postStartY, postEndY, postDim);
-            innerSVG.addRect(midPost1, postStartY, postEndY, postDim);
-            innerSVG.addRect(lastPostX, postStartY, postEndY, postDim);
-        }
-        else if (postAmount == 8 && carport.getShed() == null) {
-            midPost1 = (lastPostX - firstPostX) * 0.33 + firstPostX;
-            midPost2 = (lastPostX - firstPostX) * 0.66 + firstPostX;
+        // Drawing Posts with NO shed.
+        if (carport.getShed() == null) {
+            if (postAmount == 4) {
+                innerSVG.addRect(firstPostX, postStartY, postEndY, postDim);
+                innerSVG.addRect(lastPostX, postStartY, postEndY, postDim);
+            } else if (postAmount == 6) {
+                midPost1 = (firstPostX + lastPostX) / 2;
 
-            innerSVG.addRect(firstPostX, postStartY, postEndY, postDim);
-            innerSVG.addRect(midPost1, postStartY, postEndY, postDim);
-            innerSVG.addRect(midPost2, postStartY, postEndY, postDim);
-            innerSVG.addRect(lastPostX, postStartY, postEndY, postDim);
+                innerSVG.addRect(firstPostX, postStartY, postEndY, postDim);
+                innerSVG.addRect(midPost1, postStartY, postEndY, postDim);
+                innerSVG.addRect(lastPostX, postStartY, postEndY, postDim);
+            } else if (postAmount == 8) {
+                midPost1 = (lastPostX - firstPostX) * 0.33 + firstPostX;
+                midPost2 = (lastPostX - firstPostX) * 0.66 + firstPostX;
+
+                innerSVG.addRect(firstPostX, postStartY, postEndY, postDim);
+                innerSVG.addRect(midPost1, postStartY, postEndY, postDim);
+                innerSVG.addRect(midPost2, postStartY, postEndY, postDim);
+                innerSVG.addRect(lastPostX, postStartY, postEndY, postDim);
+            }
+        } else {
+
+            // Drawing Posts WITH shed.
+
+            if (postAmount == 8) {
+                midPost1 = carport.getLength() * 0.66;
+
+
+                innerSVG.addRect(firstPostX, postStartY, postEndY, postDim);
+                innerSVG.addRect(midPost1, postStartY, postEndY, postDim);
+                innerSVG.addRect(lastPostX, postStartY, postEndY, postDim);
+
+
+            } else if (postAmount == 10) {
+                midPost1 = (lastPostX - firstPostX) * 0.33 + firstPostX;
+                midPost2 = carport.getLength() * 0.66;
+
+                innerSVG.addRect(firstPostX, postStartY, postEndY, postDim);
+                innerSVG.addRect(midPost1, postStartY, postEndY, postDim);
+                innerSVG.addRect(midPost2, postStartY, postEndY, postDim);
+                innerSVG.addRect(lastPostX, postStartY, postEndY, postDim);
+            }
         }
 
         // Roof
@@ -182,21 +250,40 @@ public class SVGDrawing {
         svg.addDashLine(marginLeft, marginTop + carport.getHeight(), marginLeft, horizontalBotY + 15);
         svg.addDashLine(marginLeft + firstPostX, marginTop + carport.getHeight() + 30, marginLeft + firstPostX, horizontalBotY + 15);
 
-        if (postAmount == 4) {
-            svg.addHorizontalMeasurement(marginLeft + firstPostX, horizontalBotY, marginLeft + lastPostX, horizontalBotY, (int) (lastPostX - firstPostX));
-        }
-        else if (postAmount == 6 && carport.getShed() == null) {
-            svg.addHorizontalMeasurement(marginLeft + firstPostX, horizontalBotY, marginLeft + midPost1, horizontalBotY, (int) (midPost1 - firstPostX));
-            svg.addHorizontalMeasurement(marginLeft + midPost1, horizontalBotY, marginLeft + lastPostX, horizontalBotY, (int) (lastPostX - midPost1));
-            svg.addDashLine(marginLeft + midPost1, marginTop + carport.getHeight() + 30, marginLeft + midPost1, horizontalBotY + 15);
-        }
-        else if (postAmount == 8 && carport.getShed() == null) {
-            svg.addHorizontalMeasurement(marginLeft + firstPostX, horizontalBotY, marginLeft + midPost1, horizontalBotY, (int) (midPost1 - firstPostX));
-            svg.addHorizontalMeasurement(marginLeft + midPost1, horizontalBotY, marginLeft + midPost2, horizontalBotY, (int) (midPost2 - midPost1));
-            svg.addHorizontalMeasurement(marginLeft + midPost2, horizontalBotY, marginLeft + lastPostX, horizontalBotY, (int) (lastPostX - midPost2));
 
-            svg.addDashLine(marginLeft + midPost1, marginTop + carport.getHeight() + 30, marginLeft + midPost1, horizontalBotY + 15);
-            svg.addDashLine(marginLeft + midPost2, marginTop + carport.getHeight() + 30, marginLeft + midPost2, horizontalBotY + 15);
+        // With NO shed
+        if (carport.getShed() == null) {
+            if (postAmount == 4) {
+                svg.addHorizontalMeasurement(marginLeft + firstPostX, horizontalBotY, marginLeft + lastPostX, horizontalBotY, (int) (lastPostX - firstPostX));
+            } else if (postAmount == 6) {
+                svg.addHorizontalMeasurement(marginLeft + firstPostX, horizontalBotY, marginLeft + midPost1, horizontalBotY, (int) (midPost1 - firstPostX));
+                svg.addHorizontalMeasurement(marginLeft + midPost1, horizontalBotY, marginLeft + lastPostX, horizontalBotY, (int) (lastPostX - midPost1));
+                svg.addDashLine(marginLeft + midPost1, marginTop + carport.getHeight() + 30, marginLeft + midPost1, horizontalBotY + 15);
+            } else if (postAmount == 8) {
+                svg.addHorizontalMeasurement(marginLeft + firstPostX, horizontalBotY, marginLeft + midPost1, horizontalBotY, (int) (midPost1 - firstPostX));
+                svg.addHorizontalMeasurement(marginLeft + midPost1, horizontalBotY, marginLeft + midPost2, horizontalBotY, (int) (midPost2 - midPost1));
+                svg.addHorizontalMeasurement(marginLeft + midPost2, horizontalBotY, marginLeft + lastPostX, horizontalBotY, (int) (lastPostX - midPost2));
+
+                svg.addDashLine(marginLeft + midPost1, marginTop + carport.getHeight() + 30, marginLeft + midPost1, horizontalBotY + 15);
+                svg.addDashLine(marginLeft + midPost2, marginTop + carport.getHeight() + 30, marginLeft + midPost2, horizontalBotY + 15);
+            }
+
+            // WITH shed
+        } else {
+            if (postAmount == 6) {
+                svg.addHorizontalMeasurement(marginLeft + firstPostX, horizontalBotY, marginLeft + lastPostX, horizontalBotY, (int) (lastPostX - firstPostX));
+            } else if (postAmount == 8) {
+                svg.addHorizontalMeasurement(marginLeft + firstPostX, horizontalBotY, marginLeft + midPost1, horizontalBotY, (int) (midPost1 - firstPostX));
+                svg.addHorizontalMeasurement(marginLeft + midPost1, horizontalBotY, marginLeft + lastPostX, horizontalBotY, (int) (lastPostX - midPost1));
+                svg.addDashLine(marginLeft + midPost1, marginTop + carport.getHeight() + 30, marginLeft + midPost1, horizontalBotY + 15);
+            } else if (postAmount == 10) {
+                svg.addHorizontalMeasurement(marginLeft + firstPostX, horizontalBotY, marginLeft + midPost1, horizontalBotY, (int) (midPost1 - firstPostX));
+                svg.addHorizontalMeasurement(marginLeft + midPost1, horizontalBotY, marginLeft + midPost2, horizontalBotY, (int) (midPost2 - midPost1));
+                svg.addHorizontalMeasurement(marginLeft + midPost2, horizontalBotY, marginLeft + lastPostX, horizontalBotY, (int) (lastPostX - midPost2));
+
+                svg.addDashLine(marginLeft + midPost1, marginTop + carport.getHeight() + 30, marginLeft + midPost1, horizontalBotY + 15);
+                svg.addDashLine(marginLeft + midPost2, marginTop + carport.getHeight() + 30, marginLeft + midPost2, horizontalBotY + 15);
+            }
         }
 
 
@@ -216,14 +303,22 @@ public class SVGDrawing {
         return svg.toString();
     }
 
+
+    // Adds 3 pictures to "Design your carport" site.
     public static String getShedPlacementSVG(int type) {
         SVG svg = new SVG(0, 0, "0 0 " + 100 + " " + 150, 25, 25);
 
         svg.addRect(0, 0, 150, 100);
         switch (type) {
-            case 1: svg.addRectDash(2, 2, 50, 50); break;
-            case 2: svg.addRectDash(2, 2, 50, 96); break;
-            case 3: svg.addRectDash(50, 2, 50, 48); break;
+            case 1:
+                svg.addRectDash(2, 2, 50, 50);
+                break;
+            case 2:
+                svg.addRectDash(2, 2, 50, 96);
+                break;
+            case 3:
+                svg.addRectDash(50, 2, 50, 48);
+                break;
         }
 
         return svg.toString();

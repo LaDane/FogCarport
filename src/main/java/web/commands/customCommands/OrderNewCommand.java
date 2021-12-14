@@ -47,14 +47,20 @@ public class OrderNewCommand extends CommandProtectedPage {
 
         int hasShed = (int) request.getSession().getAttribute("hasShed");
         if (hasShed == 1) {
-
-            // TODO: Fix this below so the shed can be created!
-            shedWidth = Integer.parseInt(request.getParameter("shedWidth"));
-            shedLength = Integer.parseInt(request.getParameter("shedLength"));
             shedPlacement = request.getParameter("shedPlacement");
-            shedCladding = Integer.parseInt(request.getParameter("shedCladding"));
+
+            //shedCladding = Integer.parseInt(request.getParameter("shedCladding"));
+            shedCladding = 26;
 
             Cladding cladding = (Cladding) materialFacade.getSpecificMaterial(shedCladding);
+
+            shedLength = carportLength / 3;
+
+            if(shedPlacement.equals("N")){
+                shedWidth = carportWidth;
+            }else {
+                shedWidth = carportWidth / 2;
+            }
 
             shed = new Shed(cladding, shedPlacement, shedWidth, shedLength);
         }
