@@ -38,6 +38,11 @@ public class SVGDrawing {
         double poleOffset = rafterDim / 2;
         int amountOfPoles = calculator.getAmountOfPosts(carport);
 
+        double firstPole = carport.getLength() * 0.15;
+        double lastPole = carport.getLength() - 30;
+        double midPole1 = -1;
+        double midPole2 = -1;
+
 
         if (carport.getShed() == null) {
             if (amountOfPoles == 4) {
@@ -48,25 +53,21 @@ public class SVGDrawing {
                 innerSVG.addRect(carport.getLength() - 30, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
             } else if (amountOfPoles == 6) {
 
-                double firstPole = carport.getLength() * 0.15;
-                double lastPole = carport.getLength() - 30;
-                double midPole = (firstPole + lastPole) / 2;
+                midPole1 = (firstPole + lastPole) / 2;
 
 
                 innerSVG.addRect(firstPole, 30 - poleOffset, poleDim, poleDim);
-                innerSVG.addRect(midPole, 30 - poleOffset, poleDim, poleDim);
+                innerSVG.addRect(midPole1, 30 - poleOffset, poleDim, poleDim);
                 innerSVG.addRect(lastPole, 30 - poleOffset, poleDim, poleDim);
 
                 innerSVG.addRect(firstPole, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
-                innerSVG.addRect(midPole, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
+                innerSVG.addRect(midPole1, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
                 innerSVG.addRect(lastPole, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
 
             } else if (amountOfPoles == 8) {
 
-                double firstPole = carport.getLength() * 0.15;
-                double lastPole = carport.getLength() - 30;
-                double midPole1 = (lastPole - firstPole) * 0.33 + firstPole;
-                double midPole2 = (lastPole - firstPole) * 0.66 + firstPole;
+                 midPole1 = (lastPole - firstPole) * 0.33 + firstPole;
+                 midPole2 = (lastPole - firstPole) * 0.66 + firstPole;
 
                 innerSVG.addRect(firstPole, 30 - poleOffset, poleDim, poleDim);
                 innerSVG.addRect(midPole1, 30 - poleOffset, poleDim, poleDim);
@@ -89,27 +90,25 @@ public class SVGDrawing {
                 innerSVG.addRect(carport.getLength() - 30, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
             } else if (amountOfPoles == 8) {
 
-                double firstPole = carport.getLength() * 0.15;
-                double lastPole = carport.getLength() - 30;
-                double midPole = carport.getLength() * 0.66;
+
+                 midPole1 = carport.getLength() * 0.66;
 
 
                 innerSVG.addRect(firstPole, 30 - poleOffset, poleDim, poleDim);
-                innerSVG.addRect(midPole, 30 - poleOffset, poleDim, poleDim);
+                innerSVG.addRect(midPole1, 30 - poleOffset, poleDim, poleDim);
                 innerSVG.addRect(lastPole, 30 - poleOffset, poleDim, poleDim);
 
                 innerSVG.addRect(firstPole, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
-                innerSVG.addRect(midPole, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
+                innerSVG.addRect(midPole1, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
                 innerSVG.addRect(lastPole, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
 
-                innerSVG.addRect(midPole);
+                innerSVG.addRect(midPole1, carport.getWidth() / 2.0, poleDim, poleDim);
+                innerSVG.addRect(lastPole, carport.getWidth() / 2.0, poleDim, poleDim);
 
             } else if (amountOfPoles == 10) {
 
-                double firstPole = carport.getLength() * 0.15;
-                double lastPole = carport.getLength() - 30;
-                double midPole1 = (lastPole - firstPole) * 0.33 + firstPole;
-                double midPole2 = carport.getLength() * 0.66;
+                 midPole1 = (lastPole - firstPole) * 0.33 + firstPole;
+                 midPole2 = carport.getLength() * 0.66;
 
                 innerSVG.addRect(firstPole, 30 - poleOffset, poleDim, poleDim);
                 innerSVG.addRect(midPole1, 30 - poleOffset, poleDim, poleDim);
@@ -120,7 +119,18 @@ public class SVGDrawing {
                 innerSVG.addRect(midPole1, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
                 innerSVG.addRect(midPole2, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
                 innerSVG.addRect(lastPole, carport.getWidth() - (30 + poleOffset), poleDim, poleDim);
+
+                innerSVG.addRect(midPole2, carport.getWidth() / 2.0, poleDim, poleDim);
+                innerSVG.addRect(lastPole, carport.getWidth() / 2.0, poleDim, poleDim);
             }
+
+
+            // Add cladding
+
+            
+
+
+
         }
 
 
