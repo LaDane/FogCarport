@@ -150,12 +150,7 @@ public class SVGDrawing {
                     innerSVG.addRectShed(midPole2, ((carport.getWidth() - poleDim) / 2.0) + 2, carport.getShed().getWidth(), carport.getShed().getLength());
                 }
             }
-
         }
-
-
-        // TODO: Add shed functionality
-
 
         // Rafters
         int amountRafter = calculator.getAmountOfRaftersTrapez(carport);
@@ -169,8 +164,16 @@ public class SVGDrawing {
 
 
         // hulbånd
-        innerSVG.addDashLine(50, 30, carport.getLength() - 50, carport.getWidth() - 30 + rafterDim);
-        innerSVG.addDashLine(50, carport.getWidth() - 30 + rafterDim, carport.getLength() - 50, 30);
+
+        if(carport.getShed() == null) {
+            innerSVG.addDashLine(50, 30, carport.getLength() - 50, carport.getWidth() - 30 + rafterDim);
+            innerSVG.addDashLine(50, carport.getWidth() - 30 + rafterDim, carport.getLength() - 50, 30);
+        }
+
+        else {
+            innerSVG.addDashLine(50, 30, carport.getLength() * 0.66, carport.getWidth() - 30 + rafterDim);
+            innerSVG.addDashLine(50, carport.getWidth() - 30 + rafterDim, carport.getLength() * 0.66, 30);
+        }
 
 
         // Outer svg
@@ -227,7 +230,7 @@ public class SVGDrawing {
         if(Objects.equals(shedPlacement, "NW")) {
             for (int i = 0; i < 19; i++) {
 
-                innerSVG.addRect(midPost1, postStartY + (12*i) - 8, 12, lastPostX - midPost1 + postDim);
+                innerSVG.addRect(carport.getLength() * 0.66, postStartY + (12*i) - 8, 12, lastPostX - carport.getLength() * 0.66 + postDim);
             }
         }
 
@@ -279,7 +282,7 @@ public class SVGDrawing {
             if(Objects.equals(shedPlacement, "N") || Objects.equals(shedPlacement, "NE")) {
                 for (int i = 0; i < 19; i++) {
 
-                    innerSVG.addRect(midPost1, postStartY + (12*i) - 8, 12, lastPostX - midPost1 + postDim);
+                    innerSVG.addRect(carport.getLength() * 0.66, postStartY + (12*i) - 8, 12, lastPostX - carport.getLength() * 0.66 + postDim);
                 }
             }
         }
@@ -294,7 +297,6 @@ public class SVGDrawing {
         // Outer svg
         SVG svg = new SVG(0, 0, "0 0 " + drawingWidth + " " + drawingHeight, 50, 50);
 
-        // TODO: Add all the required measurements
         double horizontalBotY = marginTop + carport.getHeight() + ((double) marginBot / 2);
         svg.addHorizontalMeasurement(marginLeft, horizontalBotY, marginLeft + firstPostX, horizontalBotY, (int) firstPostX);
 

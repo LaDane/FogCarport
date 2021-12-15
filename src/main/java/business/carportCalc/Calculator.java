@@ -212,7 +212,6 @@ public class Calculator {
         else if (postsPreRounded > 12 && postsPreRounded <= 14)
             totalPosts = 14;
 
-        // TODO: Figure out a better way to do the calculations below
         if (carport.getShed() != null) {
             totalPosts += 2;
 

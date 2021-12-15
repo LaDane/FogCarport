@@ -25,10 +25,6 @@ public class LoginCommand extends CommandUnprotectedPage {
         // We have a hidden input field that will indicate if we have pressed the submit button and started our inquiry on the index page.
         String newInquiryStarted = String.valueOf(request.getSession().getAttribute("newInquiryStarted"));
 
-
-        // TODO : FINISH LOGIC BELOW
-
-
         try {
             User user = userFacade.login(email, password);
 

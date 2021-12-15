@@ -176,6 +176,15 @@
                                 <button type="submit" class="btn btn-outline-success btn-sm">Opdater pris tabel</button>
                             </c:if>
 
+
+                        </form>
+
+                        <form  action="${pageContext.request.contextPath}/fc/orderEndCommand">
+
+                            <c:if test="${sessionScope.orderSingle.status == 'Betalt'}">
+                                <button type="submit" class="btn btn-primary btn-lg">Afslut ordre</button>
+                            </c:if>
+
                         </form>
                     </c:if>
                 </div>

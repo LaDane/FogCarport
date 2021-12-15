@@ -21,7 +21,7 @@ public class UserMapper {
                 ps.setString(1, user.getEmail());
                 ps.setString(2, user.getPassword());
                 ps.setString(3, user.getRole());
-                ps.setString(4, user.getName());  //TODO update these fields
+                ps.setString(4, user.getName());
                 ps.setString(5, user.getAddress());
                 ps.setInt(6, user.getZip());
                 ps.setString(7, user.getCity());

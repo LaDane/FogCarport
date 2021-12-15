@@ -22,6 +22,10 @@ public class OrderOverviewCommand extends CommandProtectedPage {
 
         if (user.getRole().equals("employee")) {
             List<OrderView> allOrderViews = orderFacade.getAllOrderViews(null);
+
+            // Removes an order if the order is ended
+            allOrderViews.removeIf(orders -> orders.getStatus().equals("Afsluttet"));
+
             request.getSession().setAttribute("allOrderViews", allOrderViews);
         }
         else if (user.getRole().equals("customer")) {

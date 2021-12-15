@@ -36,6 +36,7 @@
                     <th>Kunde Email</th>
                 </c:if>
                 <th>Forespørgsel oprettet</th>
+                <th>Dimension</th>
                 <th>Tag matriale</th>
                 <th>Ordre Status</th>
                 <th> </th>
@@ -50,8 +51,9 @@
                         <td>${order.user.email}</td>
                     </c:if>
                     <td>${order.created}</td>
+                    <td>${order.carport.width}x${order.carport.length}</td>
                     <td>${order.roof.roofMaterial.name}</td>
-                    <td>${order.status}</td> <%--TODO : Change to buttons with different colors depending on status--%>
+                    <td>${order.status}</td>
                     <td>
                         <c:if test="${sessionScope.user.role == 'employee'}">
                             <form action="${pageContext.request.contextPath}/fc/orderSingleEmployee" method="post">
