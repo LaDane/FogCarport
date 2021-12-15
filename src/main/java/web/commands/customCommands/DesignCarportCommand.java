@@ -34,7 +34,7 @@ public class DesignCarportCommand extends CommandUnprotectedPage {
         if (user == null) {
             return "loginsignup";
         }
-        
+
         return pageToShow;
     }
 }
