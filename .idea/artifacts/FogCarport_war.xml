@@ -1,22 +1,16 @@
 <component name="ArtifactManager">
-  <artifact type="war" name="fog:war">
+  <artifact type="war" name="FogCarport:war">
     <output-path>$PROJECT_DIR$/target</output-path>
     <properties id="maven-jee-properties">
       <options>
         <exploded>false</exploded>
-        <module>bmi</module>
+        <module>FogCarport</module>
         <packaging>war</packaging>
         <unpackNestedArchives>false</unpackNestedArchives>
       </options>
     </properties>
     <root id="archive" name="sem2-startcode-1.0-SNAPSHOT.war">
-      <element id="artifact" artifact-name="fog:war exploded" />
-      <element id="javaee-facet-resources" facet="FogCarport/web/Web" />
-      <element id="directory" name="WEB-INF">
-        <element id="directory" name="classes">
-          <element id="module-output" name="FogCarport" />
-        </element>
-      </element>
+      <element id="artifact" artifact-name="FogCarport:war exploded" />
     </root>
   </artifact>
 </component>
