@@ -197,29 +197,22 @@ public class Calculator {
 
     // Stolper
     public int getAmountOfPosts(Carport carport) {
-        double squareMeters = (carport.getLength() / 100) * (carport.getWidth() / 100);
+        double squareMeters = (carport.getLength() / 100.0) * (carport.getWidth() / 100.0);
         double postsPreRounded = squareMeters / 5.5;
         int totalPosts = 4;
 
-        if (postsPreRounded > 4 && postsPreRounded <= 6)
-            totalPosts = 6;
-        else if (postsPreRounded > 6 && postsPreRounded <= 8)
-            totalPosts = 8;
-        else if (postsPreRounded > 8 && postsPreRounded <= 10)
-            totalPosts = 10;
-        else if (postsPreRounded > 10 && postsPreRounded <= 12)
-            totalPosts = 12;
-        else if (postsPreRounded > 12 && postsPreRounded <= 14)
-            totalPosts = 14;
+        if (carport.getShed() == null) {
 
-        if (carport.getShed() != null) {
-            totalPosts += 2;
+            if (postsPreRounded > 6)
+                totalPosts = 6;
 
-            if(carport.getWidth() < 510) {
-                totalPosts += 2;
-            }
+        } else {
+
+            totalPosts += 4;
+
+            if (postsPreRounded > 6)
+                totalPosts = 10;
         }
-
         return totalPosts;
     }
 

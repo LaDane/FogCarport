@@ -275,7 +275,7 @@
 
         <br><br>
 
-        <c:if test="${sessionScope.user.role == 'employee' || sessionScope.orderSingle.status == 'Betalt'}">
+        <c:if test="${sessionScope.user.role == 'employee' || sessionScope.orderSingle.status == 'Betalt' || sessionScope.orderSingle.status == 'Afsluttet'}">
             <h3>Materiale liste</h3>
             <h4>Træ og tagplader</h4>
 
