@@ -1,0 +1,55 @@
+@startuml
+Title Cupcake Aktivitetsdiagram
+|Kunde|
+    start
+    :Gå til hjemmeside;
+    :Vælg carport tag og skur;
+|Kunde|
+    repeat :Indtast login oplysninger;
+    repeat while (Tryk log ind / sign up;) is (Ugyldig login)
+    ->Gyldig login;
+|Kunde|
+    :Indtast dimensioner på carport,
+    tagtype, og placering af skur;
+    :Tryk Bestil Tilbud;
+|#AntiqueWhite|System|
+    :Forespørgsel]
+    :Beregn carport matrialer;
+    :Beregn carport pris;
+    :Generer SVG tegninger;
+|Admin|
+    :Inspicer forespørgsel;
+    :Opdater carport pris;
+    :Tryk Send Tilbud;
+|System|
+    :Tilbud]
+|Kunde|
+    :Tryk Mine Tilbud;
+    :Tryk på ordre;
+    :Inspicer tilbud;
+    :Tryk Køb og Betal;
+|System|
+    :Modtag betaling;
+    :Ordre]
+|Kunde|
+    :Inspicer carport ordre, tegninger,
+    og styliste af matrialer;
+|Admin|
+    :Håndter stykliste;
+|Admin|
+    :Pakke ordre udfra stykliste;
+    :Sende pakkede ordre til kunde;
+|Kunde|
+    :Pakkede ordre]
+    :Vælg byg self eller håndværker;
+    split
+|Kunde|
+    :Byg selv carport;
+|Admin|
+    split again
+    :Bestil håndværker;
+|Kunde|
+    split end
+    :Carport]
+stop
+@enduml
