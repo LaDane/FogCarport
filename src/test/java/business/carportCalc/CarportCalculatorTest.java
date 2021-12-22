@@ -18,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CarportCalculatorTest {
    private final static String DATABASE = "fog";  // Change this to your own database
-   //private final static String TESTDATABASE = DATABASE + "_test";
    private final static String USER = "root";
    private final static String PASSWORD = getSecret();
    private final static String URL = "jdbc:mysql://localhost:3306/" + DATABASE + "?serverTimezone=CET&useSSL=false";
@@ -66,7 +65,7 @@ class CarportCalculatorTest {
       }
       System.out.println("TOTAL PRICE: "+ totalPrice);
 
-      assertEquals(6, orderLines.size());
+      assertEquals(7, orderLines.size());
    }
 
 

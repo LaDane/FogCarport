@@ -15,29 +15,20 @@ class CalculatorTest {
 
     @Test
     public void testRoofFlatRafters() {
-        // Params
-        double length = 600;
-        double width = 420;
 
         double lysVidde = calculator.getRafterLysViddeTrapez(carport);
 
-        // Wood dimensions
-        double raftWidth = 4.5;
-        double raftHeight = calculator.getRafterHeightFromLysVidde(carport);
-
-        assertEquals(341, lysVidde);
+        assertEquals(521, lysVidde);
 
         int amountOfRafters = calculator.getAmountOfRaftersTrapez(carport);
-//        double distanceBetweenRafters = CarportCalculator.getDistanceBetweenRaftersTrapez(length, amountOfRafters);
 
-        assertEquals(3, amountOfRafters);
-//        assertEquals(66.67, distanceBetweenRafters);
+        assertEquals(18, amountOfRafters);
+
     }
 
     @Test
     public void testAmountOfRafters() {
-        double length = 500;
-        double width = 480;
+
 
         double lysVidde = calculator.getRafterLysViddeTrapez(carport);
         double rafterHeight = calculator.getRafterHeightFromLysVidde(carport);
@@ -51,27 +42,28 @@ class CalculatorTest {
         System.out.println("rafter height: "+ rafterHeight);
         System.out.println("rafter amount: "+ raftersAmount);
         System.out.println("rafter distance: "+ rafterDistance);
-        assertEquals(11, raftersAmount);
+        assertEquals(18, raftersAmount);
     }
 
     @Test
     public void testTrapezLength() {
-        double length = 580;
         int amountOfTrapez = calculator.getAmountTrapezRow(carport);
         int lengthOfTrapez = calculator.getLengthOfTrapez(carport);
         assertEquals(2, amountOfTrapez);
-        assertEquals(360, lengthOfTrapez);
+        assertEquals(420, lengthOfTrapez);
     }
 
     @Test
     public void testTrapezTotal() {
-        calculator.getTotalAmountOfTrapez(carport);
+        int totalAmout = calculator.getTotalAmountOfTrapez(carport);
+        assertEquals(12, totalAmout);
+
     }
 
     @Test
     public void testAmountOfPosts() {
         int postAmount = calculator.getAmountOfPosts(carport);
-        assertEquals(8, postAmount);
+        assertEquals(10, postAmount);
     }
 
     @Test
@@ -79,17 +71,19 @@ class CalculatorTest {
         int amountOfUnderStern = calculator.getAmountOfStern(carport);
         int lengthOfUnderStern = calculator.getLengthOfStern(carport);
 
-        assertEquals(4, amountOfUnderStern);
+        assertEquals(6, amountOfUnderStern);
         assertEquals(600, lengthOfUnderStern);
     }
 
     @Test
     public void testMetersShedCladdingKlink() {
         carport.setHeight(250);
-        double totalSquareMeters = calculator.getSquareMeterShedCladdingKlink(carport);
-        double totalMeters = calculator.getTotalMetersShedCladdingKlink(carport);
+        int totalSquareMeters = (int) calculator.getSquareMeterShedCladdingKlink(carport);
+        int totalMeters = (int) calculator.getTotalMetersShedCladdingKlink(carport);
 //        System.out.println("Square meters: "+ totalSquareMeters);
 //        System.out.println("Meters: "+ totalMeters);
+        assertEquals(52, totalSquareMeters);
+        assertEquals(478, totalMeters);
     }
 
     @Test
@@ -101,6 +95,8 @@ class CalculatorTest {
         System.out.println("Cladding length: "+ claddingLength);
         System.out.println("Cladding Amount: "+ claddingAmount);
         System.out.println("Cladding Cost: "+ claddingAmount * 202);
+        assertEquals(2, claddingArray.length);
+
     }
 
     @Test
@@ -111,17 +107,20 @@ class CalculatorTest {
 
     @Test
     public void testAmountOfPostsWithShed() {
+        // Test 3 different sizes
+        Shed shed = new Shed(null, "N", 0, 0);
 
-        Shed shed0 = new Shed(null, "N", 600, 210);
-        Carport carport0 = new Carport(480, 780, shed0, new Roof(null, 0));
+        Carport carport1 = new Carport(270, 270, shed, new Roof(null, 0));
+        Carport carport2 = new Carport(420, 420, shed, new Roof(null, 0));
+        Carport carport3 = new Carport(600, 780, shed, new Roof(null, 0));
 
-        Shed shed1 = new Shed(null, "N", 600, 210);
-        Carport carport1 = new Carport(600, 780, shed1, new Roof(null, 0));
+        int postAmount0 = calculator.getAmountOfPosts(carport1);
+        assertEquals(8, postAmount0);
 
-        Shed shed2 = new Shed(null, "N", 600, 210);
-        Carport carport2 = new Carport(600, 780, shed2, new Roof(null, 0));
+        int postAmount1 = calculator.getAmountOfPosts(carport2);
+        assertEquals(8, postAmount1);
 
-        int postAmount = calculator.getAmountOfPosts(carport);
-        assertEquals(8, postAmount);
+        int postAmount2 = calculator.getAmountOfPosts(carport3);
+        assertEquals(10, postAmount2);
     }
 }
