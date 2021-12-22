@@ -66,7 +66,7 @@ class CarportCalculatorTest {
       }
       System.out.println("TOTAL PRICE: "+ totalPrice);
 
-      assertEquals(6, orderLines.size());
+      assertEquals(7, orderLines.size());
    }
 
 
