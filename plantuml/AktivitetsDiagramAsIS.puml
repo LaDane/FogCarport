@@ -1,5 +1,5 @@
 @startuml
-Title Cupcake Aktivitetsdiagram
+Title Aktivitetsdiagram As Is
 |Kunde|
     start
     :Gå til hjemmeside;
