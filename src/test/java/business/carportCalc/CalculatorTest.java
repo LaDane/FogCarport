@@ -107,23 +107,20 @@ class CalculatorTest {
 
     @Test
     public void testAmountOfPostsWithShed() {
+        // Test 3 different sizes
+        Shed shed = new Shed(null, "N", 0, 0);
 
-        Shed shed0 = new Shed(null, "N", 0, 0);
-        Carport carport0 = new Carport(270, 270, shed0, new Roof(null, 0));
+        Carport carport1 = new Carport(270, 270, shed, new Roof(null, 0));
+        Carport carport2 = new Carport(420, 420, shed, new Roof(null, 0));
+        Carport carport3 = new Carport(600, 780, shed, new Roof(null, 0));
 
-        Shed shed1 = new Shed(null, "N", 0, 0);
-        Carport carport1 = new Carport(420, 420, shed1, new Roof(null, 0));
-
-        Shed shed2 = new Shed(null, "N", 0, 0);
-        Carport carport2 = new Carport(600, 780, shed2, new Roof(null, 0));
-
-        int postAmount0 = calculator.getAmountOfPosts(carport0);
+        int postAmount0 = calculator.getAmountOfPosts(carport1);
         assertEquals(8, postAmount0);
 
-        int postAmount1 = calculator.getAmountOfPosts(carport1);
+        int postAmount1 = calculator.getAmountOfPosts(carport2);
         assertEquals(8, postAmount1);
 
-        int postAmount2 = calculator.getAmountOfPosts(carport2);
+        int postAmount2 = calculator.getAmountOfPosts(carport3);
         assertEquals(10, postAmount2);
     }
 }
