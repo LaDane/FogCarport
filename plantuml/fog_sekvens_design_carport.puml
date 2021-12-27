@@ -1,0 +1,17 @@
+@startuml
+title User story 2: Start design
+actor bruger
+
+boundary index.jsp
+boundary designcarport.jsp
+control FrontController
+
+bruger -> index.jsp: start
+index.jsp -> FrontController: doPost()
+FrontController -> FrontController: processRequest()
+FrontController -> Command: fromPath()
+Command --> FrontController: DesignCarport
+FrontController -> DesignCarport: execute()
+DesignCarport --> FrontController: designcarport
+FrontController --> designcarport.jsp: forward()
+@enduml

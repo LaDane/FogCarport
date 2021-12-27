@@ -1,0 +1,30 @@
+@startuml
+title User story 4: Login
+actor bruger
+
+boundary loginsignup.jsp
+boundary designcarport.jsp
+control FrontController
+
+bruger -> loginsignup.jsp: start
+loginsignup.jsp -> FrontController: doPost()
+FrontController -> FrontController: processRequest()
+FrontController -> Command: fromPath()
+Command --> FrontController: Register
+FrontController -> Register: execute()
+
+Register -> UserFacade: createUser()
+UserFacade -> UserMapper: createUser()
+
+database fogDB
+
+UserMapper -> fogDB: executeUpdate()
+fogDB --> UserMapper: ok
+UserMapper --> UserFacade: ok
+UserFacade --> Register: ok
+
+Register --> FrontController: designcarport
+
+
+FrontController --> designcarport.jsp: forward()
+@enduml
