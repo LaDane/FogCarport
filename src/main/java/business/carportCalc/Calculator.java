@@ -18,9 +18,7 @@ public class Calculator {
 
     public double getRafterHeightFromLysVidde(Carport carport) {
         double lysVidde = getRafterLysViddeTrapez(carport);
-
         double raftHeight = 19.5;
-
         double maxLysVidde195 = 409.5;
         double maxLysVidde220 = 461;
         double maxLysVidde245 = 541;
@@ -55,7 +53,6 @@ public class Calculator {
                 b = -a * 5.41 + 0.4;
                 maxDistBetweenRaftersTrapez = a * lysvidde + b;
             }
-
             if (lysvidde <= 4.82 && lysvidde > 4.61) {
                 a = (0.7 - 0.6) / (4.62 - 4.82);
                 b = -a * 4.82 + 0.6;
@@ -69,7 +66,6 @@ public class Calculator {
                 b = -a * 4.61 + 0.5;
                 maxDistBetweenRaftersTrapez = a * lysvidde + b;
             }
-
             if (lysvidde <= 4.34 && lysvidde > 4.095) {
                 a = (0.7 - 0.6) / (4.155 - 4.34);
                 b = -a * 4.34 + 0.6;
@@ -83,7 +79,6 @@ public class Calculator {
                 b = -a * 4.095 + 0.5;
                 maxDistBetweenRaftersTrapez = a * lysvidde + b;
             }
-
             if (lysvidde <= 3.85 && lysvidde > 3.685) {
                 a = (0.7 - 0.6) / (3.685 - 3.85);
                 b = -a * 3.85 + 0.6;
