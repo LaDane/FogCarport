@@ -1,10 +1,12 @@
 @startuml
-title User story 2: Start design
+title User story 1: Start design
 actor bruger
 
 boundary index.jsp
 boundary designcarport.jsp
 control FrontController
+
+autonumber
 
 bruger -> index.jsp: start
 index.jsp -> FrontController: doPost()
