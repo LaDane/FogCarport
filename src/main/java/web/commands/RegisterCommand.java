@@ -25,11 +25,22 @@ public class RegisterCommand extends CommandUnprotectedPage {
         String name = request.getParameter("name");
         String address = request.getParameter("address");
         String city = request.getParameter("city");
-        int zip = Integer.parseInt(request.getParameter("zip"));
+        String zipString = request.getParameter("zip");
         String phoneNumber = request.getParameter("phoneNumber");
 
         // We have a hidden input field that will indicate if we have pressed the submit button and started our inquiry on the index page.
         String newInquiryStarted = String.valueOf(request.getSession().getAttribute("newInquiryStarted"));
+
+        // Handle blank inputs
+        if (blankInput(request, email)) {return "loginsignup";}
+        if (blankInput(request, password1)) {return "loginsignup";}
+        if (blankInput(request, password2)) {return "loginsignup";}
+        if (blankInput(request, name)) {return "loginsignup";}
+        if (blankInput(request, address)) {return "loginsignup";}
+        if (blankInput(request, city)) {return "loginsignup";}
+        if (blankInput(request, zipString)) {return "loginsignup";}
+        int zip = Integer.parseInt(request.getParameter("zip"));
+        if (blankInput(request, phoneNumber)) {return "loginsignup";}
 
         if (password1.equals(password2)) {
             if (!userFacade.emailExist(email)) {
@@ -59,5 +70,13 @@ public class RegisterCommand extends CommandUnprotectedPage {
             request.setAttribute("errorSignup", "the two passwords did not match");
             return "loginsignup";
         }
+    }
+
+    private boolean blankInput(HttpServletRequest request, String input) {
+        if (input.length() < 1) {
+            request.setAttribute("errorSignup", "Missing required field");
+            return true;
+        }
+        return false;
     }
 }

@@ -18,7 +18,7 @@
         <div class="container container-fluid" style="background-color: #F8F8F8">
             <div class="row">
 
-                <div class="col">
+                <div class="col-md">
                     <h3>Login med eksiterende konto</h3>
                     <form name="login" action="${pageContext.request.contextPath}/fc/logincommand" method="POST">
 
@@ -45,7 +45,7 @@
                     </form>
                 </div>
 
-                <div class="col">
+                <div class="col-md">
                     <h3>Opret ny konto</h3>
                     <form name="login" action="${pageContext.request.contextPath}/fc/registercommand" method="POST">
 

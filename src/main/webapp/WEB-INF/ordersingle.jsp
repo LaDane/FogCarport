@@ -125,24 +125,24 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td style="width: 50%">Udsalgspris pris</td>
-                                    <td style="width: 50%"><strong>${sessionScope.orderPrice}</strong> DKK</td>
-                                </tr>
-                                <tr>
-                                    <td>Fremskaf indkøbspris %</td>
-                                    <c:if test="${sessionScope.orderSingle.status == 'Forespørgsel'}">
-                                        <td>
-                                            <input style="width: 40%" type="number" class="form-control form-control-sm"
-                                                   name="priceReductionPercent" id="priceReductionPercent"
-                                                   placeholder="${sessionScope.priceReductionPercent}"
-                                                   value="${sessionScope.priceReductionPercent}">
-                                        </td>
-                                    </c:if>
-                                    <c:if test="${sessionScope.orderSingle.status != 'Forespørgsel'}">
-                                        <td><strong>${sessionScope.priceReductionPercent}</strong> %</td>
-                                    </c:if>
-                                </tr>
+<%--                                <tr>--%>
+<%--                                    <td style="width: 50%">Udsalgspris pris</td>--%>
+<%--                                    <td style="width: 50%"><strong>${sessionScope.orderPrice}</strong> DKK</td>--%>
+<%--                                </tr>--%>
+<%--                                <tr>--%>
+<%--                                    <td>Fremskaf indkøbspris %</td>--%>
+<%--                                    <c:if test="${sessionScope.orderSingle.status == 'Forespørgsel'}">--%>
+<%--                                        <td>--%>
+<%--                                            <input style="width: 40%" type="number" class="form-control form-control-sm"--%>
+<%--                                                   name="priceReductionPercent" id="priceReductionPercent"--%>
+<%--                                                   placeholder="${sessionScope.priceReductionPercent}"--%>
+<%--                                                   value="${sessionScope.priceReductionPercent}">--%>
+<%--                                        </td>--%>
+<%--                                    </c:if>--%>
+<%--                                    <c:if test="${sessionScope.orderSingle.status != 'Forespørgsel'}">--%>
+<%--                                        <td><strong>${sessionScope.priceReductionPercent}</strong> %</td>--%>
+<%--                                    </c:if>--%>
+<%--                                </tr>--%>
                                 <tr>
                                     <td>Indkøbspris</td>
                                     <td><strong>${sessionScope.purchasePrice}</strong> DKK</td>
