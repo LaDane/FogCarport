@@ -30,7 +30,7 @@
 
             <div class="container-fluid">
 
-                <a class="navbar-brand" href="https://www.johannesfog.dk/"><img
+                <a class="navbar-brand" href="${pageContext.request.contextPath}"><img
                         src="${pageContext.request.contextPath}/img/Fog_logo.png" class="img-fluid"
                         alt="Fog Logo"></a>
 
@@ -55,7 +55,12 @@
                                 <a class="nav-link navbar-text">Hej ${sessionScope.user.getName()}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link navbar-link" href="${pageContext.request.contextPath}">Profil</a>
+                                <c:if test="${sessionScope.user.getRole().equals('customer')}">
+                                    <a class="nav-link navbar-link" href="${pageContext.request.contextPath}/fc/profileCommandCustomer">Profil</a>
+                                </c:if>
+                                <c:if test="${sessionScope.user.getRole().equals('employee')}">
+                                    <a class="nav-link navbar-link" href="${pageContext.request.contextPath}/fc/profileCommandEmployee">Profil</a>
+                                </c:if>
                             </li>
                         </c:if>
                         <c:if test="${sessionScope.user.getRole().equals('customer')}">

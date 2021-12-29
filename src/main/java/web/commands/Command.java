@@ -41,6 +41,8 @@ public abstract class Command
         commands.put("orderSendPrice", new OrderSendPriceCommand("ordersingle","employee"));
         commands.put("orderPayCommand", new OrderPayCommand("ordersingle", "customer"));
         commands.put("orderEndCommand", new OrderEndCommand("ordersingle", "employee"));
+        commands.put("profileCommandCustomer", new ProfileCommand("profile", "customer"));
+        commands.put("profileCommandEmployee", new ProfileCommand("profile", "employee"));
     }
 
     public static Command fromPath(

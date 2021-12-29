@@ -124,7 +124,7 @@
                             </div>
 
                             <div class="row my-3">
-                                <div class="col-sm mx-5">
+                                <div class="col mx-3">
                                     <input class="form-check-input" type="radio" name="shedPlacement" value="NW"
                                            id="shedNW">
                                     <label class="form-check-label text-center" for="shedNW">
@@ -135,7 +135,7 @@
                                         <strong>Indgang</strong>
                                     </div>
                                 </div>
-                                <div class="col-sm mx-5">
+                                <div class="col mx-3">
                                     <input class="form-check-input" type="radio" name="shedPlacement" value="N"
                                            id="shedN" checked>
                                     <label class="form-check-label text-center" for="shedN">
@@ -146,7 +146,7 @@
                                         <strong>Indgang</strong>
                                     </div>
                                 </div>
-                                <div class="col-sm mx-5">
+                                <div class="col mx-3">
                                     <input class="form-check-input" type="radio" name="shedPlacement" value="NE"
                                            id="shedNE">
                                     <label class="form-check-label text-center" for="shedNE">

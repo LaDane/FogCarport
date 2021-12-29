@@ -27,7 +27,8 @@
             </h5>
         </c:if>
 
-        <table class="table table-striped">
+        <div class="table-responsive">
+            <table class="table table-striped">
             <thead>
             <tr>
                 <th>Order Nummer</th>
@@ -37,7 +38,7 @@
                 </c:if>
                 <th>Forespørgsel oprettet</th>
                 <th>Dimension</th>
-                <th>Tag matriale</th>
+<%--                <th>Tag matriale</th>--%>
                 <th>Ordre Status</th>
                 <th> </th>
             </tr>
@@ -52,7 +53,7 @@
                     </c:if>
                     <td>${order.created}</td>
                     <td>${order.carport.width}x${order.carport.length}</td>
-                    <td>${order.roof.roofMaterial.name}</td>
+<%--                    <td>${order.roof.roofMaterial.name}</td>--%>
                     <td>${order.status}</td>
                     <td>
                         <c:if test="${sessionScope.user.role == 'employee'}">
@@ -74,6 +75,7 @@
             </c:forEach>
             </tbody>
         </table>
+        </div>
 
     </jsp:body>
 </t:generic>
