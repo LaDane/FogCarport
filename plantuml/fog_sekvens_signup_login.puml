@@ -1,10 +1,12 @@
 @startuml
-title User story 4: Login
+title User story 4: Register / Login
 actor bruger
 
 boundary loginsignup.jsp
 boundary designcarport.jsp
 control FrontController
+
+autonumber
 
 bruger -> loginsignup.jsp: start
 loginsignup.jsp -> FrontController: doPost()
