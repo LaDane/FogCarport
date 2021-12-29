@@ -22,7 +22,9 @@ public class UpdatePriceTableCommand extends CommandProtectedPage {
         request.getSession().setAttribute("orderSingle", newOrderView);
 
         double orderPrice = (double) request.getSession().getAttribute("orderPrice");
-        int priceReductionPercent = Integer.parseInt(request.getParameter("priceReductionPercent"));
+//        int priceReductionPercent = Integer.parseInt(request.getParameter("priceReductionPercent"));
+        int priceReductionPercent = 50; 
+
         int priceIncreasePercent = Integer.parseInt(request.getParameter("priceIncreasePercent"));
 
         request.getSession().setAttribute("priceReductionPercent", priceReductionPercent);
