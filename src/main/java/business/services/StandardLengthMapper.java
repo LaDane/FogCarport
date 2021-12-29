@@ -1,4 +1,4 @@
-package business.mappers;
+package business.services;
 
 import business.entities.User;
 import business.exceptions.UserException;
@@ -14,11 +14,11 @@ import java.util.List;
 public class StandardLengthMapper {
     private Database database;
 
-    public StandardLengthMapper(Database database) {
+    protected StandardLengthMapper(Database database) {
         this.database = database;
     }
 
-    public List<Integer> getStandardLengths() {
+    protected List<Integer> getStandardLengths() {
         List<Integer> standardLengths = new ArrayList<>();
         try (Connection connection = database.connect()) {
             String sql = "SELECT length FROM standard_lengths";
@@ -39,7 +39,7 @@ public class StandardLengthMapper {
         return standardLengths;
     }
 
-    public List<Integer> getCarportLengths(){
+    protected List<Integer> getCarportLengths(){
         List<Integer> standardLengths = getStandardLengths();
         List<Integer> carportLengths = new ArrayList<>();
 
@@ -51,7 +51,7 @@ public class StandardLengthMapper {
         return carportLengths;
     }
 
-    public List<Integer> getCarportWidths(){
+    protected List<Integer> getCarportWidths(){
         List<Integer> standardLengths = getStandardLengths();
         List<Integer> carportLengths = new ArrayList<>();
 

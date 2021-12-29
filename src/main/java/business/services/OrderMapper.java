@@ -1,4 +1,4 @@
-package business.mappers;
+package business.services;
 
 import business.entities.Order;
 import business.exceptions.OrderException;
@@ -10,11 +10,11 @@ import java.sql.*;
 public class OrderMapper {
     private Database database;
 
-    public OrderMapper(Database database) {
+    protected OrderMapper(Database database) {
         this.database = database;
     }
 
-    public Order createOrder(Order order) throws OrderException {
+    protected Order createOrder(Order order) throws OrderException {
         try (Connection connection = database.connect()) {
             String sql = "INSERT INTO orders (status, user_id, delivery_date, price_reduction, price_increase) VALUES (?, ?, ?, ?, ?)";
 
@@ -39,7 +39,7 @@ public class OrderMapper {
         }
     }
 
-    public void updateOrderStatus(int orderID, String status) {
+    protected void updateOrderStatus(int orderID, String status) {
 
         try (Connection connection = database.connect()) {
 

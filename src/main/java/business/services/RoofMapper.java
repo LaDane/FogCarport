@@ -1,4 +1,4 @@
-package business.mappers;
+package business.services;
 
 import business.entities.Carport;
 import business.exceptions.OrderException;
@@ -10,11 +10,11 @@ public class RoofMapper {
 
     private Database database;
 
-    public RoofMapper(Database database) {
+    protected RoofMapper(Database database) {
         this.database = database;
     }
 
-    public void createRoof(Carport carport) throws OrderException {
+    protected void createRoof(Carport carport) throws OrderException {
         try (Connection connection = database.connect()) {
             String sql = "INSERT INTO roofs (carport_id, roof_type_id, slope) VALUES (?, ?, ?)";
 

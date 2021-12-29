@@ -1,16 +1,13 @@
-package business.mappers;
+package business.services;
 
 import business.entities.Carport;
 import business.entities.Roof;
 import business.entities.Shed;
 import business.entities.User;
 import business.entities.materials.Material;
-import business.entities.materials.RoofFlat;
 import business.entities.views.OrderView;
 import business.exceptions.UserException;
 import business.persistence.Database;
-import business.services.MaterialFacade;
-import business.services.UserFacade;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,11 +20,11 @@ public class OrderViewMapper {
 
     private Database database;
 
-    public OrderViewMapper(Database database) {
+    protected OrderViewMapper(Database database) {
         this.database = database;
     }
 
-    public List<OrderView> getAllOrderViews(User user) {
+    protected List<OrderView> getAllOrderViews(User user) {
         List<OrderView> allOrderViews = null;
 
         MaterialFacade materialFacade = new MaterialFacade(database);
@@ -115,7 +112,7 @@ public class OrderViewMapper {
     }
 
 
-    public OrderView getOrderViewByOrderId(int orderId, User user) {
+    protected OrderView getOrderViewByOrderId(int orderId, User user) {
         List<OrderView> allOrderViews = getAllOrderViews(user);
         for (OrderView ov : allOrderViews) {
             if (ov.getOrderId() == orderId) {
@@ -125,7 +122,7 @@ public class OrderViewMapper {
         return null;
     }
 
-    public void updatePricePercent(int priceReduction, int priceIncrease, int orderID) {
+    protected void updatePricePercent(int priceReduction, int priceIncrease, int orderID) {
 
         try (Connection connection = database.connect()) {
 

@@ -115,46 +115,6 @@
                                 </c:if>
 
                             </div>
-
-                                <%--                            <div class="col-sm mt-4">--%>
-                                <%--                                <c:if test="${sessionScope.hasShed == 1}">--%>
-                                <%--                                    <h4 class="mb-4"><strong>Skur</strong></h4>--%>
-
-                                <%--                                    <label for="shedWidth">Skur bredde</label>--%>
-                                <%--                                    <select class="form-control" name="shedWidth" id="shedWidth">--%>
-                                <%--                                        <c:forEach var="length" items="${applicationScope.standardLengths}">--%>
-                                <%--                                            <option value="${length}">${length} cm</option>--%>
-                                <%--                                        </c:forEach>--%>
-                                <%--                                    </select>--%>
-
-                                <%--                                    <label for="shedLength">Skur længde</label>--%>
-                                <%--                                    <select class="form-control" name="shedLength" id="shedLength">--%>
-                                <%--                                        <c:forEach var="length" items="${applicationScope.standardLengths}">--%>
-                                <%--                                            <option value="${length}">${length} cm</option>--%>
-                                <%--                                        </c:forEach>--%>
-                                <%--                                    </select>--%>
-
-                                <%--                                    <label for="shedCladding">Skur beklædning</label>--%>
-                                <%--                                    <select class="form-control" name="shedCladding" id="shedCladding">--%>
-                                <%--                                        <c:forEach var="cladding" items="${applicationScope.claddings}">--%>
-                                <%--                                            <option value="${cladding.materialId}">${cladding.name}</option>--%>
-                                <%--                                        </c:forEach>--%>
-                                <%--                                    </select>--%>
-
-                                <%--                                    <label for="shedPlacement">Skur placering</label>--%>
-                                <%--                                    <select class="form-control" name="shedPlacement" id="shedPlacement">--%>
-                                <%--                                        <option value="SW">Syd Vest</option>--%>
-                                <%--                                        <option value="W">Vest</option>--%>
-                                <%--                                        <option value="NW">Nord Vest</option>--%>
-                                <%--                                        <option value="N">Nord</option>--%>
-                                <%--                                        <option value="NE">Nord Øst</option>--%>
-                                <%--                                        <option value="E">Øst</option>--%>
-                                <%--                                        <option value="SE">Syd Øst</option>--%>
-                                <%--                                    </select>--%>
-                                <%--                                    <label>Indgang til carport er sydlige side</label>--%>
-                                <%--                                </c:if>--%>
-
-                                <%--                            </div>--%>
                         </div>
 
                         <c:if test="${sessionScope.hasShed == 1}">
@@ -200,9 +160,25 @@
                             </div>
                         </c:if>
 
-                        <div class="form-group mt-1 text-center mt-5">
-                            <button type="submit" class="btn btn-lg btn-primary">Bestil tilbud</button>
-                        </div>
+                        <c:if test="${sessionScope.hasFlatRoof == 1 && sessionScope.user.role != 'employee'}">
+                            <div class="form-group mt-1 text-center mt-5">
+                                <button type="submit" class="btn btn-lg btn-primary">Bestil tilbud</button>
+                            </div>
+                        </c:if>
+
+                        <c:if test="${sessionScope.hasFlatRoof == 0 && sessionScope.user.role != 'employee'}">
+                            <div class="form-group mt-1 text-center mt-5">
+                                <p style="color: red !important;">Vi har ikke fået implementeret tag med rejsning</p>
+                                <button type="submit" class="btn btn-lg btn-primary" disabled>Bestil tilbud</button>
+                            </div>
+                        </c:if>
+
+                        <c:if test="${sessionScope.user.role == 'employee'}">
+                            <div class="form-group mt-1 text-center mt-5">
+                                <p style="color: red !important;">En admin kan ikke bestille tilbud</p>
+                                <button type="submit" class="btn btn-lg btn-primary" disabled>Bestil tilbud</button>
+                            </div>
+                        </c:if>
 
                     </form>
 

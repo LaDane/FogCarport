@@ -1,4 +1,4 @@
-package business.mappers;
+package business.services;
 
 import business.exceptions.UserException;
 import business.entities.User;
@@ -9,11 +9,11 @@ import java.sql.*;
 public class UserMapper {
     private Database database;
 
-    public UserMapper(Database database) {
+    protected UserMapper(Database database) {
         this.database = database;
     }
 
-    public void createUser(User user) throws UserException {
+    protected void createUser(User user) throws UserException {
         try (Connection connection = database.connect()) {
             String sql = "INSERT INTO users (email, password, role, name, address, zip, city, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -39,7 +39,7 @@ public class UserMapper {
         }
     }
 
-    public User login(String email, String password) throws UserException {
+    protected User login(String email, String password) throws UserException {
         try (Connection connection = database.connect()) {
             String sql = "SELECT user_id, role, name, address, zip, city, phone_number FROM users WHERE email=? AND password=?";
 
@@ -70,7 +70,7 @@ public class UserMapper {
     }
 
 
-    public boolean emailExist(String email)  throws UserException{
+    protected boolean emailExist(String email)  throws UserException{
         try (Connection connection = database.connect()) {
             String sql = "SELECT user_id FROM users WHERE email=?";
 
@@ -93,7 +93,7 @@ public class UserMapper {
 
 
     // So far its only used for testing purpose.
-    public void deleteUser(int user_id) throws UserException {
+    protected void deleteUser(int user_id) throws UserException {
 
         try (Connection connection = database.connect()) {
             String sql = "DELETE FROM users WHERE user_id = ?";
@@ -109,7 +109,7 @@ public class UserMapper {
         }
     }
 
-    public User getUserById(int userId) throws UserException {
+    protected User getUserById(int userId) throws UserException {
         try (Connection connection = database.connect()) {
             String sql = "SELECT * FROM users WHERE user_id=?";
 

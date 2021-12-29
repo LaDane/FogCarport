@@ -1,6 +1,7 @@
 package business.persistence;
 
-import business.mappers.CarportMapper;
+import business.services.CarportMapper;
+import business.services.OrderFacade;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -19,13 +20,13 @@ public class CarportMapperTest {
     private final static String URL = "jdbc:mysql://localhost:3306/" + TESTDATABASE + "?serverTimezone=CET&useSSL=false";
 
     private static Database database;
-    private static CarportMapper carportMapper;
+//    private static OrderFacade orderFacade;
 
     @BeforeAll
     public static void setUpClass() {
         try {
             database = new Database(USER, PASSWORD, URL);
-            carportMapper = new CarportMapper(database);
+//            carportMapper = new CarportMapper(database);
         } catch (ClassNotFoundException e) {   // kan ikke finde driveren i database klassen
             fail("Database connection failed. Missing jdbc driver");
         }
@@ -46,11 +47,6 @@ public class CarportMapperTest {
         // Just check that we have a connection.
         assertNotNull(database);
     }
-
-
-
-
-
 
     // Must have a file names password.secret located in the C drive to be able to connect to a SQL database
     private static String getSecret() {

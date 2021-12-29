@@ -1,4 +1,4 @@
-package business.mappers;
+package business.services;
 
 import business.entities.materials.*;
 import business.persistence.Database;
@@ -12,14 +12,14 @@ import java.util.List;
 
 public class MaterialMapper {
     private Database database;
-    List<Material> allMaterials;
+    private List<Material> allMaterials;
 
-    public MaterialMapper(Database database) {
+    protected MaterialMapper(Database database) {
         this.database = database;
         allMaterials = getAllMaterials();
     }
 
-    public List<Material> getAllMaterials() {
+    protected List<Material> getAllMaterials() {
         List<Material> allMats = new ArrayList<>();
 
         try (Connection connection = database.connect()) {
@@ -52,7 +52,7 @@ public class MaterialMapper {
         return allMats;
     }
 
-    public List<Wood> getAllWoods() {
+    protected List<Wood> getAllWoods() {
         List<Wood> allWoods = new ArrayList<>();
 
         for (Material material : allMaterials) {
@@ -63,7 +63,7 @@ public class MaterialMapper {
         return allWoods;
     }
 
-    public List<Fitting> getAllFittings() {
+    protected List<Fitting> getAllFittings() {
         List<Fitting> allFittings = new ArrayList<>();
 
         for (Material material : allMaterials) {
@@ -74,7 +74,7 @@ public class MaterialMapper {
         return allFittings;
     }
 
-    public List<Screw> getAllScrews() {
+    protected List<Screw> getAllScrews() {
         List<Screw> allScrews = new ArrayList<>();
 
         for (Material material : allMaterials) {
@@ -85,7 +85,7 @@ public class MaterialMapper {
         return allScrews;
     }
 
-    public List<RoofFlat> getAllRoofFlats() {
+    protected List<RoofFlat> getAllRoofFlats() {
         List<RoofFlat> allRoofFlats = new ArrayList<>();
 
         for (Material material : allMaterials) {
@@ -96,7 +96,7 @@ public class MaterialMapper {
         return allRoofFlats;
     }
 
-    public List<RoofRaised> getAllRoofRaiseds() {
+    protected List<RoofRaised> getAllRoofRaiseds() {
         List<RoofRaised> allRoofRaiseds = new ArrayList<>();
 
         for (Material material : allMaterials) {
@@ -107,7 +107,7 @@ public class MaterialMapper {
         return allRoofRaiseds;
     }
 
-    public List<Cladding> getAllCladdings() {
+    protected List<Cladding> getAllCladdings() {
         List<Cladding> allCladdings = new ArrayList<>();
 
         for (Material material : allMaterials) {
@@ -118,7 +118,7 @@ public class MaterialMapper {
         return allCladdings;
     }
 
-    public Material getSpecificMaterial(int materialId) {
+    protected Material getSpecificMaterial(int materialId) {
         for (Material material : allMaterials) {
             if (material.getMaterialId() == materialId) {
                 return material;

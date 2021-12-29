@@ -1,17 +1,5 @@
 package business.persistence;
 
-import business.entities.User;
-import business.exceptions.UserException;
-import business.mappers.UserMapper;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 public class UserMapperTest {
 //    // OBS: Only works if you havee the fog_test Database in MySql.
 //    private final static String DATABASE = "fog";  // Change this to your own database

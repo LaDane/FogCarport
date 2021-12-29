@@ -1,36 +1,36 @@
-package business.mappers;
+package business.services;
 
 import business.entities.Carport;
-import business.entities.Shed;
+import business.entities.Order;
 import business.exceptions.OrderException;
 import business.persistence.Database;
 
 import java.sql.*;
 
-public class ShedMapper {
+public class CarportMapper {
 
     private Database database;
 
-    public ShedMapper(Database database) {
+    protected CarportMapper(Database database)
+    {
         this.database = database;
     }
 
-    public Shed createShed(Shed shed, Carport carport) throws OrderException {
+    protected Carport createCarport(Carport carport, Order order) throws OrderException {
         try (Connection connection = database.connect()) {
-            String sql = "INSERT INTO sheds (carport_id, cladding_id, location, width, length) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO carports (order_id, width, length, height) VALUES (?, ?, ?, ?)";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                ps.setInt(1, carport.getCarportId());
-                ps.setInt(2, shed.getCladding().getMaterialId());
-                ps.setString(3, shed.getPlacement());
-                ps.setInt(4, shed.getWidth());
-                ps.setInt(5, shed.getLength());
+                ps.setInt(1, order.getOrderId());
+                ps.setInt(2, carport.getWidth());
+                ps.setInt(3, carport.getLength());
+                ps.setInt(4, carport.getHeight());
                 ps.executeUpdate();
                 ResultSet ids = ps.getGeneratedKeys();
                 ids.next();
                 int id = ids.getInt(1);
-                shed.setShedId(id);
-                return shed;
+                carport.setCarportId(id);
+                return carport;
 
             } catch (SQLException ex) {
                 throw new OrderException(ex.getMessage());
