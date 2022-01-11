@@ -1,0 +1,19 @@
+@startuml
+title User story 2: Design Carport
+actor bruger
+
+boundary designcarport.jsp
+boundary designcarport.jsp
+control FrontController
+
+autonumber
+
+bruger -> designcarport.jsp: start
+designcarport.jsp -> FrontController: doPost()
+FrontController -> FrontController: processRequest()
+FrontController -> Command: fromPath()
+Command --> FrontController: OrderNew
+FrontController -> OrderNew: execute()
+DesignCarport --> FrontController: orderOverview
+FrontController --> orderOverview.jsp: forward()
+@enduml

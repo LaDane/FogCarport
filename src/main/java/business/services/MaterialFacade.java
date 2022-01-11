@@ -12,7 +12,7 @@ public class MaterialFacade {
         this.materialMapper = new MaterialMapper(database);
     }
 
-    public List<Material> getAllMaterials() {
+    public List<Material> getAllMaterials()  {
         return materialMapper.getAllMaterials();
     }
 

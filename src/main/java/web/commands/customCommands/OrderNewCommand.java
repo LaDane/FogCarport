@@ -50,7 +50,7 @@ public class OrderNewCommand extends CommandProtectedPage {
             shedPlacement = request.getParameter("shedPlacement");
 
             //shedCladding = Integer.parseInt(request.getParameter("shedCladding"));
-            shedCladding = 26;
+
 
             Cladding cladding = (Cladding) materialFacade.getSpecificMaterial(shedCladding);
 
@@ -72,9 +72,9 @@ public class OrderNewCommand extends CommandProtectedPage {
         Order order = new Order("Forespørgsel", user, carport);
 
         OrderFacade orderFacade = new OrderFacade(database);
-        int orderId = -1;
+
         try {
-            orderId = orderFacade.createOrderEntry(order);
+            orderFacade.createOrderEntry(order);
         } catch (OrderException e) {
             e.printStackTrace();
         }

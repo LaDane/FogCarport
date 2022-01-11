@@ -45,7 +45,7 @@ public abstract class Command
         commands.put("profileCommandEmployee", new ProfileCommand("profile", "employee"));
     }
 
-    public static Command fromPath(
+    public static Command   fromPath(
             HttpServletRequest request,
             Database db)
     {
