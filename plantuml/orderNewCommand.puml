@@ -1,9 +1,11 @@
 @startuml
-title User story 2: Design Carport
+title User story 1: Start design
 actor bruger
 
+
 boundary designcarport.jsp
-boundary orderOverview.jsp
+boundary orderoverview.jsp
+
 control FrontController
 participant Command
 participant OrderNew
@@ -22,6 +24,7 @@ FrontController -> FrontController: processRequest()
 FrontController -> Command: fromPath()
 Command --> FrontController: OrderNew
 FrontController -> OrderNew: execute()
+
 
 OrderNew -> OrderFacade: createOrderEntry()
 OrderFacade -> OrderMapper: createOrder()
@@ -48,6 +51,8 @@ fogDB --> OrderNew: ok
 
 
 
-OrderNew --> FrontController: orderOverview
-FrontController --> orderOverview.jsp: forward()
+
+OrderNew --> FrontController: orderoverview
+FrontController --> orderoverview.jsp: forward()
+
 @enduml
