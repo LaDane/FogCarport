@@ -3,8 +3,16 @@ title User story 2: Design Carport
 actor bruger
 
 boundary designcarport.jsp
-boundary designcarport.jsp
+boundary orderOverview.jsp
 control FrontController
+participant Command
+participant OrderNew
+participant OrderFacade
+participant OrderMapper
+participant CarportMapper
+participant RoofMapper
+
+database fogDB
 
 autonumber
 
@@ -14,6 +22,32 @@ FrontController -> FrontController: processRequest()
 FrontController -> Command: fromPath()
 Command --> FrontController: OrderNew
 FrontController -> OrderNew: execute()
-DesignCarport --> FrontController: orderOverview
+
+OrderNew -> OrderFacade: createOrderEntry()
+OrderFacade -> OrderMapper: createOrder()
+
+
+
+OrderMapper -> fogDB: executeUpdate()
+fogDB --> OrderFacade: ok
+
+
+OrderFacade -> CarportMapper: createCarport()
+CarportMapper -> fogDB: executeUpdate()
+fogDB --> OrderFacade: ok
+
+
+OrderFacade -> RoofMapper: createRoof()
+RoofMapper -> fogDB: executeUpdate()
+fogDB --> OrderNew: ok
+
+
+
+
+
+
+
+
+OrderNew --> FrontController: orderOverview
 FrontController --> orderOverview.jsp: forward()
 @enduml
