@@ -1,9 +1,10 @@
 @startuml
-title User story 2: Design Carport
+title User story 1: Start design
 actor bruger
 
+
 boundary designcarport.jsp
-boundary designcarport.jsp
+boundary orderoverview.jsp
 control FrontController
 
 autonumber
@@ -14,6 +15,6 @@ FrontController -> FrontController: processRequest()
 FrontController -> Command: fromPath()
 Command --> FrontController: OrderNew
 FrontController -> OrderNew: execute()
-DesignCarport --> FrontController: orderOverview
-FrontController --> orderOverview.jsp: forward()
+OrderNew --> FrontController: orderoverview
+FrontController --> orderoverview.jsp: forward()
 @enduml
